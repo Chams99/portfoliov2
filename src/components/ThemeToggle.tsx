@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Row, ToggleButton, useTheme } from "@once-ui-system/core";
+import { useTheme } from "@once-ui-system/core";
+import styles from "./ThemeToggle.module.scss";
 
 export const ThemeToggle: React.FC = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState("light");
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -17,14 +19,43 @@ export const ThemeToggle: React.FC = () => {
     setCurrentTheme(document.documentElement.getAttribute("data-theme") || "light");
   }, [theme]);
 
-  const icon = currentTheme === "dark" ? "light" : "dark";
-  const nextTheme = currentTheme === "light" ? "dark" : "light";
+  const handleThemeToggle = () => {
+    if (isAnimating) return;
+    
+    setIsAnimating(true);
+    const nextTheme = currentTheme === "light" ? "dark" : "light";
+    
+    // Add a small delay to show the animation
+    setTimeout(() => {
+      setTheme(nextTheme);
+      setIsAnimating(false);
+    }, 150);
+  };
+
+  if (!mounted) {
+    return (
+      <div className={styles.button}>
+        <div className={styles.iconContainer}>
+          <div className={styles.sunIcon} />
+        </div>
+      </div>
+    );
+  }
+
+  const isDark = currentTheme === "dark";
 
   return (
-    <ToggleButton
-      prefixIcon={icon}
-      onClick={() => setTheme(nextTheme)}
-      aria-label={`Switch to ${nextTheme} mode`}
-    />
+    <button
+      className={`${styles.button} ${isAnimating ? styles.animating : ""}`}
+      onClick={handleThemeToggle}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      title={`Switch to ${isDark ? "light" : "dark"} mode`}
+    >
+      <div className={styles.iconContainer}>
+        <div className={`${styles.sunIcon} ${isDark ? styles.hidden : ""}`} />
+        <div className={`${styles.moonIcon} ${!isDark ? styles.hidden : ""}`} />
+      </div>
+      <div className={styles.ripple} />
+    </button>
   );
 };

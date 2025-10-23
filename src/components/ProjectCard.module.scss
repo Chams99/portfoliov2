@@ -1,0 +1,115 @@
+// ProjectCard styling for consistent image sizes
+// Following 2025 best practices with aspect-ratio CSS
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 16 / 9; // Professional widescreen ratio
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--neutral-alpha-weak);
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // Ensures images fill space without distortion
+    object-position: center;
+  }
+}
+
+// Alternative: For portrait-style images
+.imageContainerSquare {
+  width: 100%;
+  aspect-ratio: 4 / 3; // More traditional ratio
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--neutral-alpha-weak);
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+// Carousel wrapper to ensure consistent sizing and quality
+.carouselWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-l);
+  background: var(--neutral-alpha-weak);
+
+  :global(.carousel) {
+    height: 100%;
+  }
+
+  :global(.carousel-slide) {
+    height: 100%;
+  }
+
+  :global(.carousel-slide img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    image-rendering: -webkit-optimize-contrast; // Better quality on webkit/Edge
+    image-rendering: high-quality; // High quality rendering
+    backface-visibility: hidden; // Prevent blurry transforms
+    transform: translateZ(0); // Force GPU acceleration
+    
+    // Ensure images load at native resolution
+    max-width: none;
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+// Project action buttons styling
+.projectActions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+
+  a {
+    padding: 8px 16px;
+    border-radius: var(--radius-m);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+// Mobile responsive adjustments
+@media (max-width: 768px) {
+  .imageContainer,
+  .imageContainerSquare,
+  .carouselWrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .projectActions {
+    a {
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+  }
+}
+
+// Tablet adjustments
+@media (min-width: 769px) and (max-width: 1024px) {
+  .imageContainer,
+  .carouselWrapper {
+    aspect-ratio: 16 / 9;
+  }
+}
+

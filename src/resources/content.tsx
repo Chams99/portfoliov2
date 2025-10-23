@@ -2,39 +2,39 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  firstName: "Chames",
+  lastName: "Dhibi",
+  name: `Chames Dhibi`,
+  role: "Full-Stack Developer",
+  avatar: "/images/avatar.webp",
+  email: "dhibichams@gmail.com",
+  location: "Africa/Tunis", // Gafsa, Tunisia
+  languages: ["English", "French", "Arabic"], // TOEFL iBT: 84/120
 };
 
 const newsletter: Newsletter = {
-  display: true,
+  display: false,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>Get updates about my latest projects and tech insights</>,
 };
 
 const social: Social = [
   // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
+  // Import new icons in /resources/icons.ts
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/Chams99",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/dhibi-chams-827146344/",
   },
   {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    name: "X",
+    icon: "x",
+    link: "https://x.com/ChamesDhibi",
   },
   {
     name: "Email",
@@ -49,30 +49,24 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Crafting exceptional digital experiences with modern technologies</>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">15+ Projects Built</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
-          Featured work
+          React • Next.js • Flutter
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work",
   },
   subline: (
     <>
-      I'm Selene, a design engineer at{" "}
-      <Logo
-        dark
-        icon="/trademarks/wordmark-dark.svg"
-        style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}
-      />
-      , where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm Chames, a Full-Stack Developer from Tunisia who turns complex problems into elegant digital solutions.
+      <br /> Specializing in React, Next.js, Node.js, and Flutter - I build web and mobile applications that are both powerful and elegant.
     </>
   ),
 };
@@ -91,16 +85,19 @@ const about: About = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "/contact",
   },
   intro: {
     display: true,
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Chames is a Tunisian Full-Stack Developer with a passion for transforming complex problems
+        into elegant digital solutions. From concept to deployment, he builds applications that deliver 
+        real value and exceptional user experiences. Currently pursuing a B.S. in Computer Science at 
+        the Faculty of Science in Gafsa, he has built 15+ production-ready web and mobile applications
+        using React, Next.js, Node.js, and Flutter. He believes great software comes from clean code, 
+        thoughtful design, and user-centric thinking.
       </>
     ),
   },
@@ -109,41 +106,35 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Go My Code",
+        timeframe: "2022",
+        role: "Full Stack Python Developer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Developed full-stack web applications using Python, Django, and modern JavaScript frameworks.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Built scalable backend systems and RESTful APIs serving thousands of users.
+          </>,
+          <>
+            Collaborated with cross-functional teams to deliver high-quality software solutions.
           </>,
         ],
-        images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Freelance Developer",
+        timeframe: "2022 - Present",
+        role: "Full-Stack Developer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Built 15+ production-ready web and mobile applications using React, Next.js, and Flutter.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Specialized in creating responsive, performant applications with modern UI/UX design.
+          </>,
+          <>
+            Delivered end-to-end solutions including e-commerce platforms, landing pages, and interactive web apps.
           </>,
         ],
         images: [],
@@ -152,15 +143,19 @@ const about: About = {
   },
   studies: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Education",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Faculty of Science Gafsa",
+        description: <>B.S. in Computer Science with focus on full-stack development and modern web technologies.</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Lycée Houssen Bouzayen",
+        description: <>Baccalaureate in Mathematics - 2023</>,
+      },
+      {
+        name: "TOEFL iBT",
+        description: <>Score: 84/120 - January 2025</>,
       },
     ],
   },
@@ -169,61 +164,71 @@ const about: About = {
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
+        title: "Frontend Development",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>Building modern, responsive web applications with React, Next.js, and TypeScript. Expert in Tailwind CSS, HTML5, and CSS3 for stunning UI designs with excellent performance.</>
         ),
         tags: [
           {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
-        tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
+            name: "React",
+            icon: "react",
           },
           {
             name: "Next.js",
             icon: "nextjs",
           },
           {
-            name: "Supabase",
-            icon: "supabase",
+            name: "TypeScript",
+            icon: "typescript",
           },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
           {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
+            name: "JavaScript",
+            icon: "javascript",
           },
         ],
-      },  
+        images: [],
+      },
+      {
+        title: "Backend Development",
+        description: (
+          <>Creating scalable server-side applications with Node.js, Express.js, PHP, and Laravel. Proficient in Python, C#, .NET, and building RESTful APIs with comprehensive database management.</>
+        ),
+        tags: [
+          {
+            name: "Node.js",
+            icon: "nodejs",
+          },
+          {
+            name: "Python",
+            icon: "python",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "Mobile Development",
+        description: (
+          <>Developing cross-platform mobile applications with Flutter and Dart for iOS and Android. Creating responsive, performant mobile experiences with native-like feel.</>
+        ),
+        tags: [],
+        images: [],
+      },
+      {
+        title: "Databases & Cloud",
+        description: (
+          <>Working with MySQL, PostgreSQL, MongoDB, and Firebase for data storage and cloud services. Experience with database design, optimization, and cloud deployment.</>
+        ),
+        tags: [],
+        images: [],
+      },
+      {
+        title: "Tools & Technologies",
+        description: (
+          <>Proficient with Git for version control, VS Code for development, and Figma for design. Experience with modern development workflows and CI/CD pipelines.</>
+        ),
+        tags: [],
+        images: [],
+      },
     ],
   },
 };

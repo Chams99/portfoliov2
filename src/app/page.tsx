@@ -12,7 +12,7 @@ import {
   Line,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
+import { Mailchimp, Skills } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
 
@@ -100,13 +100,57 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
+      {/* Featured Projects Section */}
+      <Column fillWidth gap="24" marginBottom="l">
+        <Row fillWidth horizontal="center">
+          <Line maxWidth="l" />
+        </Row>
+        <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
+          <Row flex={1} paddingLeft="l" paddingTop="24">
+            <Heading as="h2" variant="display-strong-xs" wrap="balance">
+              Featured Projects
+            </Heading>
+          </Row>
+          <Column flex={3} paddingX="20" gap="16">
+            <Text variant="body-default-l" onBackground="neutral-weak">
+              A curated selection of my best work showcasing expertise in full-stack development, 
+              modern web technologies, and innovative solutions.
+            </Text>
+          </Column>
+        </Row>
+      </Column>
+
+      {/* Best Projects - Top 4 */}
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
+        <Projects range={[1, 4]} />
       </RevealFx>
+
+      {/* View All Projects Button */}
+      <RevealFx translateY="8" delay={0.8}>
+        <Column fillWidth horizontal="center" paddingY="32">
+          <Button
+            id="view-all-projects"
+            data-border="rounded"
+            href="/work"
+            variant="secondary"
+            size="l"
+            weight="default"
+            arrowIcon
+          >
+            View All Projects
+          </Button>
+        </Column>
+      </RevealFx>
+
+      {/* Skills Section */}
+      <RevealFx translateY="16" delay={1.0}>
+        <Skills />
+      </RevealFx>
+
       {routes["/blog"] && (
         <Column fillWidth gap="24" marginBottom="l">
-          <Row fillWidth paddingRight="64">
-            <Line maxWidth={48} />
+          <Row fillWidth horizontal="center">
+            <Line maxWidth="l" />
           </Row>
           <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
             <Row flex={1} paddingLeft="l" paddingTop="24">
@@ -118,12 +162,12 @@ export default function Home() {
               <Posts range={[1, 2]} columns="2" />
             </Row>
           </Row>
-          <Row fillWidth paddingLeft="64" horizontal="end">
-            <Line maxWidth={48} />
+          <Row fillWidth horizontal="center">
+            <Line maxWidth="l" />
           </Row>
         </Column>
       )}
-      <Projects range={[2]} />
+
       <Mailchimp />
     </Column>
   );

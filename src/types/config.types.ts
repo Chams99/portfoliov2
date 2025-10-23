@@ -145,6 +145,8 @@ export type SameAsConfig = {
   threads: string;
   linkedin: string;
   discord: string;
+  x: string;
+  github: string;
 };
 
 /**
@@ -166,9 +168,9 @@ export type SocialSharingConfig = {
 };
 
 /**
- * Top-level config types for once-ui.config.js
+ * Top-level config types for config.ts
  */
-export type OnceUIConfig = {
+export type PortfolioConfig = {
   display: DisplayConfig;
   mailchimp: MailchimpConfig;
   routes: RoutesConfig;

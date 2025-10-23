@@ -1,6 +1,7 @@
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { Projects } from "@/components/work/Projects";
+import styles from "./work.module.scss";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -14,7 +15,7 @@ export async function generateMetadata() {
 
 export default function Work() {
   return (
-    <Column maxWidth="m" paddingTop="24">
+    <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center">
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -28,9 +29,24 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Heading marginBottom="l" variant="heading-strong-xl" align="center">
-        {work.title}
-      </Heading>
+      <Column fillWidth align="center" gap="16" marginBottom="40" paddingX="l">
+        <Heading variant="display-strong-l" align="center">
+          All Projects
+        </Heading>
+        <div className={styles.descriptionWrapper}>
+          <Heading
+            as="p"
+            variant="body-default-l"
+            onBackground="neutral-weak"
+            align="center"
+            wrap="balance"
+            style={{ textAlign: 'center' }}
+          >
+            A comprehensive showcase of 15+ web and mobile applications, 
+            from AI-powered fitness apps to e-commerce platforms and interactive tools.
+          </Heading>
+        </div>
+      </Column>
       <Projects />
     </Column>
   );

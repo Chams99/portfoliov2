@@ -1,0 +1,50 @@
+@import "@/components/breakpoints.scss";
+
+.optimizedSkeleton {
+  // Use CSS containment for better performance
+  contain: layout style paint;
+  
+  // Optimize for GPU acceleration
+  transform: translateZ(0);
+  will-change: transform;
+  
+  // Smooth transitions
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  
+  // Ensure proper stacking context
+  position: relative;
+  z-index: 1;
+}
+
+// Performance optimizations for different screen sizes
+@media (max-width: 768px) {
+  .optimizedSkeleton {
+    // Reduce complexity on mobile
+    contain: layout style;
+    transition: opacity 0.15s ease-out;
+  }
+}
+
+// High refresh rate displays
+@media (min-resolution: 120dpi) {
+  .optimizedSkeleton {
+    // Smoother animations on high refresh rate displays
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .optimizedSkeleton {
+    transition: none;
+    transform: none;
+  }
+}
+
+// Dark mode optimizations
+[data-theme="dark"] {
+  .optimizedSkeleton {
+    // Ensure proper contrast in dark mode
+    filter: contrast(1.1);
+  }
+}

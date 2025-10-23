@@ -72,20 +72,16 @@ export default function About() {
           position="fixed"
           paddingLeft="24"
           gap="32"
-          s={{ hide: true }}
+          className={styles.sidebarNavigation}
         >
           <TableOfContents structure={structure} about={about} />
         </Column>
       )}
-      <Row fillWidth s={{ direction: "column"}} horizontal="center">
+      <Row fillWidth s={{ direction: "column"}} horizontal="center" className={styles.aboutContainer}>
         {about.avatar.display && (
           <Column
             className={styles.avatar}
-            top="64"
             fitHeight
-            position="sticky"
-            s={{ position: "relative", style: { top: "auto" } }}
-            xs={{ style: { top: "auto" } }}
             minWidth="160"
             paddingX="l"
             paddingBottom="xl"
@@ -127,7 +123,7 @@ export default function About() {
                 gap="8"
                 marginBottom="m"
                 vertical="center"
-                className={styles.blockAlign}
+                className={`${styles.blockAlign} ${styles.calendarSection}`}
                 style={{
                   backdropFilter: "blur(var(--static-space-1))",
                 }}
@@ -163,6 +159,15 @@ export default function About() {
                 fitWidth
                 data-border="rounded"
               >
+                <Button
+                  href="/cv/Chames_Dhibi_CV_2025.pdf"
+                  prefixIcon="download"
+                  label="Download CV"
+                  size="s"
+                  weight="default"
+                  variant="primary"
+                  download
+                />
                 {social.map(
                   (item) =>
                     item.link && (
@@ -176,6 +181,7 @@ export default function About() {
                             size="s"
                             weight="default"
                             variant="secondary"
+                            className={styles.socialButton}
                           />
                         </Row>
                         <Row hide s={{ hide: false }}>
@@ -185,6 +191,7 @@ export default function About() {
                             href={item.link}
                             icon={item.icon}
                             variant="secondary"
+                            className={styles.socialButton}
                           />
                         </Row>
                       </React.Fragment>
@@ -202,12 +209,12 @@ export default function About() {
 
           {about.work.display && (
             <>
-              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
+              <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m" className={styles.sectionHeader}>
                 {about.work.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
                 {about.work.experiences.map((experience, index) => (
-                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
+                  <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth className={styles.experienceCard}>
                     <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
                       <Text id={experience.company} variant="heading-strong-l">
                         {experience.company}
@@ -226,6 +233,7 @@ export default function About() {
                             as="li"
                             variant="body-default-m"
                             key={`${experience.company}-${index}`}
+                            className={styles.hover}
                           >
                             {achievement}
                           </Text>
@@ -261,12 +269,12 @@ export default function About() {
 
           {about.studies.display && (
             <>
-              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
+              <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m" className={styles.sectionHeader}>
                 {about.studies.title}
               </Heading>
               <Column fillWidth gap="l" marginBottom="40">
                 {about.studies.institutions.map((institution, index) => (
-                  <Column key={`${institution.name}-${index}`} fillWidth gap="4">
+                  <Column key={`${institution.name}-${index}`} fillWidth gap="4" className={styles.experienceCard}>
                     <Text id={institution.name} variant="heading-strong-l">
                       {institution.name}
                     </Text>
@@ -286,12 +294,13 @@ export default function About() {
                 id={about.technical.title}
                 variant="display-strong-s"
                 marginBottom="40"
+                className={styles.sectionHeader}
               >
                 {about.technical.title}
               </Heading>
               <Column fillWidth gap="l">
                 {about.technical.skills.map((skill, index) => (
-                  <Column key={`${skill}-${index}`} fillWidth gap="4">
+                  <Column key={`${skill}-${index}`} fillWidth gap="4" className={styles.experienceCard}>
                     <Text id={skill.title} variant="heading-strong-l">
                       {skill.title}
                     </Text>
@@ -301,7 +310,7 @@ export default function About() {
                     {skill.tags && skill.tags.length > 0 && (
                       <Row wrap gap="8" paddingTop="8">
                         {skill.tags.map((tag, tagIndex) => (
-                          <Tag key={`${skill.title}-${tagIndex}`} size="l" prefixIcon={tag.icon}>
+                          <Tag key={`${skill.title}-${tagIndex}`} size="l" prefixIcon={tag.icon} className={styles.skillTag}>
                             {tag.name}
                           </Tag>
                         ))}

@@ -14,12 +14,13 @@ import {
   Row,
   Avatar,
   Line,
+  Badge,
 } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
 import { Metadata } from "next";
-import { Projects } from "@/components/work/Projects";
+import { SimilarProjects } from "@/components/work/SimilarProjects";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
@@ -121,6 +122,32 @@ export default async function Project({
       {post.metadata.images.length > 0 && (
         <Media priority aspectRatio="16 / 9" radius="m" alt="image" src={post.metadata.images[0]} />
       )}
+      
+      <Row horizontal="center" gap="12" wrap marginTop="24" marginBottom="16">
+        {post.metadata.link && (
+          <Button
+            href={post.metadata.link}
+            variant="primary"
+            size="m"
+            prefixIcon="globe"
+            suffixIcon="arrowUpRightFromSquare"
+          >
+            View Live Demo
+          </Button>
+        )}
+        {post.metadata.github && (
+          <Button
+            href={post.metadata.github}
+            variant="secondary"
+            size="m"
+            prefixIcon="github"
+            suffixIcon="arrowUpRightFromSquare"
+          >
+            View on GitHub
+          </Button>
+        )}
+      </Row>
+      
       <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
         <CustomMDX source={post.content} />
       </Column>
@@ -129,7 +156,12 @@ export default async function Project({
         <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
           Related projects
         </Heading>
-        <Projects exclude={[post.slug]} range={[2]} />
+        <SimilarProjects 
+          currentSlug={post.slug}
+          currentCategory={post.metadata.category}
+          currentTags={post.metadata.tags}
+          limit={2}
+        />
       </Column>
       <ScrollToHash />
     </Column>

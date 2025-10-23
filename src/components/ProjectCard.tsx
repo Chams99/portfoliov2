@@ -2,13 +2,14 @@
 
 import {
   AvatarGroup,
-  Carousel,
   Column,
   Flex,
   Heading,
   SmartLink,
   Text,
 } from "@once-ui-system/core";
+import { HighQualityCarousel } from "./HighQualityCarousel";
+import styles from "./ProjectCard.module.scss";
 
 interface ProjectCardProps {
   href: string;
@@ -32,13 +33,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <Column fillWidth gap="m">
-      <Carousel
-        sizes="(max-width: 960px) 100vw, 960px"
-        items={images.map((image) => ({
-          slide: image,
-          alt: title,
-        }))}
-      />
+      <HighQualityCarousel images={images} title={title} />
       <Flex
         s={{ direction: "column" }}
         fillWidth
@@ -62,26 +57,26 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 {description}
               </Text>
             )}
-            <Flex gap="24" wrap>
-              {content?.trim() && (
-                <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: "0", width: "fit-content" }}
-                  href={href}
-                >
-                  <Text variant="body-default-s">Read case study</Text>
-                </SmartLink>
-              )}
+            <div className={styles.projectActions}>
               {link && (
                 <SmartLink
                   suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: "0", width: "fit-content" }}
+                  style={{ margin: "0" }}
                   href={link}
                 >
-                  <Text variant="body-default-s">View project</Text>
+                  <Text variant="label-default-m" onBackground="brand-strong">Live Demo</Text>
                 </SmartLink>
               )}
-            </Flex>
+              {content?.trim() && (
+                <SmartLink
+                  suffixIcon="arrowRight"
+                  style={{ margin: "0" }}
+                  href={href}
+                >
+                  <Text variant="label-default-m" onBackground="neutral-strong">Read More</Text>
+                </SmartLink>
+              )}
+            </div>
           </Column>
         )}
       </Flex>
