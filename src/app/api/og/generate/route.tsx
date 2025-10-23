@@ -3,71 +3,9 @@ import { baseURL, person } from "@/resources";
 
 export const runtime = "edge";
 
-// Reduced timeout for faster responses in development
-const FETCH_TIMEOUT = 3000; // 3 seconds
-
-// Cache for font data to avoid repeated fetches
-let fontCache: ArrayBuffer | null | undefined = undefined;
-
 export async function GET(request: Request) {
   let url = new URL(request.url);
   let title = url.searchParams.get("title") || "Portfolio";
-
-  async function loadGoogleFont(font: string): Promise<ArrayBuffer | null> {
-    // Return cached font if available
-    if (fontCache !== undefined) {
-      return fontCache;
-    }
-
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT);
-      
-      const fontUrl = `https://fonts.googleapis.com/css2?family=${font}`;
-      const css = await (await fetch(fontUrl, { 
-        signal: controller.signal,
-        headers: {
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-        }
-      })).text();
-      clearTimeout(timeoutId);
-      
-      const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
-
-      if (resource) {
-        const controller2 = new AbortController();
-        const timeoutId2 = setTimeout(() => controller2.abort(), FETCH_TIMEOUT);
-        
-        const response = await fetch(resource[1], { 
-          signal: controller2.signal 
-        });
-        clearTimeout(timeoutId2);
-        
-        if (response.status == 200) {
-          const buffer = await response.arrayBuffer();
-          fontCache = buffer; // Cache the font
-          return buffer;
-        }
-      }
-
-      throw new Error("failed to load font data");
-    } catch (error) {
-      console.warn("Font loading skipped (using system fonts):", error instanceof Error ? error.message : "Unknown error");
-      // Cache null to avoid retrying
-      fontCache = null;
-      return null;
-    }
-  }
-
-  // Load font with fallback (now cached)
-  const fontData = await loadGoogleFont("Geist:wght@400");
-  const fontConfig = fontData ? [
-    {
-      name: "Geist",
-      data: fontData,
-      style: "normal" as const,
-    },
-  ] : [];
 
   return new ImageResponse(
     <div
@@ -87,7 +25,7 @@ export async function GET(request: Request) {
           gap: "4rem",
           fontStyle: "normal",
           color: "white",
-          fontFamily: fontData ? "Geist" : "system-ui, -apple-system, sans-serif",
+          fontFamily: "system-ui, -apple-system, sans-serif",
         }}
       >
         <span
@@ -155,7 +93,6 @@ export async function GET(request: Request) {
     {
       width: 1280,
       height: 720,
-      fonts: fontConfig,
     },
   );
 }
