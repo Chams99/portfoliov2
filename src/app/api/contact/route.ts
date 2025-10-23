@@ -1,10 +1,19 @@
 import { NextResponse } from "next/server";
 
-const TELEGRAM_BOT_TOKEN = "7991709198:AAG_8HnC2YO8rhUYZbO2thYvJ5fI-jBDocc";
-const TELEGRAM_CHAT_ID = "259407405";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 export async function POST(request: Request) {
   try {
+    // Check if environment variables are set
+    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+      console.error("Missing Telegram environment variables");
+      return NextResponse.json(
+        { success: false, error: "Server configuration error" },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { name, email, subject, message } = body;
 
