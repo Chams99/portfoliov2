@@ -67,7 +67,7 @@ export async function GET() {
       telegramResponse: result,
       httpStatus: response.status,
       chatId: TELEGRAM_CHAT_ID,
-      botToken: TELEGRAM_BOT_TOKEN.substring(0, 10) + "...",
+      botToken: `${TELEGRAM_BOT_TOKEN.substring(0, 10)}...`,
       botInfo: botInfo.result,
       debugInfo: {
         chatIdAsString: chatId,
