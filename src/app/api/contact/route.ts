@@ -38,12 +38,12 @@ function validateInput(name: string, email: string, subject: string, message: st
     errors.push("Please enter a valid email address");
   }
   
-  if (!subject || subject.length < 5 || subject.length > 100) {
-    errors.push("Subject must be between 5 and 100 characters");
+  if (!subject || subject.length < 3 || subject.length > 100) {
+    errors.push("Subject must be between 3 and 100 characters");
   }
   
-  if (!message || message.length < 10 || message.length > 2000) {
-    errors.push("Message must be between 10 and 2000 characters");
+  if (!message || message.length < 5 || message.length > 2000) {
+    errors.push("Message must be between 5 and 2000 characters");
   }
   
   // Check for suspicious patterns
