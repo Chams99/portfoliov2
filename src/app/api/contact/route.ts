@@ -26,6 +26,9 @@ export async function POST(request: Request) {
     }
 
     // Check if Telegram is configured
+    console.log("Environment check - TELEGRAM_BOT_TOKEN:", TELEGRAM_BOT_TOKEN ? "SET" : "NOT SET");
+    console.log("Environment check - TELEGRAM_CHAT_ID:", TELEGRAM_CHAT_ID ? "SET" : "NOT SET");
+    
     if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
       console.log("Telegram not configured, logging contact form submission:");
       console.log("Name:", name);
@@ -50,6 +53,10 @@ Message:
 ${message}`;
 
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    
+    console.log("Sending to Telegram URL:", telegramUrl);
+    console.log("Chat ID:", TELEGRAM_CHAT_ID);
+    console.log("Message:", telegramMessage);
 
     const telegramResponse = await fetch(telegramUrl, {
       method: "POST",
@@ -63,9 +70,12 @@ ${message}`;
       }),
     });
 
+    console.log("Telegram response status:", telegramResponse.status);
     const telegramResult = await telegramResponse.json();
+    console.log("Telegram API response:", telegramResult);
 
     if (telegramResponse.ok && telegramResult.ok) {
+      console.log("Telegram message sent successfully!");
       return NextResponse.json({ success: true });
     }
     
