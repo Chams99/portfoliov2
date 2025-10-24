@@ -59,10 +59,7 @@ ${message}`;
     console.log("Chat ID:", TELEGRAM_CHAT_ID);
     console.log("Message:", telegramMessage);
 
-    // Convert chat_id to number for proper formatting
-    const chatId = Number.parseInt(TELEGRAM_CHAT_ID);
-    
-    // Use form data exactly like the working PHP version
+    // Use form data exactly like the working test endpoint
     const formData = new URLSearchParams();
     formData.append('chat_id', TELEGRAM_CHAT_ID);
     formData.append('text', telegramMessage);
@@ -85,7 +82,10 @@ ${message}`;
 
     if (telegramResponse.ok && telegramResult.ok) {
       console.log("Telegram message sent successfully!");
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ 
+        success: true, 
+        message: "Message sent successfully!" 
+      });
     }
     
     console.error("Telegram API error:", telegramResult);
@@ -93,17 +93,19 @@ ${message}`;
     // Provide more specific error handling based on error codes
     if (telegramResult.error_code === 400) {
       console.error("Bad Request - Check chat ID and bot token");
+      console.error("Error description:", telegramResult.description);
     } else if (telegramResult.error_code === 401) {
       console.error("Unauthorized - Check bot token");
     } else if (telegramResult.error_code === 403) {
       console.error("Forbidden - Bot blocked by user");
     }
     
-    // Still return success to avoid breaking the form if Telegram fails
+    // Return error response to help with debugging
     return NextResponse.json({ 
-      success: true, 
-      message: "Message received (delivery confirmation pending)" 
-    });
+      success: false, 
+      error: "Failed to send message via Telegram",
+      telegramError: telegramResult.description || "Unknown Telegram error"
+    }, { status: 500 });
     
   } catch (error) {
     console.error("Contact form error:", error);
