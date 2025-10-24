@@ -94,6 +94,16 @@ ${message}`;
     if (telegramResult.error_code === 400) {
       console.error("Bad Request - Check chat ID and bot token");
       console.error("Error description:", telegramResult.description);
+      
+      // Handle specific error cases
+      if (telegramResult.description?.includes("chat not found")) {
+        return NextResponse.json({ 
+          success: false, 
+          error: "Telegram bot not found in chat. Please add the bot to your chat or check the chat ID.",
+          telegramError: telegramResult.description,
+          solution: "Add your bot to the chat or verify the chat ID in environment variables"
+        }, { status: 400 });
+      }
     } else if (telegramResult.error_code === 401) {
       console.error("Unauthorized - Check bot token");
     } else if (telegramResult.error_code === 403) {
