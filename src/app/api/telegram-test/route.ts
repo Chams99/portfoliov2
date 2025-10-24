@@ -16,7 +16,7 @@ export async function GET() {
     }
 
     // Test Telegram API with a simple message
-    const testMessage = "🧪 Telegram bot test - " + new Date().toISOString();
+    const testMessage = `🧪 Telegram bot test - ${new Date().toISOString()}`;
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
     const response = await fetch(telegramUrl, {
