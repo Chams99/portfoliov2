@@ -1,4 +1,4 @@
-@import "../components/breakpoints.scss";
+@use "../components/breakpoints.scss" as breakpoints;
 
 .skillsSection {
   width: 100%;

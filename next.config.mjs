@@ -46,19 +46,16 @@ const nextConfig = {
     },
   },
   
-  // Optimize for faster development
-  experimental: {
-    // Use turbo mode for faster dev
-    turbo: {
-      rules: {
-        "*.scss": {
-          loaders: ["sass-loader"],
-          as: "*.css",
-        },
-        "*.module.scss": {
-          loaders: ["sass-loader"],
-          as: "*.module.css",
-        },
+  // Optimize for faster development with Turbopack
+  turbopack: {
+    rules: {
+      "*.scss": {
+        loaders: ["sass-loader"],
+        as: "*.css",
+      },
+      "*.module.scss": {
+        loaders: ["sass-loader"],
+        as: "*.module.css",
       },
     },
   },
