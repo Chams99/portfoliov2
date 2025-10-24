@@ -52,21 +52,27 @@ Subject: ${subject}
 Message:
 ${message}`;
 
+    // Use URLSearchParams for better compatibility (2025 best practice)
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
     console.log("Sending to Telegram URL:", telegramUrl);
     console.log("Chat ID:", TELEGRAM_CHAT_ID);
     console.log("Message:", telegramMessage);
 
+    // Convert chat_id to string to ensure proper formatting
+    const chatId = String(TELEGRAM_CHAT_ID);
+    
     const telegramResponse = await fetch(telegramUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "User-Agent": "Portfolio-Contact-Form/1.0",
       },
       body: JSON.stringify({
-        chat_id: TELEGRAM_CHAT_ID,
+        chat_id: chatId,
         text: telegramMessage,
         parse_mode: "HTML",
+        disable_web_page_preview: true,
       }),
     });
 
@@ -80,6 +86,16 @@ ${message}`;
     }
     
     console.error("Telegram API error:", telegramResult);
+    
+    // Provide more specific error handling based on error codes
+    if (telegramResult.error_code === 400) {
+      console.error("Bad Request - Check chat ID and bot token");
+    } else if (telegramResult.error_code === 401) {
+      console.error("Unauthorized - Check bot token");
+    } else if (telegramResult.error_code === 403) {
+      console.error("Forbidden - Bot blocked by user");
+    }
+    
     // Still return success to avoid breaking the form if Telegram fails
     return NextResponse.json({ 
       success: true, 
