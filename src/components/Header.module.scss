@@ -101,7 +101,11 @@
     padding: 0.75rem 1rem;
     z-index: 50;
     
-    /* Ensure it's hidden on server-side rendering */
+    /* Ensure it's hidden on server-side rendering and desktop */
+    @media (min-width: breakpoints.$s) {
+        display: none !important;
+    }
+    
     @media (prefers-reduced-motion: no-preference) {
         animation: slideUp 0.3s ease-out;
     }
@@ -185,8 +189,7 @@
 
 @media (max-width: breakpoints.$s) {
     .position {
-        top: auto;
-        bottom: var(--static-space-24);
+        display: none !important;
     }
 
     .mask {
