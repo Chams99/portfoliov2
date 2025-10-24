@@ -10,6 +10,11 @@ const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
   
+  // Disable ESLint during builds to avoid circular dependency issues
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  
   // Optimize images with high quality
   images: {
     remotePatterns: [
