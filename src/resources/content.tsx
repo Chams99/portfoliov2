@@ -123,11 +123,9 @@ const about: About = {
         timeframe: "2022 - Present",
         role: "Full-Stack Developer",
         achievements: [
-          "Built 15+ production-ready web and mobile applications using React, Next.js, and
-            Flutter.",
+          "Built 15+ production-ready web and mobile applications using React, Next.js, and Flutter.",
           "Specialized in creating responsive, performant applications with modern UI/UX design.",
-          "Delivered end-to-end solutions including e-commerce platforms, landing pages, and
-            interactive web apps.",
+          "Delivered end-to-end solutions including e-commerce platforms, landing pages, and interactive web apps.",
         ],
         images: [],
       },
