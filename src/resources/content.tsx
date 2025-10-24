@@ -8,7 +8,7 @@ const person: Person = {
   role: "Full-Stack Developer",
   avatar: "/images/avatar.webp",
   email: "dhibichams@gmail.com",
-  location: "Africa/Tunis", // Gafsa, Tunisia
+  location: "Africa/Tunisia", // Gafsa, Tunisia
   languages: ["English", "French", "Arabic"], // TOEFL iBT: 84/120
 };
 

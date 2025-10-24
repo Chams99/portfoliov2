@@ -116,7 +116,7 @@ export function HeaderEnhanced() {
           <Row gap="m" align="center">
             {/* Time Display */}
             <div className={styles.timeDisplay}>
-              <TimeDisplay timeZone="Europe/Tunis" locale="en-GB" />
+              <TimeDisplay timeZone="Africa/Tunisia" locale="en-GB" />
             </div>
 
             {/* Theme Toggle */}
