@@ -112,8 +112,7 @@ const about: About = {
         timeframe: "2022",
         role: "Full Stack Python Developer",
         achievements: [
-          "Developed full-stack web applications using Python, Django, and modern JavaScript
-            frameworks.",
+          "Developed full-stack web applications using Python, Django, and modern JavaScript frameworks.",
           "Built scalable backend systems and RESTful APIs serving thousands of users.",
           "Collaborated with cross-functional teams to deliver high-quality software solutions.",
         ],
