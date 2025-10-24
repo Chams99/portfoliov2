@@ -20,7 +20,8 @@ export const SECURITY_CONFIG: SecurityConfig = {
 export function validateHoneypot(body: Record<string, unknown>): boolean {
   const honeypotFields = ['website', 'url', 'phone', 'company'];
   for (const field of honeypotFields) {
-    if (body[field] && body[field].trim() !== '') {
+    const value = body[field];
+    if (value && typeof value === 'string' && value.trim() !== '') {
       return false; // Bot detected
     }
   }
