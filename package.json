@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev --turbo",
     "dev:fast": "NEXT_TELEMETRY_DISABLED=1 next dev --turbo",
+    "dev:webpack": "next dev",
     "export": "next export",
     "build": "next build",
     "biome-write": "npx @biomejs/biome format --write .",

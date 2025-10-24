@@ -17,11 +17,11 @@
   gap: var(--static-space-24);
   width: 100%;
 
-  @include m {
+  @include breakpoints.m {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include s {
+  @include breakpoints.s {
     grid-template-columns: 1fr;
   }
 }
@@ -117,7 +117,7 @@
   padding-top: var(--static-space-24);
   border-top: 1px solid var(--neutral-border-weak);
 
-  @include s {
+  @include breakpoints.s {
     grid-template-columns: 1fr;
   }
 }
