@@ -19,6 +19,13 @@ export async function GET() {
     const testMessage = `🧪 Telegram bot test - ${new Date().toISOString()}`;
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
     
+    // Try different chat ID formats
+    const chatId = TELEGRAM_CHAT_ID;
+    const chatIdAsNumber = parseInt(TELEGRAM_CHAT_ID);
+    
+    console.log("Testing with chat ID:", chatId);
+    console.log("Chat ID as number:", chatIdAsNumber);
+    
     const response = await fetch(telegramUrl, {
       method: "POST",
       headers: {
@@ -26,7 +33,7 @@ export async function GET() {
         "User-Agent": "Portfolio-Test/1.0",
       },
       body: JSON.stringify({
-        chat_id: String(TELEGRAM_CHAT_ID),
+        chat_id: chatIdAsNumber, // Use number format
         text: testMessage,
         parse_mode: "HTML",
       }),
