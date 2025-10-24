@@ -59,13 +59,14 @@ ${message}`;
     console.log("Chat ID:", TELEGRAM_CHAT_ID);
     console.log("Message:", telegramMessage);
 
-    // Use form data exactly like the working test endpoint
-    const formData = new URLSearchParams();
-    formData.append('chat_id', TELEGRAM_CHAT_ID);
-    formData.append('text', telegramMessage);
-    formData.append('parse_mode', 'HTML');
+    // Use the exact same format as the working PHP implementation
+    const postFields = {
+      chat_id: TELEGRAM_CHAT_ID,
+      text: telegramMessage,
+      parse_mode: 'HTML'
+    };
     
-    console.log("Form data being sent:", formData.toString());
+    console.log("Post fields being sent:", postFields);
     
     const telegramResponse = await fetch(telegramUrl, {
       method: "POST",
@@ -73,7 +74,7 @@ ${message}`;
         "Content-Type": "application/x-www-form-urlencoded",
         "User-Agent": "Portfolio-Contact-Form/1.0",
       },
-      body: formData.toString(),
+      body: new URLSearchParams(postFields).toString(),
     });
 
     console.log("Telegram response status:", telegramResponse.status);
