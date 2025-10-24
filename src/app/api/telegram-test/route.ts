@@ -43,11 +43,13 @@ export async function GET() {
     console.log("Chat ID as number:", chatIdAsNumber);
     console.log("Bot username:", botInfo.result.username);
     
-    // Use form data like the working PHP version
+    // Use form data exactly like the working PHP version
     const formData = new URLSearchParams();
-    formData.append('chat_id', TELEGRAM_CHAT_ID); // Use string format like PHP
+    formData.append('chat_id', TELEGRAM_CHAT_ID);
     formData.append('text', testMessage);
     formData.append('parse_mode', 'HTML');
+    
+    console.log("Form data being sent:", formData.toString());
     
     const response = await fetch(telegramUrl, {
       method: "POST",
@@ -55,7 +57,7 @@ export async function GET() {
         "Content-Type": "application/x-www-form-urlencoded",
         "User-Agent": "Portfolio-Test/1.0",
       },
-      body: formData,
+      body: formData.toString(),
     });
 
     const result = await response.json();
