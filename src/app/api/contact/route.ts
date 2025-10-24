@@ -60,7 +60,7 @@ ${message}`;
     console.log("Message:", telegramMessage);
 
     // Convert chat_id to number for proper formatting
-    const chatId = parseInt(TELEGRAM_CHAT_ID);
+    const chatId = Number.parseInt(TELEGRAM_CHAT_ID);
     
     const telegramResponse = await fetch(telegramUrl, {
       method: "POST",

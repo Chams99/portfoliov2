@@ -21,7 +21,7 @@ export async function GET() {
     
     // Try different chat ID formats
     const chatId = TELEGRAM_CHAT_ID;
-    const chatIdAsNumber = parseInt(TELEGRAM_CHAT_ID);
+    const chatIdAsNumber = Number.parseInt(TELEGRAM_CHAT_ID);
     
     console.log("Testing with chat ID:", chatId);
     console.log("Chat ID as number:", chatIdAsNumber);
