@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { Column, Row, Button, Input, Heading, Text } from "@once-ui-system/core";
+import { Button, Column, Heading, Input, Row, Text } from "@once-ui-system/core";
+import type React from "react";
+import { useState } from "react";
 import styles from "./ContactForm.module.scss";
 
 export function ContactForm() {
@@ -55,97 +56,96 @@ export function ContactForm() {
     <Column fillWidth horizontal="center">
       <Column maxWidth="s" paddingX="l">
         <form onSubmit={handleSubmit} className={styles.contactForm}>
-        <Column gap="24">
-          <Column gap="16" align="center">
-            <Heading as="h3" variant="heading-strong-l" align="center">
-              Send Me a Message
-            </Heading>
-            <Text variant="body-default-m" onBackground="neutral-weak" align="center">
-              I'll respond within 24 hours
-            </Text>
-          </Column>
+          <Column gap="24">
+            <Column gap="16" align="center">
+              <Heading as="h3" variant="heading-strong-l" align="center">
+                Send Me a Message
+              </Heading>
+              <Text variant="body-default-m" onBackground="neutral-weak" align="center">
+                I'll respond within 24 hours
+              </Text>
+            </Column>
 
-          <Column gap="16">
-            <Input
-              id="name"
-              label="Your Name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              disabled={status === "sending"}
-            />
-
-            <Input
-              id="email"
-              label="Your Email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              disabled={status === "sending"}
-            />
-
-            <Input
-              id="subject"
-              label="Subject"
-              name="subject"
-              value={formData.subject}
-              onChange={handleChange}
-              required
-              disabled={status === "sending"}
-            />
-
-            <Column gap="8">
-              <label htmlFor="message" className={styles.label}>
-                <Text variant="label-default-s" onBackground="neutral-medium">
-                  Your Message
-                </Text>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
+            <Column gap="16">
+              <Input
+                id="name"
+                label="Your Name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
                 disabled={status === "sending"}
-                rows={6}
-                className={styles.textarea}
-                placeholder="Tell me about your project or inquiry..."
               />
+
+              <Input
+                id="email"
+                label="Your Email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                disabled={status === "sending"}
+              />
+
+              <Input
+                id="subject"
+                label="Subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                disabled={status === "sending"}
+              />
+
+              <Column gap="8">
+                <label htmlFor="message" className={styles.label}>
+                  <Text variant="label-default-s" onBackground="neutral-medium">
+                    Your Message
+                  </Text>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  disabled={status === "sending"}
+                  rows={6}
+                  className={styles.textarea}
+                  placeholder="Tell me about your project or inquiry..."
+                />
+              </Column>
             </Column>
+
+            <Button
+              type="submit"
+              variant="primary"
+              size="l"
+              disabled={status === "sending"}
+              fillWidth
+            >
+              {status === "sending" ? "Sending..." : "Send Message"}
+            </Button>
+
+            {status === "success" && (
+              <div className={styles.successMessage}>
+                <Text variant="body-default-m" onBackground="brand-strong">
+                  ✓ Message sent successfully! I'll get back to you soon.
+                </Text>
+              </div>
+            )}
+
+            {status === "error" && (
+              <div className={styles.errorMessage}>
+                <Text variant="body-default-m" onBackground="accent-strong">
+                  ✗ {errorMessage}
+                </Text>
+              </div>
+            )}
           </Column>
-
-          <Button
-            type="submit"
-            variant="primary"
-            size="l"
-            disabled={status === "sending"}
-            fillWidth
-          >
-            {status === "sending" ? "Sending..." : "Send Message"}
-          </Button>
-
-          {status === "success" && (
-            <div className={styles.successMessage}>
-              <Text variant="body-default-m" onBackground="brand-strong">
-                ✓ Message sent successfully! I'll get back to you soon.
-              </Text>
-            </div>
-          )}
-
-          {status === "error" && (
-            <div className={styles.errorMessage}>
-              <Text variant="body-default-m" onBackground="accent-strong">
-                ✗ {errorMessage}
-              </Text>
-            </div>
-          )}
-        </Column>
-      </form>
+        </form>
       </Column>
     </Column>
   );
 }
-

@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
-import { Column, Row, Heading, Text, Line } from "@once-ui-system/core";
-import styles from "./Skills.module.scss";
+import { Column, Heading, Line, Row, Text } from "@once-ui-system/core";
+import type React from "react";
 import { SkillIcons } from "./SkillIcons";
+import styles from "./Skills.module.scss";
 
 interface SkillCategory {
   title: string;
@@ -87,21 +87,21 @@ export function Skills() {
       <Row fillWidth horizontal="center">
         <Line maxWidth="l" />
       </Row>
-      
+
       <Column fillWidth gap="32" marginTop="40">
         <Column fillWidth align="center" gap="16" paddingX="l">
           <Heading as="h2" variant="display-strong-l" align="center">
             Technical Expertise
           </Heading>
           <div className={styles.descriptionWrapper}>
-            <Text 
-              variant="body-default-l" 
-              onBackground="neutral-weak" 
+            <Text
+              variant="body-default-l"
+              onBackground="neutral-weak"
               align="center"
               wrap="balance"
             >
-              Proficient in modern web and mobile technologies with hands-on experience 
-              building production-ready applications
+              Proficient in modern web and mobile technologies with hands-on experience building
+              production-ready applications
             </Text>
           </div>
         </Column>
@@ -118,7 +118,7 @@ export function Skills() {
                     {category.title}
                   </Heading>
                 </div>
-                
+
                 <div className={styles.skillsWrapper}>
                   {category.skills.map((skill) => (
                     <div key={skill.name} className={styles.skillTag}>
@@ -145,11 +145,10 @@ export function Skills() {
           </div>
         </Column>
       </Column>
-      
+
       <Row fillWidth horizontal="center">
         <Line maxWidth="l" />
       </Row>
     </Column>
   );
 }
-

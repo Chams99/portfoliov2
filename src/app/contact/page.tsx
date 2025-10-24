@@ -1,12 +1,13 @@
-import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
-import { baseURL, about, person } from "@/resources";
 import { ContactForm } from "@/components";
+import { about, baseURL, person } from "@/resources";
+import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import styles from "./contact.module.scss";
 
 export async function generateMetadata() {
   return Meta.generate({
     title: "Contact - Chames Dhibi",
-    description: "Get in touch with Chames Dhibi for projects, collaborations, or PFE internship opportunities",
+    description:
+      "Get in touch with Chames Dhibi for projects, collaborations, or PFE internship opportunities",
     baseURL: baseURL,
     path: "/contact",
   });
@@ -38,10 +39,10 @@ export default function Contact() {
             onBackground="neutral-weak"
             align="center"
             wrap="balance"
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: "center" }}
           >
-            Open to new opportunities and collaborations. Got a project or just want to chat? 
-            I'll respond within 24 hours.
+            Open to new opportunities and collaborations. Got a project or just want to chat? I'll
+            respond within 24 hours.
           </Heading>
         </div>
       </Column>
@@ -49,4 +50,3 @@ export default function Contact() {
     </Column>
   );
 }
-

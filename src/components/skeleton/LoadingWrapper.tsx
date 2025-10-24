@@ -1,7 +1,7 @@
-import { Suspense } from "react";
 import { Column } from "@once-ui-system/core";
-import { SkeletonBase, SkeletonLine, SkeletonBox } from "./SkeletonBase";
+import { Suspense } from "react";
 import styles from "./LoadingWrapper.module.scss";
+import { SkeletonBase, SkeletonBox, SkeletonLine } from "./SkeletonBase";
 
 interface LoadingWrapperProps {
   children: React.ReactNode;
@@ -26,20 +26,17 @@ function DefaultLoadingFallback() {
   );
 }
 
-export function LoadingWrapper({ 
-  children, 
+export function LoadingWrapper({
+  children,
   fallback = <DefaultLoadingFallback />,
   minHeight = "400px",
-  className
+  className,
 }: LoadingWrapperProps) {
   const wrapperClass = `${styles.loadingWrapper} ${className || ""}`;
-  
+
   return (
     <Suspense fallback={fallback}>
-      <div 
-        className={wrapperClass}
-        style={{ minHeight }}
-      >
+      <div className={wrapperClass} style={{ minHeight }}>
         {children}
       </div>
     </Suspense>
@@ -78,11 +75,7 @@ export function BlogPostLoadingWrapper({ children }: { children: React.ReactNode
           </Column>
           <Column gap="s">
             {Array.from({ length: 10 }).map((_, index) => (
-              <SkeletonLine 
-                key={index} 
-                width={index % 3 === 0 ? "60%" : "100%"} 
-                height="1.25rem" 
-              />
+              <SkeletonLine key={index} width={index % 3 === 0 ? "60%" : "100%"} height="1.25rem" />
             ))}
           </Column>
         </Column>
@@ -95,10 +88,7 @@ export function BlogPostLoadingWrapper({ children }: { children: React.ReactNode
 
 export function ImageLoadingWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <LoadingWrapper
-      fallback={<SkeletonBox width="100%" height="300px" />}
-      minHeight="300px"
-    >
+    <LoadingWrapper fallback={<SkeletonBox width="100%" height="300px" />} minHeight="300px">
       {children}
     </LoadingWrapper>
   );

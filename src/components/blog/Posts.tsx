@@ -1,8 +1,9 @@
-import { getPosts } from "@/utils/utils";
+import type { BlogPostWithMetadata } from "@/utils/serverBlogFilters";
 import { Grid } from "@once-ui-system/core";
 import Post from "./Post";
 
 interface PostsProps {
+  posts: BlogPostWithMetadata[];
   range?: [number] | [number, number];
   columns?: "1" | "2" | "3";
   thumbnail?: boolean;
@@ -11,14 +12,13 @@ interface PostsProps {
 }
 
 export function Posts({
+  posts: allBlogs,
   range,
   columns = "1",
   thumbnail = false,
   exclude = [],
   direction,
 }: PostsProps) {
-  let allBlogs = getPosts(["src", "app", "blog", "posts"]);
-
   // Exclude by slug (exact match)
   if (exclude.length) {
     allBlogs = allBlogs.filter((post) => !exclude.includes(post.slug));

@@ -1,11 +1,11 @@
-import { ImageResponse } from "next/og";
 import { baseURL, person } from "@/resources";
+import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
 export async function GET(request: Request) {
-  let url = new URL(request.url);
-  let title = url.searchParams.get("title") || "Portfolio";
+  const url = new URL(request.url);
+  const title = url.searchParams.get("title") || "Portfolio";
 
   return new ImageResponse(
     <div

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import { Column, Flex, Text } from "@once-ui-system/core";
+import type React from "react";
+import { useEffect, useState } from "react";
 import styles from "./about.module.scss";
 
 interface TableOfContentsProps {
@@ -37,7 +38,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
   // Track active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = structure.filter(section => section.display);
+      const sections = structure.filter((section) => section.display);
       const scrollPosition = window.scrollY + 100;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -49,10 +50,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     handleScroll(); // Check initial position
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [structure]);
 
   if (!about.tableOfContent.display) return null;
@@ -65,18 +66,18 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
           <Column key={sectionIndex} gap="12">
             <Flex
               cursor="interactive"
-              className={`${styles.hover} ${activeSection === section.title ? styles.activeSection : ''}`}
+              className={`${styles.hover} ${activeSection === section.title ? styles.activeSection : ""}`}
               gap="8"
               vertical="center"
               onClick={() => scrollTo(section.title, 80)}
               padding="8"
             >
-              <Flex 
-                height="2" 
-                minWidth="20" 
+              <Flex
+                height="2"
+                minWidth="20"
                 background={activeSection === section.title ? "brand-strong" : "neutral-medium"}
-              ></Flex>
-              <Text 
+              />
+              <Text
                 variant="body-default-m"
                 onBackground={activeSection === section.title ? "brand-strong" : "neutral-strong"}
               >
@@ -95,8 +96,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
                     vertical="center"
                     onClick={() => scrollTo(item, 80)}
                   >
-                    <Flex height="1" minWidth="12" background="neutral-medium"></Flex>
-                    <Text variant="body-default-s" onBackground="neutral-weak">{item}</Text>
+                    <Flex height="1" minWidth="12" background="neutral-medium" />
+                    <Text variant="body-default-s" onBackground="neutral-weak">
+                      {item}
+                    </Text>
                   </Flex>
                 ))}
               </Column>

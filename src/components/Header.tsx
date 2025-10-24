@@ -5,9 +5,9 @@ import { useEffect, useState } from "react";
 
 import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
 
-import { routes, display, person, about, blog, work, gallery } from "@/resources";
-import { ThemeToggle } from "./ThemeToggle";
+import { about, blog, display, gallery, person, routes, work } from "@/resources";
 import styles from "./Header.module.scss";
+import { ThemeToggle } from "./ThemeToggle";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -63,7 +63,7 @@ export const Header = () => {
         height="80"
         zIndex={9}
       />
-      
+
       {/* Desktop Navigation */}
       <Row
         fitHeight
@@ -92,10 +92,10 @@ export const Header = () => {
           >
             <Row gap="2" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
               {routes["/"] && (
-                <ToggleButton 
+                <ToggleButton
                   className={styles.navItem}
-                  prefixIcon="home" 
-                  href="/" 
+                  prefixIcon="home"
+                  href="/"
                   selected={pathname === "/"}
                   aria-label="Home"
                 />
@@ -250,82 +250,130 @@ export const Header = () => {
       {isMounted && (
         <div className={styles.mobileNav}>
           {routes["/"] && (
-            <a 
-              href="/" 
+            <a
+              href="/"
               className={`${styles.mobileNavItem} ${pathname === "/" ? styles.mobileNavItemSelected : ""}`}
               aria-label="Home"
             >
-              <svg className={styles.mobileNavIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                <polyline points="9,22 9,12 15,12 15,22"/>
+              <svg
+                className={styles.mobileNavIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9,22 9,12 15,12 15,22" />
               </svg>
               <div className={styles.mobileNavLabel}>Home</div>
             </a>
           )}
           {routes["/about"] && (
-            <a 
-              href="/about" 
+            <a
+              href="/about"
               className={`${styles.mobileNavItem} ${pathname === "/about" ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${about.label}`}
             >
-              <svg className={styles.mobileNavIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
+              <svg
+                className={styles.mobileNavIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
               </svg>
               <div className={styles.mobileNavLabel}>{about.label}</div>
             </a>
           )}
           {routes["/work"] && (
-            <a 
-              href="/work" 
+            <a
+              href="/work"
               className={`${styles.mobileNavItem} ${pathname.startsWith("/work") ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${work.label}`}
             >
-              <svg className={styles.mobileNavIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="7" height="7" x="3" y="3" rx="1"/>
-                <rect width="7" height="7" x="14" y="3" rx="1"/>
-                <rect width="7" height="7" x="14" y="14" rx="1"/>
-                <rect width="7" height="7" x="3" y="14" rx="1"/>
+              <svg
+                className={styles.mobileNavIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="7" height="7" x="3" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="3" rx="1" />
+                <rect width="7" height="7" x="14" y="14" rx="1" />
+                <rect width="7" height="7" x="3" y="14" rx="1" />
               </svg>
               <div className={styles.mobileNavLabel}>{work.label}</div>
             </a>
           )}
           {routes["/blog"] && (
-            <a 
-              href="/blog" 
+            <a
+              href="/blog"
               className={`${styles.mobileNavItem} ${pathname.startsWith("/blog") ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${blog.label}`}
             >
-              <svg className={styles.mobileNavIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              <svg
+                className={styles.mobileNavIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
               </svg>
               <div className={styles.mobileNavLabel}>{blog.label}</div>
             </a>
           )}
           {routes["/gallery"] && (
-            <a 
-              href="/gallery" 
+            <a
+              href="/gallery"
               className={`${styles.mobileNavItem} ${pathname.startsWith("/gallery") ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${gallery.label}`}
             >
-              <svg className={styles.mobileNavIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+              <svg
+                className={styles.mobileNavIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
               <div className={styles.mobileNavLabel}>{gallery.label}</div>
             </a>
           )}
           {routes["/contact"] && (
-            <a 
-              href="/contact" 
+            <a
+              href="/contact"
               className={`${styles.mobileNavItem} ${pathname === "/contact" ? styles.mobileNavItemSelected : ""}`}
               aria-label="Navigate to Contact"
             >
-              <svg className={styles.mobileNavIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
+              <svg
+                className={styles.mobileNavIcon}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
               </svg>
               <div className={styles.mobileNavLabel}>Contact</div>
             </a>

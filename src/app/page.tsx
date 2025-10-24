@@ -1,20 +1,26 @@
+import { Mailchimp, Skills } from "@/components";
+import { Posts } from "@/components/blog/Posts";
+import { Projects } from "@/components/work/Projects";
+import { about, baseURL, home, person, routes } from "@/resources";
+import { getAllBlogPosts } from "@/utils/serverBlogFilters";
 import {
-  Heading,
-  Text,
-  Button,
+  getAllProjects,
+  getCategoriesFromProjects,
+  getTechnologiesFromProjects,
+} from "@/utils/serverProjectFilters";
+import {
   Avatar,
-  RevealFx,
-  Column,
   Badge,
+  Button,
+  Column,
+  Heading,
+  Line,
+  Meta,
+  RevealFx,
   Row,
   Schema,
-  Meta,
-  Line,
+  Text,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp, Skills } from "@/components";
-import { Projects } from "@/components/work/Projects";
-import { Posts } from "@/components/blog/Posts";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -26,7 +32,11 @@ export async function generateMetadata() {
   });
 }
 
-export default function Home() {
+export default async function Home() {
+  const projects = getAllProjects();
+  const categories = getCategoriesFromProjects(projects);
+  const technologies = getTechnologiesFromProjects(projects);
+  const blogPosts = getAllBlogPosts();
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
       <Schema
@@ -113,7 +123,7 @@ export default function Home() {
           </Row>
           <Column flex={3} paddingX="20" gap="16">
             <Text variant="body-default-l" onBackground="neutral-weak">
-              A curated selection of my best work showcasing expertise in full-stack development, 
+              A curated selection of my best work showcasing expertise in full-stack development,
               modern web technologies, and innovative solutions.
             </Text>
           </Column>
@@ -122,7 +132,13 @@ export default function Home() {
 
       {/* Best Projects - Top 4 */}
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 4]} />
+        <Projects
+          projects={projects}
+          categories={categories}
+          technologies={technologies}
+          range={[1, 4]}
+          showFilters={false}
+        />
       </RevealFx>
 
       {/* View All Projects Button */}
@@ -159,7 +175,7 @@ export default function Home() {
               </Heading>
             </Row>
             <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
+              <Posts posts={blogPosts} range={[1, 2]} columns="2" />
             </Row>
           </Row>
           <Row fillWidth horizontal="center">

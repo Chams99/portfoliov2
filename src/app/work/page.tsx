@@ -1,6 +1,11 @@
-import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
-import { baseURL, about, person, work } from "@/resources";
 import { Projects } from "@/components/work/Projects";
+import { about, baseURL, person, work } from "@/resources";
+import {
+  getAllProjects,
+  getCategoriesFromProjects,
+  getTechnologiesFromProjects,
+} from "@/utils/serverProjectFilters";
+import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import styles from "./work.module.scss";
 
 export async function generateMetadata() {
@@ -13,7 +18,11 @@ export async function generateMetadata() {
   });
 }
 
-export default function Work() {
+export default async function Work() {
+  const projects = getAllProjects();
+  const categories = getCategoriesFromProjects(projects);
+  const technologies = getTechnologiesFromProjects(projects);
+
   return (
     <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center">
       <Schema
@@ -40,14 +49,15 @@ export default function Work() {
             onBackground="neutral-weak"
             align="center"
             wrap="balance"
-            style={{ textAlign: 'center' }}
+            style={{ textAlign: "center" }}
           >
-            A comprehensive showcase of 15+ web and mobile applications, 
-            from AI-powered fitness apps to e-commerce platforms and interactive tools.
+            A comprehensive showcase of 15+ web and mobile applications, from AI-powered fitness
+            apps to e-commerce platforms and interactive tools. Use the search and filters below to
+            find exactly what you're looking for.
           </Heading>
         </div>
       </Column>
-      <Projects />
+      <Projects projects={projects} categories={categories} technologies={technologies} />
     </Column>
   );
 }

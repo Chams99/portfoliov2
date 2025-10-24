@@ -1,0 +1,183 @@
+.filtersContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 24px auto;
+  background: var(--background-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filtersHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: var(--background-surface-hover);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  color: var(--text-strong);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--background-surface);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--border-strong);
+    outline-offset: 2px;
+  }
+}
+
+.activeCount {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  font-size: var(--font-size-body-default-xs);
+  padding: var(--static-space-2) var(--static-space-6);
+  border-radius: var(--border-radius-full);
+  min-width: 20px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.clearButton {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-6);
+  background: none;
+  border: none;
+  color: var(--text-weak);
+  cursor: pointer;
+  font-size: var(--font-size-body-default-s);
+  padding: var(--static-space-6) var(--static-space-10);
+  border-radius: var(--border-radius-s);
+  transition: var(--transition-micro-medium);
+
+  &:hover {
+    color: var(--text-strong);
+    background: var(--background-surface);
+  }
+
+  &:focus {
+    outline: 2px solid var(--border-strong);
+    outline-offset: 2px;
+  }
+}
+
+.filtersContent {
+  padding: var(--static-space-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-24);
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--static-space-12);
+}
+
+.filterTitle {
+  font-size: var(--font-size-heading-default-s);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-strong);
+  margin: 0;
+}
+
+.filterOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--static-space-8);
+}
+
+.filterOption {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-6);
+  background: var(--background-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--border-radius-s);
+  padding: var(--static-space-8) var(--static-space-12);
+  cursor: pointer;
+  transition: var(--transition-micro-medium);
+  font-size: var(--font-size-body-default-s);
+
+  &:hover {
+    border-color: var(--border-strong);
+    background: var(--background-surface-hover);
+  }
+
+  &:focus {
+    outline: 2px solid var(--border-strong);
+    outline-offset: 2px;
+  }
+
+  &.active {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: var(--text-on-accent);
+
+    .optionLabel,
+    .optionCount {
+      color: var(--text-on-accent);
+    }
+  }
+}
+
+.optionLabel {
+  color: var(--text-strong);
+  font-weight: var(--font-weight-medium);
+}
+
+.optionCount {
+  color: var(--text-weak);
+  font-size: var(--font-size-body-default-xs);
+}
+
+@media (max-width: 768px) {
+  .filtersContainer {
+    margin: 0 auto 20px auto;
+  }
+
+  .filtersHeader {
+    padding: 16px 20px;
+  }
+
+  .filtersContent {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .filterOptions {
+    gap: 8px;
+  }
+
+  .filterOption {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .toggleButton {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .resultsCount {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}

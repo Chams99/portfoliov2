@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 interface LoadingState {
   isLoading: boolean;
@@ -16,14 +16,14 @@ export function useLoading() {
   const pathname = usePathname();
 
   const startLoading = useCallback(() => {
-    setLoadingState(prev => ({
+    setLoadingState((prev) => ({
       isLoading: true,
       loadingKey: prev.loadingKey + 1,
     }));
   }, []);
 
   const stopLoading = useCallback(() => {
-    setLoadingState(prev => ({
+    setLoadingState((prev) => ({
       ...prev,
       isLoading: false,
     }));
@@ -32,7 +32,7 @@ export function useLoading() {
   // Auto-loading on route change
   useEffect(() => {
     startLoading();
-    
+
     // Use a shorter timeout for better perceived performance
     const timer = setTimeout(() => {
       stopLoading();
@@ -57,12 +57,12 @@ export function useOptimizedLoading() {
 
   const startLoading = useCallback(() => {
     setIsLoading(true);
-    setLoadingKey(prev => prev + 1);
+    setLoadingKey((prev) => prev + 1);
   }, []);
 
   const stopLoading = useCallback(() => {
     // Use requestIdleCallback for better performance
-    if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
       requestIdleCallback(() => {
         setIsLoading(false);
       });
@@ -75,11 +75,14 @@ export function useOptimizedLoading() {
 
   useEffect(() => {
     startLoading();
-    
+
     // Optimized timing based on content complexity
-    const timer = setTimeout(() => {
-      stopLoading();
-    }, pathname.includes('/work') ? 300 : 150);
+    const timer = setTimeout(
+      () => {
+        stopLoading();
+      },
+      pathname.includes("/work") ? 300 : 150,
+    );
 
     return () => clearTimeout(timer);
   }, [pathname, startLoading, stopLoading]);

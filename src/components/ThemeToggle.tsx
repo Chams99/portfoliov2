@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useTheme } from "@once-ui-system/core";
+import type React from "react";
+import { useEffect, useState } from "react";
 import styles from "./ThemeToggle.module.scss";
 
 export const ThemeToggle: React.FC = () => {
@@ -21,10 +22,10 @@ export const ThemeToggle: React.FC = () => {
 
   const handleThemeToggle = () => {
     if (isAnimating) return;
-    
+
     setIsAnimating(true);
     const nextTheme = currentTheme === "light" ? "dark" : "light";
-    
+
     // Add a small delay to show the animation
     setTimeout(() => {
       setTheme(nextTheme);

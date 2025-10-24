@@ -1,10 +1,10 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
   firstName: "Chames",
   lastName: "Dhibi",
-  name: `Chames Dhibi`,
+  name: "Chames Dhibi",
   role: "Full-Stack Developer",
   avatar: "/images/avatar.webp",
   email: "dhibichams@gmail.com",
@@ -65,8 +65,10 @@ const home: Home = {
   },
   subline: (
     <>
-      I'm Chames, a Full-Stack Developer from Tunisia who turns complex problems into elegant digital solutions.
-      <br /> Specializing in React, Next.js, Node.js, and Flutter - I build web and mobile applications that are both powerful and elegant.
+      I'm Chames, a Full-Stack Developer from Tunisia who turns complex problems into elegant
+      digital solutions.
+      <br /> Specializing in React, Next.js, Node.js, and Flutter - I build web and mobile
+      applications that are both powerful and elegant.
     </>
   ),
 };
@@ -93,11 +95,11 @@ const about: About = {
     description: (
       <>
         Chames is a Tunisian Full-Stack Developer with a passion for transforming complex problems
-        into elegant digital solutions. From concept to deployment, he builds applications that deliver 
-        real value and exceptional user experiences. Currently pursuing a B.S. in Computer Science at 
-        the Faculty of Science in Gafsa, he has built 15+ production-ready web and mobile applications
-        using React, Next.js, Node.js, and Flutter. He believes great software comes from clean code, 
-        thoughtful design, and user-centric thinking.
+        into elegant digital solutions. From concept to deployment, he builds applications that
+        deliver real value and exceptional user experiences. Currently pursuing a B.S. in Computer
+        Science at the Faculty of Science in Gafsa, he has built 15+ production-ready web and mobile
+        applications using React, Next.js, Node.js, and Flutter. He believes great software comes
+        from clean code, thoughtful design, and user-centric thinking.
       </>
     ),
   },
@@ -110,15 +112,10 @@ const about: About = {
         timeframe: "2022",
         role: "Full Stack Python Developer",
         achievements: [
-          <>
-            Developed full-stack web applications using Python, Django, and modern JavaScript frameworks.
-          </>,
-          <>
-            Built scalable backend systems and RESTful APIs serving thousands of users.
-          </>,
-          <>
-            Collaborated with cross-functional teams to deliver high-quality software solutions.
-          </>,
+          "Developed full-stack web applications using Python, Django, and modern JavaScript
+            frameworks.",
+          "Built scalable backend systems and RESTful APIs serving thousands of users.",
+          "Collaborated with cross-functional teams to deliver high-quality software solutions.",
         ],
         images: [],
       },
@@ -127,15 +124,11 @@ const about: About = {
         timeframe: "2022 - Present",
         role: "Full-Stack Developer",
         achievements: [
-          <>
-            Built 15+ production-ready web and mobile applications using React, Next.js, and Flutter.
-          </>,
-          <>
-            Specialized in creating responsive, performant applications with modern UI/UX design.
-          </>,
-          <>
-            Delivered end-to-end solutions including e-commerce platforms, landing pages, and interactive web apps.
-          </>,
+          "Built 15+ production-ready web and mobile applications using React, Next.js, and
+            Flutter.",
+          "Specialized in creating responsive, performant applications with modern UI/UX design.",
+          "Delivered end-to-end solutions including e-commerce platforms, landing pages, and
+            interactive web apps.",
         ],
         images: [],
       },
@@ -147,7 +140,12 @@ const about: About = {
     institutions: [
       {
         name: "Faculty of Science Gafsa",
-        description: <>B.S. in Computer Science with focus on full-stack development and modern web technologies.</>,
+        description: (
+          <>
+            B.S. in Computer Science with focus on full-stack development and modern web
+            technologies.
+          </>
+        ),
       },
       {
         name: "Lycée Houssen Bouzayen",
@@ -166,7 +164,10 @@ const about: About = {
       {
         title: "Frontend Development",
         description: (
-          <>Building modern, responsive web applications with React, Next.js, and TypeScript. Expert in Tailwind CSS, HTML5, and CSS3 for stunning UI designs with excellent performance.</>
+          <>
+            Building modern, responsive web applications with React, Next.js, and TypeScript. Expert
+            in Tailwind CSS, HTML5, and CSS3 for stunning UI designs with excellent performance.
+          </>
         ),
         tags: [
           {
@@ -191,7 +192,11 @@ const about: About = {
       {
         title: "Backend Development",
         description: (
-          <>Creating scalable server-side applications with Node.js, Express.js, PHP, and Laravel. Proficient in Python, C#, .NET, and building RESTful APIs with comprehensive database management.</>
+          <>
+            Creating scalable server-side applications with Node.js, Express.js, PHP, and Laravel.
+            Proficient in Python, C#, .NET, and building RESTful APIs with comprehensive database
+            management.
+          </>
         ),
         tags: [
           {
@@ -208,7 +213,10 @@ const about: About = {
       {
         title: "Mobile Development",
         description: (
-          <>Developing cross-platform mobile applications with Flutter and Dart for iOS and Android. Creating responsive, performant mobile experiences with native-like feel.</>
+          <>
+            Developing cross-platform mobile applications with Flutter and Dart for iOS and Android.
+            Creating responsive, performant mobile experiences with native-like feel.
+          </>
         ),
         tags: [],
         images: [],
@@ -216,7 +224,10 @@ const about: About = {
       {
         title: "Databases & Cloud",
         description: (
-          <>Working with MySQL, PostgreSQL, MongoDB, and Firebase for data storage and cloud services. Experience with database design, optimization, and cloud deployment.</>
+          <>
+            Working with MySQL, PostgreSQL, MongoDB, and Firebase for data storage and cloud
+            services. Experience with database design, optimization, and cloud deployment.
+          </>
         ),
         tags: [],
         images: [],
@@ -224,7 +235,10 @@ const about: About = {
       {
         title: "Tools & Technologies",
         description: (
-          <>Proficient with Git for version control, VS Code for development, and Figma for design. Experience with modern development workflows and CI/CD pipelines.</>
+          <>
+            Proficient with Git for version control, VS Code for development, and Figma for design.
+            Experience with modern development workflows and CI/CD pipelines.
+          </>
         ),
         tags: [],
         images: [],

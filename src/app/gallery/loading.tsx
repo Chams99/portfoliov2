@@ -1,5 +1,9 @@
-import { DelayedLoading } from "@/components/skeleton/DelayedLoading";
+import "../loading.css";
 
 export default function Loading() {
-  return <DelayedLoading type="gallery" delay={800} />;
+  return (
+    <div className="loadingContainer">
+      <div className="spinner" />
+    </div>
+  );
 }

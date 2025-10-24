@@ -9,19 +9,10 @@ interface SkeletonBaseProps {
   style?: React.CSSProperties;
 }
 
-export function SkeletonBase({ 
-  className, 
-  children, 
-  animate = true,
-  style
-}: SkeletonBaseProps) {
+export function SkeletonBase({ className, children, animate = true, style }: SkeletonBaseProps) {
   return (
-    <div 
-      className={classNames(
-        styles.skeleton,
-        animate && styles.animate,
-        className
-      )}
+    <div
+      className={classNames(styles.skeleton, animate && styles.animate, className)}
       style={style}
     >
       {children}
@@ -36,14 +27,14 @@ interface SkeletonLineProps {
   animate?: boolean;
 }
 
-export function SkeletonLine({ 
-  width = "100%", 
-  height = "1rem", 
+export function SkeletonLine({
+  width = "100%",
+  height = "1rem",
   className,
-  animate = true 
+  animate = true,
 }: SkeletonLineProps) {
   return (
-    <SkeletonBase 
+    <SkeletonBase
       className={classNames(styles.line, className)}
       animate={animate}
       style={{ width, height }}
@@ -59,15 +50,15 @@ interface SkeletonBoxProps {
   animate?: boolean;
 }
 
-export function SkeletonBox({ 
-  width = "100%", 
-  height = "100%", 
+export function SkeletonBox({
+  width = "100%",
+  height = "100%",
   borderRadius = "0.5rem",
   className,
-  animate = true 
+  animate = true,
 }: SkeletonBoxProps) {
   return (
-    <SkeletonBase 
+    <SkeletonBase
       className={classNames(styles.box, className)}
       animate={animate}
       style={{ width, height, borderRadius }}
@@ -81,13 +72,9 @@ interface SkeletonCircleProps {
   animate?: boolean;
 }
 
-export function SkeletonCircle({ 
-  size = "2rem", 
-  className,
-  animate = true 
-}: SkeletonCircleProps) {
+export function SkeletonCircle({ size = "2rem", className, animate = true }: SkeletonCircleProps) {
   return (
-    <SkeletonBase 
+    <SkeletonBase
       className={classNames(styles.circle, className)}
       animate={animate}
       style={{ width: size, height: size }}
@@ -102,7 +89,7 @@ interface SkeletonCardProps {
 
 export function SkeletonCard({ className, animate = true }: SkeletonCardProps) {
   return (
-    <Column 
+    <Column
       className={classNames(styles.card, className)}
       gap="m"
       padding="l"

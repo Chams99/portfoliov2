@@ -1,5 +1,11 @@
 import { Column, Row } from "@once-ui-system/core";
-import { SkeletonBase, SkeletonLine, SkeletonBox, SkeletonCard, SkeletonCircle } from "./SkeletonBase";
+import {
+  SkeletonBase,
+  SkeletonBox,
+  SkeletonCard,
+  SkeletonCircle,
+  SkeletonLine,
+} from "./SkeletonBase";
 
 // Home page skeleton
 export function HomePageSkeleton() {
@@ -10,13 +16,13 @@ export function HomePageSkeleton() {
         <Column maxWidth="s" horizontal="center" align="center">
           {/* Featured Badge */}
           <SkeletonBox width="200px" height="40px" className="mb-8" />
-          
+
           {/* Main Heading */}
           <SkeletonLine width="90%" height="3rem" className="mb-4" />
-          
+
           {/* Subheading */}
           <SkeletonLine width="80%" height="1.5rem" className="mb-8" />
-          
+
           {/* CTA Button */}
           <SkeletonBox width="180px" height="48px" className="mb-4" />
         </Column>
@@ -129,12 +135,7 @@ export function AboutPageSkeleton() {
         {/* Content Section */}
         <Column className="blockAlign" flex={9} maxWidth={40}>
           {/* Intro Section */}
-          <Column
-            fillWidth
-            minHeight="160"
-            vertical="center"
-            marginBottom="32"
-          >
+          <Column fillWidth minHeight="160" vertical="center" marginBottom="32">
             <SkeletonLine width="300px" height="3rem" className="mb-4" />
             <SkeletonLine width="200px" height="1.5rem" className="mb-8" />
             <Row gap="8" wrap>

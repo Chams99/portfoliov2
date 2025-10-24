@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  AvatarGroup,
-  Column,
-  Flex,
-  Heading,
-  SmartLink,
-  Text,
-} from "@once-ui-system/core";
+import { AvatarGroup, Column, Flex, Heading, SmartLink, Text } from "@once-ui-system/core";
 import { HighQualityCarousel } from "./HighQualityCarousel";
 import styles from "./ProjectCard.module.scss";
 
@@ -59,21 +52,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
             <div className={styles.projectActions}>
               {link && (
-                <SmartLink
-                  suffixIcon="arrowUpRightFromSquare"
-                  style={{ margin: "0" }}
-                  href={link}
-                >
-                  <Text variant="label-default-m" onBackground="brand-strong">Live Demo</Text>
+                <SmartLink suffixIcon="arrowUpRightFromSquare" style={{ margin: "0" }} href={link}>
+                  <Text variant="label-default-m" onBackground="brand-strong">
+                    Live Demo
+                  </Text>
                 </SmartLink>
               )}
               {content?.trim() && (
-                <SmartLink
-                  suffixIcon="arrowRight"
-                  style={{ margin: "0" }}
-                  href={href}
-                >
-                  <Text variant="label-default-m" onBackground="neutral-strong">Read More</Text>
+                <SmartLink suffixIcon="arrowRight" style={{ margin: "0" }} href={href}>
+                  <Text variant="label-default-m" onBackground="neutral-strong">
+                    Read More
+                  </Text>
                 </SmartLink>
               )}
             </div>

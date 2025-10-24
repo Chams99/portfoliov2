@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useTheme } from "@once-ui-system/core";
+import type React from "react";
+import { useEffect, useState } from "react";
 import styles from "./AnimatedThemeToggler.module.scss";
 
 export const AnimatedThemeToggler: React.FC<{
@@ -24,10 +25,10 @@ export const AnimatedThemeToggler: React.FC<{
 
   const handleThemeToggle = () => {
     if (isAnimating) return;
-    
+
     setIsAnimating(true);
     const nextTheme = currentTheme === "light" ? "dark" : "light";
-    
+
     // Add animation delay
     setTimeout(() => {
       setTheme(nextTheme);
@@ -81,7 +82,7 @@ export const AnimatedThemeToggler: React.FC<{
             </div>
           </div>
         </div>
-        
+
         {/* Background particles */}
         <div className={styles.particles}>
           <div className={styles.particle} />
@@ -90,7 +91,7 @@ export const AnimatedThemeToggler: React.FC<{
           <div className={styles.particle} />
           <div className={styles.particle} />
         </div>
-        
+
         {/* Ripple effect */}
         <div className={styles.ripple} />
       </button>

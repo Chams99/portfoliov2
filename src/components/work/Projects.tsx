@@ -1,47 +1,119 @@
-import { getPosts } from "@/utils/utils";
-import { Column, Line } from "@once-ui-system/core";
+"use client";
+
 import { ProjectCard } from "@/components";
+import type { ProjectWithMetadata } from "@/utils/projectFilters";
+import { filterProjects } from "@/utils/projectFilters";
+import { Column, Line } from "@once-ui-system/core";
+import { useMemo, useState } from "react";
+import { type FilterOption, IntegratedSearchFilter } from "./IntegratedSearchFilter";
+import styles from "./ProjectsFilters.module.scss";
 
 interface ProjectsProps {
+  projects: ProjectWithMetadata[];
+  categories: FilterOption[];
+  technologies: FilterOption[];
   range?: [number, number?];
   exclude?: string[];
+  showFilters?: boolean;
 }
 
-export function Projects({ range, exclude }: ProjectsProps) {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+export function Projects({
+  projects: allProjects,
+  categories,
+  technologies,
+  range,
+  exclude,
+  showFilters = true,
+}: ProjectsProps) {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>([]);
 
-  // Exclude by slug (exact match)
-  if (exclude && exclude.length > 0) {
-    allProjects = allProjects.filter((post) => !exclude.includes(post.slug));
-  }
+  const filteredProjects = useMemo(() => {
+    let projects = allProjects;
 
-  const sortedProjects = allProjects.sort((a, b) => {
-    return new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime();
-  });
+    // Exclude by slug (exact match)
+    if (exclude && exclude.length > 0) {
+      projects = projects.filter((post) => !exclude.includes(post.slug));
+    }
+
+    // Apply search and filters
+    const filtered = filterProjects(
+      projects,
+      searchQuery,
+      selectedCategories,
+      selectedTechnologies,
+    );
+
+    // Sort by published date
+    return filtered.sort((a, b) => {
+      return (
+        new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+      );
+    });
+  }, [allProjects, exclude, searchQuery, selectedCategories, selectedTechnologies]);
 
   const displayedProjects = range
-    ? sortedProjects.slice(range[0] - 1, range[1] ?? sortedProjects.length)
-    : sortedProjects;
+    ? filteredProjects.slice(range[0] - 1, range[1] ?? filteredProjects.length)
+    : filteredProjects;
 
   return (
-    <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
-      {displayedProjects.map((post, index) => (
-        <Column key={post.slug} gap="xl">
-          <ProjectCard
-            priority={index < 2}
-            href={`/work/${post.slug}`}
-            images={post.metadata.images}
-            title={post.metadata.title}
-            description={post.metadata.summary}
-            content={post.content}
-            avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
-            link={post.metadata.link || ""}
+    <Column fillWidth gap="l" marginBottom="40" paddingX="l">
+      {showFilters && (
+        <Column gap="l" marginBottom="s" align="center">
+          <IntegratedSearchFilter
+            onSearch={setSearchQuery}
+            onCategoryChange={setSelectedCategories}
+            onTechnologyChange={setSelectedTechnologies}
+            categories={categories}
+            technologies={technologies}
+            selectedCategories={selectedCategories}
+            selectedTechnologies={selectedTechnologies}
+            placeholder="Search projects by title, description, or technology..."
           />
-          {index < displayedProjects.length - 1 && (
-            <Line maxWidth="l" />
-          )}
+
+          {/* Results count */}
+          <div className={styles.resultsCount}>
+            {displayedProjects.length} project{displayedProjects.length !== 1 ? "s" : ""} found
+            {(searchQuery || selectedCategories.length > 0 || selectedTechnologies.length > 0) &&
+              ` (filtered from ${allProjects.length} total)`}
+          </div>
         </Column>
-      ))}
+      )}
+
+      {displayedProjects.length === 0 ? (
+        <Column align="center" gap="m" paddingY="xl">
+          <div className={styles.noResultsContainer}>
+            <p className={styles.noResultsText}>No projects found matching your criteria.</p>
+            <button
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedCategories([]);
+                setSelectedTechnologies([]);
+              }}
+              className={styles.clearFiltersButton}
+            >
+              Clear all filters
+            </button>
+          </div>
+        </Column>
+      ) : (
+        displayedProjects.map((post, index) => (
+          <Column key={post.slug} gap="xl">
+            <ProjectCard
+              priority={index < 2}
+              href={`/work/${post.slug}`}
+              images={post.metadata.images}
+              title={post.metadata.title}
+              description={post.metadata.summary}
+              content={post.content}
+              avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
+              link={post.metadata.link || ""}
+            />
+            {index < displayedProjects.length - 1 && <Line maxWidth="l" />}
+          </Column>
+        ))
+      )}
     </Column>
   );
 }
