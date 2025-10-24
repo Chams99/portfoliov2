@@ -20,7 +20,11 @@ export function ContactForm() {
     setStatus("sending");
     setErrorMessage("");
 
+    console.log("Contact form submission started");
+    console.log("Form data:", formData);
+
     try {
+      console.log("Making API call to /api/contact");
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -29,7 +33,11 @@ export function ContactForm() {
         body: JSON.stringify(formData),
       });
 
+      console.log("API response status:", response.status);
+      console.log("API response headers:", Object.fromEntries(response.headers.entries()));
+
       const result = await response.json();
+      console.log("API response body:", result);
 
       if (result.success) {
         setStatus("success");
@@ -40,6 +48,7 @@ export function ContactForm() {
         setErrorMessage(result.error || "Failed to send message. Please try again.");
       }
     } catch (error) {
+      console.error("Contact form error:", error);
       setStatus("error");
       setErrorMessage("Network error. Please check your connection and try again.");
     }
