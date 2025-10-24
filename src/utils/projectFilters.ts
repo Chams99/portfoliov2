@@ -40,7 +40,7 @@ export function filterProjects(
         tag.toLowerCase().includes(searchQuery.toLowerCase()),
       );
 
-    // Category filter
+    // Category filter - use OR logic for multiple categories
     const categoryMatch =
       selectedCategories.length === 0 ||
       (project.metadata.category && selectedCategories.includes(project.metadata.category));

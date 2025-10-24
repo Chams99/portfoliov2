@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Filter, Search, X } from "lucide-react";
+import { Check, ChevronDown, Filter, Search, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import styles from "./IntegratedSearchFilter.module.scss";
 
@@ -167,6 +167,7 @@ export function IntegratedSearchFilter({
         {/* Clear All Button */}
         {hasActiveFilters && (
           <button
+            type="button"
             className={styles.clearAllButton}
             onClick={clearAllFilters}
             aria-label="Clear all filters"
@@ -183,20 +184,25 @@ export function IntegratedSearchFilter({
           <div className={styles.filterGroup}>
             <h3 className={styles.filterTitle}>Categories</h3>
             <div className={styles.filterOptions}>
-              {displayedCategories.map((category) => (
-                <button
-                  key={category.value}
-                  className={`${styles.filterOption} ${
-                    selectedCategories.includes(category.value) ? styles.active : ""
-                  }`}
-                  onClick={() => handleCategoryToggle(category.value)}
-                >
-                  <span className={styles.optionLabel}>{category.label}</span>
-                  <span className={styles.optionCount}>({category.count})</span>
-                </button>
-              ))}
+              {displayedCategories.map((category) => {
+                const isActive = selectedCategories.includes(category.value);
+                return (
+                  <button
+                    type="button"
+                    key={category.value}
+                    className={`${styles.filterOption} ${isActive ? styles.active : ""}`}
+                    onClick={() => handleCategoryToggle(category.value)}
+                    aria-label={`${isActive ? "Remove" : "Add"} ${category.label} filter`}
+                  >
+                    {isActive && <Check size={14} className={styles.checkIcon} />}
+                    <span className={styles.optionLabel}>{category.label}</span>
+                    <span className={styles.optionCount}>({category.count})</span>
+                  </button>
+                );
+              })}
               {categories.length > maxInitialItems && (
                 <button
+                  type="button"
                   className={styles.showMoreButton}
                   onClick={() => setShowAllCategories(!showAllCategories)}
                 >
@@ -211,20 +217,25 @@ export function IntegratedSearchFilter({
           <div className={styles.filterGroup}>
             <h3 className={styles.filterTitle}>Technologies</h3>
             <div className={styles.filterOptions}>
-              {displayedTechnologies.map((technology) => (
-                <button
-                  key={technology.value}
-                  className={`${styles.filterOption} ${
-                    selectedTechnologies.includes(technology.value) ? styles.active : ""
-                  }`}
-                  onClick={() => handleTechnologyToggle(technology.value)}
-                >
-                  <span className={styles.optionLabel}>{technology.label}</span>
-                  <span className={styles.optionCount}>({technology.count})</span>
-                </button>
-              ))}
+              {displayedTechnologies.map((technology) => {
+                const isActive = selectedTechnologies.includes(technology.value);
+                return (
+                  <button
+                    type="button"
+                    key={technology.value}
+                    className={`${styles.filterOption} ${isActive ? styles.active : ""}`}
+                    onClick={() => handleTechnologyToggle(technology.value)}
+                    aria-label={`${isActive ? "Remove" : "Add"} ${technology.label} filter`}
+                  >
+                    {isActive && <Check size={14} className={styles.checkIcon} />}
+                    <span className={styles.optionLabel}>{technology.label}</span>
+                    <span className={styles.optionCount}>({technology.count})</span>
+                  </button>
+                );
+              })}
               {technologies.length > maxInitialItems && (
                 <button
+                  type="button"
                   className={styles.showMoreButton}
                   onClick={() => setShowAllTechnologies(!showAllTechnologies)}
                 >
