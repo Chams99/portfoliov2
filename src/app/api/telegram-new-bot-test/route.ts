@@ -10,7 +10,7 @@ export async function GET() {
         success: false,
         error: "Environment variables not set",
         instructions: [
-          "1. Update TELEGRAM_BOT_TOKEN with: 8078438225:AAEYhUOZIZdOyjDE2P9i_yM-h2Y3YeTich4",
+          "1. Update TELEGRAM_BOT_TOKEN in Vercel environment variables",
           "2. Get your user ID by messaging @userinfobot",
           "3. Update TELEGRAM_CHAT_ID with your user ID",
           "4. Redeploy the project"
