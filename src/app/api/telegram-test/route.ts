@@ -15,6 +15,22 @@ export async function GET() {
       });
     }
 
+    // First, let's test if the bot exists and get info
+    const botInfoUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`;
+    console.log("Testing bot info first...");
+    
+    const botInfoResponse = await fetch(botInfoUrl);
+    const botInfo = await botInfoResponse.json();
+    console.log("Bot info:", botInfo);
+    
+    if (!botInfo.ok) {
+      return NextResponse.json({
+        success: false,
+        error: "Bot token is invalid or bot doesn't exist",
+        botInfo: botInfo
+      });
+    }
+    
     // Test Telegram API with a simple message
     const testMessage = `🧪 Telegram bot test - ${new Date().toISOString()}`;
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
@@ -25,6 +41,7 @@ export async function GET() {
     
     console.log("Testing with chat ID:", chatId);
     console.log("Chat ID as number:", chatIdAsNumber);
+    console.log("Bot username:", botInfo.result.username);
     
     const response = await fetch(telegramUrl, {
       method: "POST",
@@ -46,7 +63,13 @@ export async function GET() {
       telegramResponse: result,
       httpStatus: response.status,
       chatId: TELEGRAM_CHAT_ID,
-      botToken: TELEGRAM_BOT_TOKEN.substring(0, 10) + "..."
+      botToken: TELEGRAM_BOT_TOKEN.substring(0, 10) + "...",
+      botInfo: botInfo.result,
+      debugInfo: {
+        chatIdAsString: chatId,
+        chatIdAsNumber: chatIdAsNumber,
+        botUsername: botInfo.result.username
+      }
     });
 
   } catch (error) {
