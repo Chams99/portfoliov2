@@ -73,6 +73,14 @@ export default function About() {
           paddingLeft="24"
           gap="32"
           className={styles.sidebarNavigation}
+          s={{
+            position: "relative",
+            left: "auto",
+            top: "auto",
+            transform: "none",
+            paddingLeft: "0",
+            marginBottom: "24"
+          }}
         >
           <TableOfContents structure={structure} about={about} />
         </Column>

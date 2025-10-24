@@ -28,7 +28,12 @@
     min-width: 200px;
     max-width: 250px;
     
-    // Show on all screen sizes but adjust positioning
+    // Hide on mobile screens to prevent overlap with content
+    @media (max-width: breakpoints.$s) {
+        display: none !important;
+    }
+    
+    // Adjust positioning for medium screens
     @media (max-width: breakpoints.$m) {
         position: relative !important;
         top: auto !important;
@@ -37,11 +42,6 @@
         margin-bottom: var(--static-space-24);
         width: 100%;
         max-width: none;
-    }
-    
-    @media (max-width: breakpoints.$s) {
-        margin: 0 var(--static-space-16) var(--static-space-24);
-        width: calc(100% - var(--static-space-32));
     }
 }
 
