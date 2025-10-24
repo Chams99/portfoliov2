@@ -62,18 +62,19 @@ ${message}`;
     // Convert chat_id to number for proper formatting
     const chatId = Number.parseInt(TELEGRAM_CHAT_ID);
     
+    // Use form data like the working PHP version
+    const formData = new URLSearchParams();
+    formData.append('chat_id', TELEGRAM_CHAT_ID); // Use string format like PHP
+    formData.append('text', telegramMessage);
+    formData.append('parse_mode', 'HTML');
+    
     const telegramResponse = await fetch(telegramUrl, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
         "User-Agent": "Portfolio-Contact-Form/1.0",
       },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: telegramMessage,
-        parse_mode: "HTML",
-        disable_web_page_preview: true,
-      }),
+      body: formData,
     });
 
     console.log("Telegram response status:", telegramResponse.status);
