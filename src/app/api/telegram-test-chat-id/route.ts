@@ -12,10 +12,11 @@ export async function GET() {
     }
 
     // Test with different possible chat ID formats
+    const testChatId = process.env.TELEGRAM_CHAT_ID || "test";
     const possibleChatIds = [
-      "259407405", // Current chat ID
-      "259407405", // As string
-      259407405,   // As number
+      testChatId, // From environment variable
+      testChatId, // As string
+      testChatId, // As string again
     ];
 
     const results = [];
