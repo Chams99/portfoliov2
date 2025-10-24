@@ -1,7 +1,12 @@
-import { baseURL, person } from "@/resources";
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
+
+// Lightweight constants to avoid importing heavy dependencies
+const BASE_URL = "https://chames.youssef.tn";
+const PERSON_NAME = "Chames Dhibi";
+const PERSON_ROLE = "Full-Stack Developer";
+const PERSON_AVATAR = "/images/avatar.webp";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -49,8 +54,8 @@ export async function GET(request: Request) {
           }}
         >
           <img
-            alt={`${person.name} avatar`}
-            src={baseURL + person.avatar}
+            alt={`${PERSON_NAME} avatar`}
+            src={BASE_URL + PERSON_AVATAR}
             style={{
               width: "12rem",
               height: "12rem",
@@ -73,7 +78,7 @@ export async function GET(request: Request) {
                 textWrap: "balance",
               }}
             >
-              {person.name}
+              {PERSON_NAME}
             </span>
             <span
               style={{
@@ -84,7 +89,7 @@ export async function GET(request: Request) {
                 opacity: "0.6",
               }}
             >
-              {person.role}
+              {PERSON_ROLE}
             </span>
           </div>
         </div>
