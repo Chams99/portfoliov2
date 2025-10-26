@@ -110,7 +110,7 @@ export default async function Project({
           </Button>
         </SmartLink>
         
-        <Column gap="24" horizontal="center" align="center" maxWidth="800px">
+        <Column gap="24" horizontal="center" align="center" style={{ maxWidth: "800px" }}>
           <Column gap="16" horizontal="center" align="center">
             <Text variant="body-default-s" onBackground="neutral-weak" marginBottom="8">
               {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
@@ -160,7 +160,7 @@ export default async function Project({
           {post.metadata.tags && post.metadata.tags.length > 0 && (
             <Column gap="16" align="center" marginTop="24">
               <Text variant="label-strong-s" onBackground="neutral-weak">Technologies Used</Text>
-              <Row gap="s" wrap horizontal="center" maxWidth="600px">
+              <Row gap="s" wrap horizontal="center" style={{ maxWidth: "600px" }}>
                 {post.metadata.tags.map((tag) => (
                   <Badge 
                     key={`tag-${tag}`}
@@ -253,7 +253,7 @@ export default async function Project({
       {/* Professional Similar Projects Section */}
       <Column fillWidth gap="48" horizontal="center" marginTop="xl" paddingY="xl" background="neutral-alpha-weak" radius="xl">
         <Line maxWidth="l" />
-        <Column gap="24" horizontal="center" align="center" maxWidth="800px">
+        <Column gap="24" horizontal="center" align="center" style={{ maxWidth: "800px" }}>
           <Heading as="h2" variant="heading-strong-xl" align="center">
             Explore More Projects
           </Heading>
