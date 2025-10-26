@@ -102,95 +102,103 @@ export default async function Project({
         }}
       />
       
-      {/* Enhanced Hero Section */}
-      <Column maxWidth="m" gap="24" horizontal="center" align="center" paddingY="xl">
+      {/* Professional Hero Section */}
+      <Column maxWidth="l" gap="32" horizontal="center" align="center" paddingY="xl">
         <SmartLink href="/work">
-          <Text variant="label-strong-m" onBackground="brand-weak">← Back to Projects</Text>
+          <Button variant="secondary" size="s" prefixIcon="arrowLeft">
+            Back to Projects
+          </Button>
         </SmartLink>
         
-        <Column gap="16" horizontal="center" align="center">
-          <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="8">
-            {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
-          </Text>
-          <Heading variant="display-strong-l" align="center" wrap="balance">
-            {post.metadata.title}
-          </Heading>
-          <Text variant="body-default-l" onBackground="neutral-weak" align="center" wrap="balance" style={{ maxWidth: "600px" }}>
-            {post.metadata.summary}
-          </Text>
-        </Column>
+        <Column gap="24" horizontal="center" align="center" maxWidth="800px">
+          <Column gap="16" horizontal="center" align="center">
+            <Text variant="body-default-s" onBackground="neutral-weak" marginBottom="8">
+              {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
+            </Text>
+            <Heading variant="display-strong-xl" align="center" wrap="balance">
+              {post.metadata.title}
+            </Heading>
+            <Text variant="body-default-l" onBackground="neutral-weak" align="center" wrap="balance" style={{ maxWidth: "700px", lineHeight: "1.6" }}>
+              {post.metadata.summary}
+            </Text>
+          </Column>
 
-        {/* Enhanced Project Metadata */}
-        <Row gap="24" vertical="center" wrap horizontal="center" marginTop="16">
-          {post.metadata.team && (
-            <Row gap="12" vertical="center">
-              <AvatarGroup reverse avatars={avatars} size="s" />
-              <Text variant="label-default-m" onBackground="brand-weak">
-                {post.metadata.team?.map((member, idx) => (
-                  <span key={`member-${member.name}-${idx}`}>
-                    {idx > 0 && (
-                      <Text as="span" onBackground="neutral-weak">
-                        ,{" "}
-                      </Text>
-                    )}
-                    <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
-                  </span>
-                ))}
-              </Text>
-            </Row>
-          )}
-          
-          {post.metadata.category && (
-            <Badge 
-              background="neutral-alpha-weak"
-              onBackground="neutral-strong"
-              textVariant="label-default-s"
-              paddingX="12"
-              paddingY="4"
-            >
-              {post.metadata.category}
-            </Badge>
-          )}
-        </Row>
-
-        {/* Tech Stack Tags */}
-        {post.metadata.tags && post.metadata.tags.length > 0 && (
-          <Row gap="s" wrap horizontal="center" marginTop="16">
-            {post.metadata.tags.map((tag) => (
+          {/* Professional Project Info */}
+          <Row gap="24" vertical="center" wrap horizontal="center" marginTop="24">
+            {post.metadata.team && (
+              <Row gap="12" vertical="center" padding="12" background="neutral-alpha-weak" radius="m">
+                <AvatarGroup reverse avatars={avatars} size="s" />
+                <Text variant="label-default-m" onBackground="brand-weak">
+                  {post.metadata.team?.map((member, idx) => (
+                    <span key={`member-${member.name}-${idx}`}>
+                      {idx > 0 && (
+                        <Text as="span" onBackground="neutral-weak">
+                          ,{" "}
+                        </Text>
+                      )}
+                      <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
+                    </span>
+                  ))}
+                </Text>
+              </Row>
+            )}
+            
+            {post.metadata.category && (
               <Badge 
-                key={`tag-${tag}`}
-                background="neutral-alpha-weak"
-                onBackground="neutral-weak"
-                textVariant="label-default-xs"
-                paddingX="s"
-                paddingY="2"
+                background="brand-alpha-weak"
+                onBackground="brand-strong"
+                textVariant="label-default-s"
+                paddingX="16"
+                paddingY="6"
               >
-                {tag}
+                {post.metadata.category}
               </Badge>
-            ))}
+            )}
           </Row>
-        )}
+
+          {/* Professional Tech Stack */}
+          {post.metadata.tags && post.metadata.tags.length > 0 && (
+            <Column gap="16" align="center" marginTop="24">
+              <Text variant="label-strong-s" onBackground="neutral-weak">Technologies Used</Text>
+              <Row gap="s" wrap horizontal="center" maxWidth="600px">
+                {post.metadata.tags.map((tag) => (
+                  <Badge 
+                    key={`tag-${tag}`}
+                    background="neutral-alpha-weak"
+                    onBackground="neutral-strong"
+                    textVariant="label-default-xs"
+                    paddingX="12"
+                    paddingY="4"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </Row>
+            </Column>
+          )}
+        </Column>
       </Column>
 
-      {/* Enhanced Project Image */}
+      {/* Professional Project Showcase */}
       {post.metadata.images.length > 0 && (
-        <Column fillWidth gap="16" marginBottom="32">
+        <Column fillWidth gap="24" marginBottom="48">
+          <Text variant="label-strong-m" onBackground="neutral-weak" align="center">Project Preview</Text>
           <Media 
             priority 
             aspectRatio="16 / 9" 
-            radius="l" 
+            radius="xl" 
             alt={`${post.metadata.title} - Project Screenshot`} 
             src={post.metadata.images[0]}
             style={{ 
-              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
-              border: "1px solid var(--border-default)"
+              boxShadow: "0 25px 50px rgba(0, 0, 0, 0.15)",
+              border: "1px solid var(--border-strong)"
             }}
           />
         </Column>
       )}
 
-      {/* Enhanced Action Buttons */}
-      <Row horizontal="center" gap="16" wrap marginBottom="40">
+      {/* Professional Action Buttons */}
+      <Row horizontal="center" gap="20" wrap marginBottom="48">
         {post.metadata.link && (
           <Button
             href={post.metadata.link}
@@ -215,11 +223,13 @@ export default async function Project({
         )}
       </Row>
 
-      {/* Enhanced Content Section */}
-      <Column style={{ margin: "auto" }} as="article" maxWidth="m" gap="32">
-        <CustomMDX source={post.content} />
+      {/* Professional Content Section */}
+      <Column as="article" maxWidth="l" gap="48" horizontal="center">
+        <Column as="div" maxWidth="m" gap="32">
+          <CustomMDX source={post.content} />
+        </Column>
         
-        {/* Enhanced Project Metadata */}
+        {/* Professional Project Metadata */}
         <ProjectMetadata
           category={post.metadata.category}
           tags={post.metadata.tags}
@@ -231,7 +241,7 @@ export default async function Project({
           status="completed"
         />
         
-        {/* Enhanced Project Navigation */}
+        {/* Professional Project Navigation */}
         <ProjectNavigation
           currentSlug={post.slug}
           currentCategory={post.metadata.category}
@@ -240,14 +250,14 @@ export default async function Project({
         />
       </Column>
 
-      {/* Enhanced Similar Projects Section */}
-      <Column fillWidth gap="40" horizontal="center" marginTop="xl" paddingY="xl">
+      {/* Professional Similar Projects Section */}
+      <Column fillWidth gap="48" horizontal="center" marginTop="xl" paddingY="xl" background="neutral-alpha-weak" radius="xl">
         <Line maxWidth="l" />
-        <Column gap="16" horizontal="center" align="center">
+        <Column gap="24" horizontal="center" align="center" maxWidth="800px">
           <Heading as="h2" variant="heading-strong-xl" align="center">
             Explore More Projects
           </Heading>
-          <Text variant="body-default-m" onBackground="neutral-weak" align="center" style={{ maxWidth: "500px" }}>
+          <Text variant="body-default-l" onBackground="neutral-weak" align="center" style={{ maxWidth: "600px", lineHeight: "1.6" }}>
             Discover other projects that showcase similar technologies and approaches
           </Text>
         </Column>
