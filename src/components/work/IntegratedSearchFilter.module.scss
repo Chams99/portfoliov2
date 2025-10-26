@@ -357,7 +357,7 @@
 /* Desktop centering */
 @media (min-width: 1025px) {
   .searchFilterContainer {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto 20px auto;
   }
   
@@ -367,8 +367,9 @@
   }
   
   .searchInputWrapper {
-    max-width: 600px;
-    flex: 0 1 auto;
+    max-width: 800px;
+    flex: 1;
+    min-width: 500px;
   }
 }
 
