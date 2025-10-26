@@ -2,6 +2,7 @@ import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import type React from "react";
 import type { ReactNode } from "react";
 import { slugify as transliterate } from "transliteration";
+import { ProjectContent, ProjectSection } from "./work/ProjectContent";
 
 import {
   Accordion,
@@ -210,6 +211,8 @@ const components = {
   Icon,
   Media,
   SmartLink,
+  ProjectContent,
+  ProjectSection,
 };
 
 type CustomMDXProps = MDXRemoteProps & {

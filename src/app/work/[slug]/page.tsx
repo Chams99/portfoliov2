@@ -226,9 +226,7 @@ export default async function Project({
 
       {/* Professional Content Section */}
       <Column as="article" maxWidth="l" gap="48" horizontal="center">
-        <div className={projectContentStyles.projectContent}>
-          <CustomMDX source={post.content} />
-        </div>
+        <CustomMDX source={post.content} />
         
         {/* Professional Project Metadata */}
         <ProjectMetadata
