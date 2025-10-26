@@ -3,18 +3,39 @@
 
 .navigationContainer {
   background: var(--background-surface);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-l);
-  padding: 24px;
-  margin: 32px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  margin: 40px 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  position: relative;
   
-  // Subtle animation on hover
-  transition: all 0.2s ease;
+  // Add a subtle gradient border effect
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, var(--brand-strong), var(--accent-primary));
+    border-radius: var(--radius-xl);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  // Enhanced animation on hover
+  transition: all 0.3s ease;
   
   &:hover {
-    border-color: var(--border-strong);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-color: var(--brand-strong);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    
+    &::before {
+      opacity: 0.1;
+    }
   }
 }
 
@@ -27,35 +48,75 @@
 
 .navButton {
   flex: 1;
-  min-width: 200px;
-  padding: 16px;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-m);
-  background: var(--background-surface-hover);
+  min-width: 280px;
+  padding: 20px 24px;
+  border: 2px solid var(--border-default);
+  border-radius: var(--radius-l);
+  background: var(--background-surface);
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  // Add a subtle gradient background
+  background: linear-gradient(135deg, var(--background-surface) 0%, var(--background-surface-hover) 100%);
   
   &:hover {
-    border-color: var(--border-strong);
-    background: var(--background-surface-strong);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-strong);
+    background: linear-gradient(135deg, var(--brand-alpha-weak) 0%, var(--background-surface-strong) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    
+    // Add a subtle glow effect
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--brand-alpha-weak) 0%, transparent 50%);
+      opacity: 0.3;
+      border-radius: var(--radius-l);
+    }
   }
   
   &:focus {
-    outline: 2px solid var(--border-strong);
-    outline-offset: 2px;
+    outline: 3px solid var(--brand-strong);
+    outline-offset: 3px;
   }
   
   // Previous project button
   &:first-child {
-    margin-right: 8px;
+    margin-right: 12px;
+    
+    &::after {
+      content: '←';
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--brand-strong);
+      opacity: 0.7;
+    }
   }
   
   // Next project button
   &:last-child {
-    margin-left: 8px;
+    margin-left: 12px;
     text-align: right;
+    
+    &::after {
+      content: '→';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--brand-strong);
+      opacity: 0.7;
+    }
   }
 }
 
@@ -102,24 +163,36 @@
 // Mobile responsive adjustments
 @media (max-width: 768px) {
   .navigationContainer {
-    padding: 16px;
-    margin: 20px 0;
+    padding: 20px;
+    margin: 24px 0;
+    border-radius: var(--radius-l);
   }
   
   .prevNextNav {
     flex-direction: column;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
   }
   
   .navButton {
     min-width: 100%;
-    padding: 12px;
+    padding: 16px 20px;
     
     &:first-child,
     &:last-child {
       margin: 0;
+    }
+    
+    // Adjust arrow positioning for mobile
+    &:first-child::after {
+      left: 16px;
+      font-size: 16px;
+    }
+    
+    &:last-child::after {
+      right: 16px;
+      font-size: 16px;
     }
   }
   
