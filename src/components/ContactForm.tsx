@@ -30,6 +30,17 @@ export function ContactForm() {
           body: JSON.stringify(formData),
         });
 
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          setStatus("error");
+          setErrorMessage(
+            errorData.details?.join(", ") ||
+              errorData.error ||
+              `Failed to send message (${response.status})`,
+          );
+          return;
+        }
+
         const result = await response.json();
 
         if (result.success) {

@@ -47,7 +47,6 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
-        <link rel="preload" href="/images/avatar.webp" as="image" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#151515" />
         <meta name="color-scheme" content="light dark" />
@@ -115,7 +114,7 @@ export default async function RootLayout({
             <Header />
             <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
               <Flex horizontal="center" fillWidth minHeight="0">
-                <main id="main-content" role="main">
+                <main id="main-content">
                   <RouteGuard>{children}</RouteGuard>
                 </main>
               </Flex>
