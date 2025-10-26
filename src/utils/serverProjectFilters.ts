@@ -42,10 +42,20 @@ export function getCategoriesFromProjects(projects: ProjectWithMetadata[]): Filt
     {} as Record<string, number>,
   );
 
+  // Define proper labels for categories
+  const categoryLabels: Record<string, string> = {
+    web: "Web Applications",
+    mobile: "Mobile Apps", 
+    business: "Business Websites",
+    ecommerce: "E-commerce",
+    tool: "Web Tools",
+    game: "Games"
+  };
+
   return Object.entries(categoryCounts)
     .map(([value, count]) => ({
       value,
-      label: value.charAt(0).toUpperCase() + value.slice(1),
+      label: categoryLabels[value] || value.charAt(0).toUpperCase() + value.slice(1),
       count,
     }))
     .sort((a, b) => b.count - a.count)
@@ -56,9 +66,9 @@ export function getTechnologiesFromProjects(projects: ProjectWithMetadata[]): Fi
   const technologyCounts = projects.reduce(
     (acc, project) => {
       const tags = project.metadata.tags || [];
-      tags.forEach((tag) => {
+      for (const tag of tags) {
         acc[tag] = (acc[tag] || 0) + 1;
-      });
+      }
       return acc;
     },
     {} as Record<string, number>,
