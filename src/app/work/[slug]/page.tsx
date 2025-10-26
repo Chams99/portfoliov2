@@ -243,8 +243,6 @@ export default async function Project({
         {/* Professional Project Navigation */}
         <ProjectNavigation
           currentSlug={post.slug}
-          currentCategory={post.metadata.category}
-          currentTags={post.metadata.tags}
           allProjects={allProjects}
         />
       </Column>

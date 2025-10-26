@@ -23,15 +23,11 @@ interface ProjectWithMetadata {
 
 interface ProjectNavigationProps {
   currentSlug: string;
-  currentCategory?: string;
-  currentTags?: string[];
   allProjects: ProjectWithMetadata[];
 }
 
 export const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   currentSlug,
-  currentCategory,
-  currentTags = [],
   allProjects,
 }) => {
   const currentIndex = allProjects.findIndex(project => project.slug === currentSlug);
@@ -40,21 +36,6 @@ export const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
   const previousProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
   const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
   
-  // Get related projects (excluding current)
-  const relatedProjects = allProjects
-    .filter(project => project.slug !== currentSlug)
-    .filter(project => {
-      // Prioritize by category match
-      if (currentCategory && project.metadata.category === currentCategory) {
-        return true;
-      }
-      // Then by tag matches
-      if (currentTags.length > 0 && project.metadata.tags) {
-        return currentTags.some(tag => project.metadata.tags?.includes(tag));
-      }
-      return false;
-    })
-    .slice(0, 3);
 
   return (
     <div className={styles.navigationContainer}>
@@ -93,34 +74,6 @@ export const ProjectNavigation: React.FC<ProjectNavigationProps> = ({
         )}
       </Row>
 
-      {/* Related Projects Quick Access */}
-      {relatedProjects.length > 0 && (
-        <Column gap="16" className={styles.relatedSection}>
-          <Heading as="h3" variant="heading-strong-s">
-            Related Projects
-          </Heading>
-          <Row gap="12" wrap>
-            {relatedProjects.map((project) => (
-              <SmartLink
-                key={project.slug}
-                href={`/work/${project.slug}`}
-                className={styles.relatedLink}
-              >
-                <Column gap="xs" align="start">
-                  <Text variant="label-strong-xs" onBackground="brand-weak">
-                    {project.metadata.title}
-                  </Text>
-                  {project.metadata.category && (
-                    <Text variant="body-default-xs" onBackground="neutral-weak">
-                      {project.metadata.category}
-                    </Text>
-                  )}
-                </Column>
-              </SmartLink>
-            ))}
-          </Row>
-        </Column>
-      )}
 
       {/* Back to All Projects */}
       <Row horizontal="center" className={styles.backToAll}>
