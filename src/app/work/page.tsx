@@ -40,14 +40,14 @@ export default async function Work() {
             image: `${baseURL}${person.avatar}`,
           }}
         />
-        <Column fillWidth align="center" gap="16" marginBottom="40" paddingX="l" className={responsiveStyles.heroSection}>
-          <Heading variant="display-strong-l" align="center">
+        <Column fillWidth align="center" gap="24" marginBottom="40" paddingX="l" className={responsiveStyles.heroSection}>
+          <Heading variant="display-strong-xl" align="center">
             All Projects
           </Heading>
           <div className={styles.descriptionWrapper}>
             <Heading
               as="p"
-              variant="body-default-l"
+              variant="body-default-m"
               onBackground="neutral-weak"
               align="center"
               wrap="balance"
