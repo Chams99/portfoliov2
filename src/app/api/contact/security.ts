@@ -18,10 +18,10 @@ export const SECURITY_CONFIG: SecurityConfig = {
 
 // Honeypot field validation (hidden field that should be empty)
 export function validateHoneypot(body: Record<string, unknown>): boolean {
-  const honeypotFields = ['website', 'url', 'phone', 'company'];
+  const honeypotFields = ["website", "url", "phone", "company"];
   for (const field of honeypotFields) {
     const value = body[field];
-    if (value && typeof value === 'string' && value.trim() !== '') {
+    if (value && typeof value === "string" && value.trim() !== "") {
       return false; // Bot detected
     }
   }
@@ -37,15 +37,16 @@ export function validateSubmissionTime(startTime: number): boolean {
 // Additional security headers
 export function getSecurityHeaders() {
   return {
-    'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
-    'X-XSS-Protection': '1; mode=block',
-    'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "X-XSS-Protection": "1; mode=block",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Content-Security-Policy":
+      "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'",
   };
 }
 
 // Log security events
 export function logSecurityEvent(event: string, ip: string, details?: Record<string, unknown>) {
-  console.log(`[SECURITY] ${event} - IP: ${ip}`, details ? JSON.stringify(details) : '');
+  console.log(`[SECURITY] ${event} - IP: ${ip}`, details ? JSON.stringify(details) : "");
 }

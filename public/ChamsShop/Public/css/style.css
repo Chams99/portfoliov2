@@ -15,22 +15,22 @@
   --gray-700: #374151;
   --gray-800: #1f2937;
   --gray-900: #111827;
-  
+
   /* Typography */
-  --font-family: 'Inter', sans-serif;
-  --font-family-brand: 'Pacifico', cursive;
-  
+  --font-family: "Inter", sans-serif;
+  --font-family-brand: "Pacifico", cursive;
+
   /* Spacing */
   --border-radius: 8px;
   --border-radius-button: 8px;
   --border-radius-full: 9999px;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
@@ -52,7 +52,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
 }
@@ -95,7 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 2px;
@@ -396,13 +401,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.3) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
   z-index: 1;
 }
 
@@ -415,20 +425,22 @@ h1, h2, h3, h4, h5, h6 {
 /* Carousel styles */
 .product-carousel {
   scroll-behavior: smooth;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   display: flex;
   gap: 1rem;
   padding: 1rem 0;
 }
 
 .product-carousel::-webkit-scrollbar {
-  display: none;  /* Chrome, Safari and Opera */
+  display: none; /* Chrome, Safari and Opera */
 }
 
 /* Carousel navigation buttons */
-#new-arrivals-prev, #featured-products-prev, 
-#new-arrivals-next, #featured-products-next {
+#new-arrivals-prev,
+#featured-products-prev,
+#new-arrivals-next,
+#featured-products-next {
   opacity: 1;
   transition: opacity 0.3s ease;
   display: block;
@@ -459,7 +471,7 @@ h1, h2, h3, h4, h5, h6 {
   .brand-logo {
     font-size: 1.5rem;
   }
-  
+
   .btn {
     padding: 0.625rem 1.25rem;
     font-size: 0.8125rem;
@@ -467,22 +479,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Utility Classes */
-.text-primary { color: var(--primary-color); }
-.text-secondary { color: var(--secondary-color); }
-.text-white { color: var(--white); }
-.text-gray-500 { color: var(--gray-500); }
-.text-gray-600 { color: var(--gray-600); }
-.text-gray-700 { color: var(--gray-700); }
+.text-primary {
+  color: var(--primary-color);
+}
+.text-secondary {
+  color: var(--secondary-color);
+}
+.text-white {
+  color: var(--white);
+}
+.text-gray-500 {
+  color: var(--gray-500);
+}
+.text-gray-600 {
+  color: var(--gray-600);
+}
+.text-gray-700 {
+  color: var(--gray-700);
+}
 
-.bg-primary { background-color: var(--primary-color); }
-.bg-white { background-color: var(--white); }
-.bg-gray-50 { background-color: var(--gray-50); }
-.bg-gray-100 { background-color: var(--gray-100); }
+.bg-primary {
+  background-color: var(--primary-color);
+}
+.bg-white {
+  background-color: var(--white);
+}
+.bg-gray-50 {
+  background-color: var(--gray-50);
+}
+.bg-gray-100 {
+  background-color: var(--gray-100);
+}
 
-.border-primary { border-color: var(--primary-color); }
-.border-gray-200 { border-color: var(--gray-200); }
-.border-gray-300 { border-color: var(--gray-300); }
+.border-primary {
+  border-color: var(--primary-color);
+}
+.border-gray-200 {
+  border-color: var(--gray-200);
+}
+.border-gray-300 {
+  border-color: var(--gray-300);
+}
 
-.hover\:text-primary:hover { color: var(--primary-color); }
-.hover\:bg-primary:hover { background-color: var(--primary-color); }
-.hover\:border-primary:hover { border-color: var(--primary-color); } 
+.hover\:text-primary:hover {
+  color: var(--primary-color);
+}
+.hover\:bg-primary:hover {
+  background-color: var(--primary-color);
+}
+.hover\:border-primary:hover {
+  border-color: var(--primary-color);
+}

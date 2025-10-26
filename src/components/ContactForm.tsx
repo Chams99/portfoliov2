@@ -2,7 +2,7 @@
 
 import { Button, Column, Heading, Input, Row, Text } from "@once-ui-system/core";
 import type React from "react";
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import styles from "./ContactForm.module.scss";
 
 export function ContactForm() {
@@ -15,51 +15,56 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    setErrorMessage("");
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setStatus("sending");
+      setErrorMessage("");
 
-    console.log("Contact form submission started");
-    console.log("Form data:", formData);
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
 
-    try {
-      console.log("Making API call to /api/contact");
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+        const result = await response.json();
 
-      console.log("API response status:", response.status);
-      console.log("API response headers:", Object.fromEntries(response.headers.entries()));
-
-      const result = await response.json();
-      console.log("API response body:", result);
-
-      if (result.success) {
-        setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setStatus("idle"), 5000);
-      } else {
+        if (result.success) {
+          setStatus("success");
+          setFormData({ name: "", email: "", subject: "", message: "" });
+          setTimeout(() => setStatus("idle"), 5000);
+        } else {
+          setStatus("error");
+          setErrorMessage(result.error || "Failed to send message. Please try again.");
+        }
+      } catch (error) {
+        console.error("Contact form error:", error);
         setStatus("error");
-        setErrorMessage(result.error || "Failed to send message. Please try again.");
+        setErrorMessage("Network error. Please check your connection and try again.");
       }
-    } catch (error) {
-      console.error("Contact form error:", error);
-      setStatus("error");
-      setErrorMessage("Network error. Please check your connection and try again.");
-    }
-  };
+    },
+    [formData],
+  );
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleInputChange = useCallback(
+    (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    },
+    [],
+  );
+
+  const isFormValid = useMemo(() => {
+    return (
+      formData.name.trim() !== "" &&
+      formData.email.trim() !== "" &&
+      formData.subject.trim() !== "" &&
+      formData.message.trim() !== "" &&
+      formData.email.includes("@")
+    );
+  }, [formData]);
 
   return (
     <Column fillWidth horizontal="center">
@@ -81,7 +86,7 @@ export function ContactForm() {
                 label="Your Name"
                 name="name"
                 value={formData.name}
-                onChange={handleChange}
+                onChange={handleInputChange("name")}
                 required
                 disabled={status === "sending"}
               />
@@ -92,7 +97,7 @@ export function ContactForm() {
                 name="email"
                 type="email"
                 value={formData.email}
-                onChange={handleChange}
+                onChange={handleInputChange("email")}
                 required
                 disabled={status === "sending"}
               />
@@ -102,7 +107,7 @@ export function ContactForm() {
                 label="Subject"
                 name="subject"
                 value={formData.subject}
-                onChange={handleChange}
+                onChange={handleInputChange("subject")}
                 required
                 disabled={status === "sending"}
               />
@@ -117,7 +122,7 @@ export function ContactForm() {
                   id="message"
                   name="message"
                   value={formData.message}
-                  onChange={handleChange}
+                  onChange={handleInputChange("message")}
                   required
                   disabled={status === "sending"}
                   rows={6}

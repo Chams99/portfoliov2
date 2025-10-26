@@ -91,7 +91,7 @@ export function IntegratedSearchFilter({
 
   const hasActiveFilters =
     selectedCategories.length > 0 || selectedTechnologies.length > 0 || searchQuery.length > 0;
-  
+
   const ariaExpanded = showFilters;
 
   // Keyboard shortcut: Ctrl/Cmd + K to focus search

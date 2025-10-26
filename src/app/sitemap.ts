@@ -27,7 +27,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Create static routes with appropriate priorities
   const routes = activeRoutes.map((route) => {
     let priority = 0.5;
-    let changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" = "monthly";
+    let changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" =
+      "monthly";
 
     // Set priority and change frequency based on route
     if (route === "/") {

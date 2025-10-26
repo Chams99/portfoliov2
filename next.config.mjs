@@ -7,14 +7,16 @@ const withMDX = mdx({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Fix workspace root warning
+  outputFileTracingRoot: process.cwd(),
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
-  
-  // Disable ESLint during builds to avoid circular dependency issues
+
+  // Enable ESLint during builds for better code quality
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
-  
+
   // Optimize images with high quality
   images: {
     remotePatterns: [
@@ -37,20 +39,20 @@ const nextConfig = {
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  
+
   // Optimize SASS compilation
   sassOptions: {
     compiler: "modern",
     silenceDeprecations: ["legacy-js-api"],
   },
-  
+
   // Critical: Modularize imports to reduce bundle size
   modularizeImports: {
     "react-icons": {
       transform: "react-icons/{{member}}",
     },
   },
-  
+
   // Optimize for faster development with Turbopack
   turbopack: {
     rules: {
@@ -62,26 +64,70 @@ const nextConfig = {
         loaders: ["sass-loader"],
         as: "*.module.css",
       },
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
     },
   },
-  
+
+  // Add security headers
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "X-Content-Type-Options",
+            value: "nosniff",
+          },
+          {
+            key: "X-Frame-Options",
+            value: "DENY",
+          },
+          {
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
+          },
+          {
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
+          },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+        ],
+      },
+    ];
+  },
+
+  // Add compression and optimization
+  compress: true,
+  poweredByHeader: false,
+
+  // Experimental optimizations
+  experimental: {
+    optimizePackageImports: ["@once-ui-system/core", "react-icons", "lucide-react"],
+  },
+
   // Optimize webpack for faster builds
   webpack: (config, { dev, isServer }) => {
     // Enable filesystem caching for faster rebuilds
     if (dev) {
       config.cache = {
-        type: 'filesystem',
+        type: "filesystem",
       };
-      
+
       // Skip type checking in webpack for faster builds
       config.infrastructureLogging = {
-        level: 'error',
+        level: "error",
       };
     }
-    
+
     // Reduce module resolution time
-    config.resolve.modules = ['node_modules'];
-    
+    config.resolve.modules = ["node_modules"];
+
     // Fallbacks for client-side
     if (!isServer) {
       config.resolve.fallback = {
@@ -92,9 +138,9 @@ const nextConfig = {
         dns: false,
       };
     }
-    
+
     // Handle font loading errors gracefully - use built-in Next.js font handling
-    
+
     return config;
   },
 };

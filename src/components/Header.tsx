@@ -75,6 +75,8 @@ export const Header = () => {
         padding="8"
         horizontal="center"
         data-border="rounded"
+        role="banner"
+        aria-label="Main navigation"
         s={{
           position: "fixed",
         }}
@@ -89,6 +91,8 @@ export const Header = () => {
             padding="4"
             horizontal="center"
             zIndex={1}
+            role="navigation"
+            aria-label="Main navigation menu"
           >
             <Row gap="2" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
               {routes["/"] && (

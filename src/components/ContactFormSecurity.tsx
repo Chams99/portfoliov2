@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import styles from './ContactFormSecurity.module.scss';
+import { useState, useEffect } from "react";
+import styles from "./ContactFormSecurity.module.scss";
 
 interface ContactFormSecurityProps {
   onValidationChange: (isValid: boolean) => void;
@@ -25,27 +25,9 @@ export default function ContactFormSecurity({ onValidationChange }: ContactFormS
     <>
       {/* Honeypot fields - hidden from users */}
       <div className={styles.honeypotFields}>
-        <input 
-          type="text" 
-          name="website" 
-          tabIndex={-1} 
-          autoComplete="off"
-          aria-hidden="true"
-        />
-        <input 
-          type="text" 
-          name="url" 
-          tabIndex={-1} 
-          autoComplete="off"
-          aria-hidden="true"
-        />
-        <input 
-          type="text" 
-          name="phone" 
-          tabIndex={-1} 
-          autoComplete="off"
-          aria-hidden="true"
-        />
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+        <input type="text" name="url" tabIndex={-1} autoComplete="off" aria-hidden="true" />
+        <input type="text" name="phone" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       </div>
 
       {/* Time validation indicator */}

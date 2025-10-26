@@ -79,7 +79,7 @@ export default function About() {
             top: "auto",
             transform: "none",
             paddingLeft: "0",
-            marginBottom: "24"
+            marginBottom: "24",
           }}
         >
           <TableOfContents structure={structure} about={about} />

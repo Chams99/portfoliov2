@@ -22,6 +22,9 @@ export { ProjectFilters } from "@/components/work/ProjectFilters";
 export { IntegratedSearchFilter } from "@/components/work/IntegratedSearchFilter";
 export { Skills } from "@/components/Skills";
 export { ContactForm } from "@/components/ContactForm";
+export { ThemeInitializer } from "@/components/ThemeInitializer";
+export { ErrorBoundary, useErrorHandler } from "@/components/ErrorBoundary";
+export { LazyImage } from "@/components/LazyImage";
 
 // Skeleton loading components
 export * from "@/components/skeleton";
