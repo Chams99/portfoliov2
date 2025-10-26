@@ -4,6 +4,7 @@ import { ProjectMetadata } from "@/components/work/ProjectMetadata";
 import { ProjectNavigation } from "@/components/work/ProjectNavigation";
 import { about, baseURL, person, work } from "@/resources";
 import responsiveStyles from "../work-responsive.module.scss";
+import projectContentStyles from "./project-content.module.scss";
 import { formatDate } from "@/utils/formatDate";
 import { getPosts } from "@/utils/utils";
 import { getAllProjects } from "@/utils/serverProjectFilters";
@@ -225,9 +226,9 @@ export default async function Project({
 
       {/* Professional Content Section */}
       <Column as="article" maxWidth="l" gap="48" horizontal="center">
-        <Column as="div" maxWidth="m" gap="32">
+        <div className={projectContentStyles.projectContent}>
           <CustomMDX source={post.content} />
-        </Column>
+        </div>
         
         {/* Professional Project Metadata */}
         <ProjectMetadata
