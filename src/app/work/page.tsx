@@ -26,7 +26,7 @@ export default async function Work() {
 
   return (
     <div className={responsiveStyles.workPage}>
-      <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center" align="center">
+      <Column maxWidth="m" paddingTop="8" paddingBottom="40" horizontal="center" align="center">
         <Schema
           as="webPage"
           baseURL={baseURL}
@@ -40,7 +40,7 @@ export default async function Work() {
             image: `${baseURL}${person.avatar}`,
           }}
         />
-        <Column fillWidth align="center" gap="24" marginBottom="40" paddingX="l" className={responsiveStyles.heroSection}>
+        <Column fillWidth align="center" gap="16" marginBottom="40" paddingX="l" className={responsiveStyles.heroSection}>
           <Heading variant="display-strong-xl" align="center">
             All Projects
           </Heading>
