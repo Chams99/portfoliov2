@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
 }
 
 .searchFilterRow {
@@ -12,6 +13,7 @@
   align-items: center;
   gap: 12px;
   width: 100%;
+  justify-content: center;
 }
 
 .searchInputWrapper {
@@ -349,6 +351,24 @@
   &:focus {
     outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
+  }
+}
+
+/* Desktop centering */
+@media (min-width: 1025px) {
+  .searchFilterContainer {
+    max-width: 900px;
+    margin: 0 auto 20px auto;
+  }
+  
+  .searchFilterRow {
+    justify-content: center;
+    max-width: 100%;
+  }
+  
+  .searchInputWrapper {
+    max-width: 600px;
+    flex: 0 1 auto;
   }
 }
 
