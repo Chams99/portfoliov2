@@ -1,8 +1,12 @@
 import { CustomMDX, ScrollToHash } from "@/components";
 import { SimilarProjects } from "@/components/work/SimilarProjects";
+import { ProjectMetadata } from "@/components/work/ProjectMetadata";
+import { ProjectNavigation } from "@/components/work/ProjectNavigation";
 import { about, baseURL, person, work } from "@/resources";
+import responsiveStyles from "../work-responsive.module.scss";
 import { formatDate } from "@/utils/formatDate";
 import { getPosts } from "@/utils/utils";
+import { getAllProjects } from "@/utils/serverProjectFilters";
 import {
   Avatar,
   AvatarGroup,
@@ -69,13 +73,17 @@ export default async function Project({
     notFound();
   }
 
+  // Get all projects for navigation
+  const allProjects = getAllProjects();
+
   const avatars =
     post.metadata.team?.map((person) => ({
       src: person.avatar,
     })) || [];
 
   return (
-    <Column as="section" maxWidth="m" horizontal="center" gap="l">
+    <div className={responsiveStyles.workPage}>
+      <Column as="section" maxWidth="l" horizontal="center" gap="xl">
       <Schema
         as="blogPosting"
         baseURL={baseURL}
@@ -93,42 +101,101 @@ export default async function Project({
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Column maxWidth="s" gap="16" horizontal="center" align="center">
+      
+      {/* Enhanced Hero Section */}
+      <Column maxWidth="m" gap="24" horizontal="center" align="center" paddingY="xl">
         <SmartLink href="/work">
-          <Text variant="label-strong-m">Projects</Text>
+          <Text variant="label-strong-m" onBackground="brand-weak">← Back to Projects</Text>
         </SmartLink>
-        <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="12">
-          {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
-        </Text>
-        <Heading variant="display-strong-m">{post.metadata.title}</Heading>
-      </Column>
-      <Row marginBottom="32" horizontal="center">
-        <Row gap="16" vertical="center">
-          {post.metadata.team && <AvatarGroup reverse avatars={avatars} size="s" />}
-          <Text variant="label-default-m" onBackground="brand-weak">
-            {post.metadata.team?.map((member, idx) => (
-              <span key={idx}>
-                {idx > 0 && (
-                  <Text as="span" onBackground="neutral-weak">
-                    ,{" "}
-                  </Text>
-                )}
-                <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
-              </span>
-            ))}
+        
+        <Column gap="16" horizontal="center" align="center">
+          <Text variant="body-default-xs" onBackground="neutral-weak" marginBottom="8">
+            {post.metadata.publishedAt && formatDate(post.metadata.publishedAt)}
           </Text>
+          <Heading variant="display-strong-l" align="center" wrap="balance">
+            {post.metadata.title}
+          </Heading>
+          <Text variant="body-default-l" onBackground="neutral-weak" align="center" wrap="balance" style={{ maxWidth: "600px" }}>
+            {post.metadata.summary}
+          </Text>
+        </Column>
+
+        {/* Enhanced Project Metadata */}
+        <Row gap="24" vertical="center" wrap horizontal="center" marginTop="16">
+          {post.metadata.team && (
+            <Row gap="12" vertical="center">
+              <AvatarGroup reverse avatars={avatars} size="s" />
+              <Text variant="label-default-m" onBackground="brand-weak">
+                {post.metadata.team?.map((member, idx) => (
+                  <span key={`member-${member.name}-${idx}`}>
+                    {idx > 0 && (
+                      <Text as="span" onBackground="neutral-weak">
+                        ,{" "}
+                      </Text>
+                    )}
+                    <SmartLink href={member.linkedIn}>{member.name}</SmartLink>
+                  </span>
+                ))}
+              </Text>
+            </Row>
+          )}
+          
+          {post.metadata.category && (
+            <Badge 
+              background="neutral-alpha-weak"
+              onBackground="neutral-strong"
+              textVariant="label-default-s"
+              paddingX="12"
+              paddingY="4"
+            >
+              {post.metadata.category}
+            </Badge>
+          )}
         </Row>
-      </Row>
+
+        {/* Tech Stack Tags */}
+        {post.metadata.tags && post.metadata.tags.length > 0 && (
+          <Row gap="s" wrap horizontal="center" marginTop="16">
+            {post.metadata.tags.map((tag) => (
+              <Badge 
+                key={`tag-${tag}`}
+                background="neutral-alpha-weak"
+                onBackground="neutral-weak"
+                textVariant="label-default-xs"
+                paddingX="s"
+                paddingY="2"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </Row>
+        )}
+      </Column>
+
+      {/* Enhanced Project Image */}
       {post.metadata.images.length > 0 && (
-        <Media priority aspectRatio="16 / 9" radius="m" alt="image" src={post.metadata.images[0]} />
+        <Column fillWidth gap="16" marginBottom="32">
+          <Media 
+            priority 
+            aspectRatio="16 / 9" 
+            radius="l" 
+            alt={`${post.metadata.title} - Project Screenshot`} 
+            src={post.metadata.images[0]}
+            style={{ 
+              boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+              border: "1px solid var(--border-default)"
+            }}
+          />
+        </Column>
       )}
 
-      <Row horizontal="center" gap="12" wrap marginTop="24" marginBottom="16">
+      {/* Enhanced Action Buttons */}
+      <Row horizontal="center" gap="16" wrap marginBottom="40">
         {post.metadata.link && (
           <Button
             href={post.metadata.link}
             variant="primary"
-            size="m"
+            size="l"
             prefixIcon="globe"
             suffixIcon="arrowUpRightFromSquare"
           >
@@ -139,7 +206,7 @@ export default async function Project({
           <Button
             href={post.metadata.github}
             variant="secondary"
-            size="m"
+            size="l"
             prefixIcon="github"
             suffixIcon="arrowUpRightFromSquare"
           >
@@ -148,14 +215,42 @@ export default async function Project({
         )}
       </Row>
 
-      <Column style={{ margin: "auto" }} as="article" maxWidth="xs">
+      {/* Enhanced Content Section */}
+      <Column style={{ margin: "auto" }} as="article" maxWidth="m" gap="32">
         <CustomMDX source={post.content} />
+        
+        {/* Enhanced Project Metadata */}
+        <ProjectMetadata
+          category={post.metadata.category}
+          tags={post.metadata.tags}
+          publishedAt={post.metadata.publishedAt}
+          team={post.metadata.team}
+          github={post.metadata.github}
+          link={post.metadata.link}
+          technologies={post.metadata.tags}
+          status="completed"
+        />
+        
+        {/* Enhanced Project Navigation */}
+        <ProjectNavigation
+          currentSlug={post.slug}
+          currentCategory={post.metadata.category}
+          currentTags={post.metadata.tags}
+          allProjects={allProjects}
+        />
       </Column>
-      <Column fillWidth gap="40" horizontal="center" marginTop="40">
-        <Line maxWidth="40" />
-        <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
-          Related projects
-        </Heading>
+
+      {/* Enhanced Similar Projects Section */}
+      <Column fillWidth gap="40" horizontal="center" marginTop="xl" paddingY="xl">
+        <Line maxWidth="l" />
+        <Column gap="16" horizontal="center" align="center">
+          <Heading as="h2" variant="heading-strong-xl" align="center">
+            Explore More Projects
+          </Heading>
+          <Text variant="body-default-m" onBackground="neutral-weak" align="center" style={{ maxWidth: "500px" }}>
+            Discover other projects that showcase similar technologies and approaches
+          </Text>
+        </Column>
         <SimilarProjects
           currentSlug={post.slug}
           currentCategory={post.metadata.category}
@@ -164,6 +259,7 @@ export default async function Project({
         />
       </Column>
       <ScrollToHash />
-    </Column>
+      </Column>
+    </div>
   );
 }

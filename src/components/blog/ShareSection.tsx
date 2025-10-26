@@ -110,7 +110,7 @@ export function ShareSection({ title, url }: ShareSectionProps) {
       <Row data-border="rounded" gap="16" horizontal="center" wrap>
         {enabledPlatforms.map((platform, index) => (
           <Button
-            key={index}
+            key={`share-${platform.name}-${index}`}
             variant="secondary"
             size="s"
             href={platform.generateUrl(title, url)}

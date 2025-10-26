@@ -75,7 +75,7 @@ export function BlogPostLoadingWrapper({ children }: { children: React.ReactNode
           </Column>
           <Column gap="s">
             {Array.from({ length: 10 }).map((_, index) => (
-              <SkeletonLine key={index} width={index % 3 === 0 ? "60%" : "100%"} height="1.25rem" />
+              <SkeletonLine key={`skeleton-line-${Date.now()}-${index}`} width={index % 3 === 0 ? "60%" : "100%"} height="1.25rem" />
             ))}
           </Column>
         </Column>

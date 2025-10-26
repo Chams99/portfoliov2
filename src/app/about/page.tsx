@@ -109,8 +109,8 @@ export default function About() {
             </Row>
             {person.languages && person.languages.length > 0 && (
               <Row wrap gap="8">
-                {person.languages.map((language, index) => (
-                  <Tag key={index} size="l">
+                {person.languages.map((language) => (
+                  <Tag key={`language-${language}`} size="l">
                     {language}
                   </Tag>
                 ))}
@@ -142,7 +142,7 @@ export default function About() {
                 }}
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">Schedule a call</Row>
+                <Row paddingX="s">Schedule a call</Row>
                 <IconButton
                   href={about.calendar.link}
                   data-border="rounded"
@@ -267,7 +267,7 @@ export default function About() {
                       <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
                         {experience.images.map((image, index) => (
                           <Row
-                            key={index}
+                            key={`${experience.company}-image-${index}`}
                             border="neutral-medium"
                             radius="m"
                             minWidth={image.width}
@@ -333,9 +333,9 @@ export default function About() {
                 {about.technical.title}
               </Heading>
               <Column fillWidth gap="l">
-                {about.technical.skills.map((skill, index) => (
+                {about.technical.skills.map((skill) => (
                   <Column
-                    key={`${skill}-${index}`}
+                    key={`skill-${skill.title}`}
                     fillWidth
                     gap="4"
                     className={styles.experienceCard}
@@ -364,7 +364,7 @@ export default function About() {
                       <Row fillWidth paddingTop="m" gap="12" wrap>
                         {skill.images.map((image, index) => (
                           <Row
-                            key={index}
+                            key={`${skill.title}-image-${index}`}
                             border="neutral-medium"
                             radius="m"
                             minWidth={image.width}

@@ -1,10 +1,33 @@
 import { baseURL, routes as routesConfig } from "@/resources";
-import { getPosts } from "@/utils/utils";
+import { getPosts } from "../utils/utils";
 import type { MetadataRoute } from "next";
+
+type PostWithMetadata = {
+  metadata: {
+    title: string;
+    publishedAt: string;
+    summary: string;
+    image?: string;
+    images: string[];
+    tag?: string;
+    team: Array<{
+      name: string;
+      role: string;
+      avatar: string;
+      linkedIn: string;
+    }>;
+    link?: string;
+    category?: string;
+    tags?: string[];
+    github?: string;
+  };
+  slug: string;
+  content: string;
+};
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get blog posts dynamically
-  const blogs = getPosts(["src", "app", "blog", "posts"]).map((post) => ({
+  const blogs = getPosts(["src", "app", "blog", "posts"]).map((post: PostWithMetadata) => ({
     url: `${baseURL}/blog/${post.slug}`,
     lastModified: post.metadata.publishedAt,
     changeFrequency: "monthly" as const,
@@ -12,7 +35,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Get work projects dynamically
-  const works = getPosts(["src", "app", "work", "projects"]).map((post) => ({
+  const works = getPosts(["src", "app", "work", "projects"]).map((post: PostWithMetadata) => ({
     url: `${baseURL}/work/${post.slug}`,
     lastModified: post.metadata.publishedAt,
     changeFrequency: "monthly" as const,

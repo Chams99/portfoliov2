@@ -109,6 +109,9 @@ export function Projects({
               content={post.content}
               avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
               link={post.metadata.link || ""}
+              category={post.metadata.category}
+              tags={post.metadata.tags}
+              publishedAt={post.metadata.publishedAt}
             />
             {index < displayedProjects.length - 1 && <Line maxWidth="l" />}
           </Column>

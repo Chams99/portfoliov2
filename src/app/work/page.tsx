@@ -7,6 +7,7 @@ import {
 } from "@/utils/serverProjectFilters";
 import { Column, Heading, Meta, Schema } from "@once-ui-system/core";
 import styles from "./work.module.scss";
+import responsiveStyles from "./work-responsive.module.scss";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -24,40 +25,43 @@ export default async function Work() {
   const technologies = getTechnologiesFromProjects(projects);
 
   return (
-    <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        path={work.path}
-        title={work.title}
-        description={work.description}
-        image={`/api/og/generate?title=${encodeURIComponent(work.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
-      <Column fillWidth align="center" gap="16" marginBottom="40" paddingX="l">
-        <Heading variant="display-strong-l" align="center">
-          All Projects
-        </Heading>
-        <div className={styles.descriptionWrapper}>
-          <Heading
-            as="p"
-            variant="body-default-l"
-            onBackground="neutral-weak"
-            align="center"
-            wrap="balance"
-            style={{ textAlign: "center" }}
-          >
-            A comprehensive showcase of 15+ web and mobile applications, from AI-powered fitness
-            apps to e-commerce platforms and interactive tools. Use the search and filters below to
-            find exactly what you're looking for.
+    <div className={responsiveStyles.workPage}>
+      <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center">
+        <Schema
+          as="webPage"
+          baseURL={baseURL}
+          path={work.path}
+          title={work.title}
+          description={work.description}
+          image={`/api/og/generate?title=${encodeURIComponent(work.title)}`}
+          author={{
+            name: person.name,
+            url: `${baseURL}${about.path}`,
+            image: `${baseURL}${person.avatar}`,
+          }}
+        />
+        <Column fillWidth align="center" gap="16" marginBottom="40" paddingX="l" className={responsiveStyles.heroSection}>
+          <Heading variant="display-strong-l" align="center">
+            All Projects
           </Heading>
-        </div>
+          <div className={styles.descriptionWrapper}>
+            <Heading
+              as="p"
+              variant="body-default-l"
+              onBackground="neutral-weak"
+              align="center"
+              wrap="balance"
+              style={{ textAlign: "center" }}
+              className={responsiveStyles.heroDescription}
+            >
+              A comprehensive showcase of 15+ web and mobile applications, from AI-powered fitness
+              apps to e-commerce platforms and interactive tools. Use the search and filters below to
+              find exactly what you're looking for.
+            </Heading>
+          </div>
+        </Column>
+        <Projects projects={projects} categories={categories} technologies={technologies} />
       </Column>
-      <Projects projects={projects} categories={categories} technologies={technologies} />
-    </Column>
+    </div>
   );
 }

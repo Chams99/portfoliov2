@@ -48,7 +48,7 @@ export function HomePageSkeleton() {
       <Column fillWidth gap="l">
         <Row fillWidth gap="l" s={{ direction: "column" }}>
           {Array.from({ length: 4 }).map((_, index) => (
-            <SkeletonCard key={index} />
+            <SkeletonCard key={`skeleton-${Date.now()}-${index}`} />
           ))}
         </Row>
       </Column>
@@ -63,7 +63,7 @@ export function HomePageSkeleton() {
         <SkeletonLine width="150px" height="2rem" />
         <Row wrap gap="m">
           {Array.from({ length: 8 }).map((_, index) => (
-            <SkeletonBox key={index} width="120px" height="40px" />
+            <SkeletonBox key={`skeleton-${Date.now()}-${index}`} width="120px" height="40px" />
           ))}
         </Row>
       </Column>
@@ -79,7 +79,7 @@ export function HomePageSkeleton() {
           </Row>
           <Row flex={3} paddingX="20" gap="l">
             {Array.from({ length: 2 }).map((_, index) => (
-              <SkeletonCard key={index} />
+              <SkeletonCard key={`skeleton-${Date.now()}-${index}`} />
             ))}
           </Row>
         </Row>
@@ -103,7 +103,7 @@ export function AboutPageSkeleton() {
       >
         <Column gap="m">
           {Array.from({ length: 4 }).map((_, index) => (
-            <SkeletonLine key={index} width="120px" height="1rem" />
+            <SkeletonLine key={`skeleton-${Date.now()}-${index}`} width="120px" height="1rem" />
           ))}
         </Column>
       </Column>
@@ -127,7 +127,7 @@ export function AboutPageSkeleton() {
           <SkeletonLine width="100px" height="1rem" />
           <Row gap="8" wrap>
             {Array.from({ length: 3 }).map((_, index) => (
-              <SkeletonBox key={index} width="60px" height="24px" />
+              <SkeletonBox key={`skeleton-${Date.now()}-${index}`} width="60px" height="24px" />
             ))}
           </Row>
         </Column>
@@ -141,7 +141,7 @@ export function AboutPageSkeleton() {
             <Row gap="8" wrap>
               <SkeletonBox width="120px" height="40px" />
               {Array.from({ length: 3 }).map((_, index) => (
-                <SkeletonBox key={index} width="40px" height="40px" />
+                <SkeletonBox key={`skeleton-${Date.now()}-${index}`} width="40px" height="40px" />
               ))}
             </Row>
           </Column>
@@ -149,7 +149,7 @@ export function AboutPageSkeleton() {
           {/* Description */}
           <Column fillWidth gap="m" marginBottom="xl">
             {Array.from({ length: 3 }).map((_, index) => (
-              <SkeletonLine key={index} width="100%" height="1.25rem" />
+              <SkeletonLine key={`skeleton-${Date.now()}-${index}`} width="100%" height="1.25rem" />
             ))}
           </Column>
 
@@ -157,7 +157,7 @@ export function AboutPageSkeleton() {
           <Column fillWidth gap="l" marginBottom="40">
             <SkeletonLine width="200px" height="2rem" className="mb-4" />
             {Array.from({ length: 3 }).map((_, index) => (
-              <Column key={index} fillWidth gap="m">
+              <Column key={`skeleton-${Date.now()}-${index}`} fillWidth gap="m">
                 <Row fillWidth horizontal="between" vertical="end">
                   <SkeletonLine width="150px" height="1.5rem" />
                   <SkeletonLine width="80px" height="1rem" />
@@ -165,7 +165,7 @@ export function AboutPageSkeleton() {
                 <SkeletonLine width="200px" height="1.25rem" />
                 <Column gap="s">
                   {Array.from({ length: 3 }).map((_, itemIndex) => (
-                    <SkeletonLine key={itemIndex} width="100%" height="1rem" />
+                    <SkeletonLine key={`skeleton-item-${Date.now()}-${itemIndex}`} width="100%" height="1rem" />
                   ))}
                 </Column>
               </Column>
@@ -176,7 +176,7 @@ export function AboutPageSkeleton() {
           <Column fillWidth gap="l" marginBottom="40">
             <SkeletonLine width="150px" height="2rem" className="mb-4" />
             {Array.from({ length: 2 }).map((_, index) => (
-              <Column key={index} fillWidth gap="s">
+              <Column key={`skeleton-${Date.now()}-${index}`} fillWidth gap="s">
                 <SkeletonLine width="200px" height="1.5rem" />
                 <SkeletonLine width="300px" height="1rem" />
               </Column>
@@ -187,12 +187,12 @@ export function AboutPageSkeleton() {
           <Column fillWidth gap="l">
             <SkeletonLine width="180px" height="2rem" className="mb-4" />
             {Array.from({ length: 4 }).map((_, index) => (
-              <Column key={index} fillWidth gap="s">
+              <Column key={`skeleton-${Date.now()}-${index}`} fillWidth gap="s">
                 <SkeletonLine width="150px" height="1.5rem" />
                 <SkeletonLine width="100%" height="1rem" />
                 <Row wrap gap="s">
                   {Array.from({ length: 4 }).map((_, tagIndex) => (
-                    <SkeletonBox key={tagIndex} width="80px" height="24px" />
+                    <SkeletonBox key={`skeleton-tag-${Date.now()}-${tagIndex}`} width="80px" height="24px" />
                   ))}
                 </Row>
               </Column>
@@ -220,7 +220,7 @@ export function WorkPageSkeleton() {
       {/* Project Grid */}
       <Column fillWidth gap="l">
         {Array.from({ length: 6 }).map((_, index) => (
-          <SkeletonCard key={index} />
+          <SkeletonCard key={`skeleton-${Date.now()}-${index}`} />
         ))}
       </Column>
     </Column>
@@ -243,7 +243,7 @@ export function BlogPageSkeleton() {
       {/* Blog Posts */}
       <Column fillWidth gap="l">
         {Array.from({ length: 4 }).map((_, index) => (
-          <SkeletonCard key={index} />
+          <SkeletonCard key={`skeleton-${Date.now()}-${index}`} />
         ))}
       </Column>
     </Column>
@@ -291,7 +291,7 @@ export function GalleryPageSkeleton() {
       <Column fillWidth gap="l">
         <Row wrap gap="l" horizontal="center">
           {Array.from({ length: 8 }).map((_, index) => (
-            <SkeletonBox key={index} width="200px" height="200px" />
+            <SkeletonBox key={`skeleton-${Date.now()}-${index}`} width="200px" height="200px" />
           ))}
         </Row>
       </Column>
