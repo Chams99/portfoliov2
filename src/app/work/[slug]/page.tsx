@@ -148,8 +148,8 @@ export default async function Project({
                 background="brand-alpha-weak"
                 onBackground="brand-strong"
                 textVariant="label-default-s"
-                paddingX="16"
-                paddingY="6"
+                paddingX="m"
+                paddingY="xs"
               >
                 {post.metadata.category}
               </Badge>
