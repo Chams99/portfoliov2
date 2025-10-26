@@ -1,6 +1,6 @@
 ---
 title: "Sspace - Interactive Star Map"
-publishedAt: "2025-08-05"
+publishedAt: "2025-07-20"
 summary: "An interactive web-based star map that lets users explore the sky with real-time rendering using Stellarium Web Engine and NASA/JPL datasets with a custom star naming system."
 category: "tool"
 tags: ["JavaScript", "Interactive", "Web App"]
@@ -18,39 +18,45 @@ team:
 
 ## Overview
 
-Sspace is an innovative web application that brings the wonders of astronomy to your browser. By integrating Stellarium Web Engine with NASA/JPL astronomical datasets, users can explore an interactive star map, search for specific stars, and even create their own personalized star collection.
+An interactive star map application integrating Stellarium Web Engine with NASA/JPL astronomical data. Features real-time celestial visualization, star search functionality, and personal star collection management.
 
 ## Key Features
 
-- **Interactive Star Map**: Powered by Stellarium Web Engine for accurate celestial visualization
-- **Star Search by Registration Codes**: Find specific stars using their official registration codes
-- **Custom "My Stars" System**: Personal star naming and collection feature
-- **LocalStorage-based Saving**: Private, per-device star name storage
-- **Cinematic Zoom and Navigation**: Smooth, immersive controls for exploring the night sky
-- **Real-time Sky Rendering**: Dynamic visualization of celestial objects
-- **NASA/JPL Data Integration**: Access to professional astronomical datasets
-- **Private Per-Device Star Names**: Your personal star names stay on your device
+- Interactive star map with Stellarium Web Engine
+- Star search by registration codes
+- Personal star naming and collection system
+- LocalStorage-based data persistence
+- Smooth zoom and navigation controls
+- Real-time celestial object rendering
+- NASA/JPL astronomical dataset integration
 
-## Technical Stack
+## Technical Implementation
 
-- **Core Technology**: JavaScript
-- **Astronomy Engine**: Stellarium Web Engine
-- **Data Source**: NASA/JPL Astronomical Datasets
-- **Storage**: LocalStorage API
-- **UI/UX**: Custom interactive controls
+### Astronomy Engine
+- **Stellarium Web Engine**: Professional astronomical visualization
+- **NASA/JPL Data**: Official astronomical datasets
+- **JavaScript**: API integration and data processing
+- **LocalStorage**: Personal star collection persistence
 
-## Technical Challenges
+### Interactive Features
+- Real-time star map rendering
+- Search functionality for specific stars
+- Custom star naming system
+- Smooth camera controls and navigation
+- Performance optimization for large datasets
 
-### Challenge 1: Integration with Stellarium
-**Solution**: Successfully integrated the complex Stellarium Web Engine API to provide accurate astronomical visualization while maintaining performance.
+### Data Management
+- LocalStorage for personal star collections
+- Search indexing for quick star lookup
+- Data synchronization and caching
+- Offline functionality for saved collections
 
-### Challenge 2: Real-Time Rendering
-**Solution**: Optimized rendering pipeline to ensure smooth, lag-free exploration even when displaying thousands of celestial objects.
+## Development Challenges
 
-### Challenge 3: Custom Star Naming
-**Solution**: Implemented a robust LocalStorage system that allows users to create and maintain their personal star collection without requiring backend infrastructure.
-
-## Impact
+- **Engine Integration**: Successfully integrating complex Stellarium Web Engine API
+- **Performance**: Optimizing rendering for thousands of celestial objects
+- **Data Management**: Implementing robust LocalStorage system for personal collections
+- **User Experience**: Creating intuitive navigation for complex astronomical data
 
 This project demonstrates the power of modern web technologies in making astronomy accessible and interactive. Users can explore the cosmos from their browser, learn about different celestial objects, and create their own meaningful connections with the stars.
 

@@ -17,55 +17,40 @@ team:
 
 ## Overview
 
-Epic Chicken Adventure is a fun, interactive browser game built with Next.js 14 and React. This project showcases the integration of game mechanics with modern web frameworks, demonstrating how to create engaging interactive experiences using cutting-edge web technologies.
+A browser-based arcade game built with Next.js 14 and React. Features character movement, obstacle avoidance, and score tracking with responsive controls for all devices.
 
 ## Key Features
 
-- **Next.js 14 Framework**: Leveraging the latest Next.js features for optimal performance
-- **Modern React Components**: Component-based architecture for maintainability
-- **Responsive Design**: Plays smoothly on all devices
-- **Interactive Game Elements**: Engaging gameplay with smooth animations
-- **Performance Optimized**: Fast loading and smooth gameplay
-- **Tailwind CSS Styling**: Modern, utility-first styling approach
+- Real-time character movement and collision detection
+- Progressive difficulty system
+- Score tracking and high score persistence
+- Responsive touch and keyboard controls
+- Smooth 60fps animations
 
-## Technical Stack
+## Technical Implementation
 
-- **Framework**: Next.js 14
-- **Library**: React 19
-- **Styling**: Tailwind CSS
-- **Language**: JavaScript/TypeScript
-- **Deployment**: Cloud Platform
+### Game Architecture
+- **Next.js 14**: Server-side rendering and static generation
+- **React 19**: Component-based game state management
+- **Tailwind CSS**: Utility-first styling for responsive design
 
-## Game Mechanics
-
-The game features classic arcade-style gameplay with:
-- Character control and movement
-- Obstacle avoidance
-- Score tracking
-- Progressive difficulty
-- Responsive controls for mobile and desktop
-
-## Development Highlights
-
-### Next.js Integration
-Successfully integrated game logic with Next.js server components and client components, ensuring optimal performance and SEO while maintaining interactive gameplay.
+### Game Logic
+- Canvas-based rendering for smooth graphics
+- Collision detection algorithms
+- Score calculation and persistence
+- Progressive difficulty scaling
 
 ### Performance Optimization
-- Optimized asset loading for fast initial page load
-- Implemented efficient game loop for smooth animation
-- Used React hooks for state management
+- React.memo for component optimization
+- Efficient game loop with requestAnimationFrame
+- Asset preloading and lazy loading
+- Mobile performance optimization
 
-### Responsive Gaming
-Designed controls and UI that work seamlessly across:
-- Desktop with keyboard controls
-- Tablet with touch controls
-- Mobile with optimized touch interface
+## Development Challenges
 
-## Technical Challenges
-
-1. **State Management**: Managing game state efficiently with React hooks
-2. **Performance**: Maintaining 60 FPS during gameplay
-3. **Cross-Device Controls**: Implementing intuitive controls for different input methods
+- **State Management**: Coordinating game state across React components
+- **Performance**: Maintaining smooth gameplay on mobile devices
+- **Cross-Platform Controls**: Implementing touch and keyboard input handling
 
 ## Links
 

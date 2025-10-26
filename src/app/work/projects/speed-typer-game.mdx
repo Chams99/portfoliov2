@@ -17,41 +17,44 @@ team:
 
 ## Overview
 
-Speed Typer is an engaging web-based typing game designed to help users improve their typing speed and accuracy. With multiple difficulty levels, real-time feedback, and comprehensive statistics, it provides an entertaining way to develop essential typing skills.
+A typing speed game with real-time WPM calculation, multiple difficulty levels, and score tracking. Built with vanilla HTML/CSS/JavaScript, featuring responsive design and LocalStorage for high scores.
 
 ## Key Features
 
-- **Real-time WPM Calculation**: Instant words-per-minute tracking as you type
-- **High Score Tracking**: LocalStorage-based score system to track personal bests
-- **Multiple Difficulty Levels**: Easy, Medium, Hard, and Expert modes
-- **Performance Statistics**: Detailed accuracy and speed metrics
-- **Progressive Difficulty**: Texts that adapt to your skill level
-- **Instant Feedback**: Visual indicators for correct and incorrect typing
-- **Responsive Design**: Works seamlessly on all devices
-- **Clean UI**: Minimalist design that keeps focus on typing
+- Real-time WPM calculation and display
+- Multiple difficulty levels (Easy, Medium, Hard, Expert)
+- High score tracking with LocalStorage
+- Accuracy and error statistics
+- Progressive difficulty scaling
+- Mobile-responsive design
 
-## Technical Stack
+## Technical Implementation
 
-- **Languages**: HTML5, CSS3, JavaScript
-- **Data Storage**: LocalStorage for scores
-- **Game Logic**: Custom JavaScript algorithms
-- **UI**: Responsive CSS with smooth animations
+### Game Architecture
+- **HTML5**: Semantic markup and form handling
+- **CSS3**: Responsive design with flexbox/grid
+- **JavaScript**: Game logic, timing, and statistics
+- **LocalStorage**: Score persistence and high score tracking
 
-## Game Mechanics
+### Game Logic
+- Real-time keystroke monitoring
+- WPM calculation algorithms
+- Accuracy percentage tracking
+- Error detection and highlighting
+- Timer and session management
 
-### Difficulty Levels
+### User Interface
+- Clean, distraction-free design
+- Real-time feedback indicators
+- Responsive layout for all devices
+- Smooth animations and transitions
 
-1. **Easy**: Short, common words
-2. **Medium**: Mixed phrases and sentences
-3. **Hard**: Complex sentences with punctuation
-4. **Expert**: Technical terms and advanced vocabulary
+## Development Challenges
 
-### Metrics Tracked
-
-- **WPM (Words Per Minute)**: Standard typing speed measurement
-- **Accuracy**: Percentage of correct keystrokes
-- **Error Count**: Number of mistakes made
-- **Time**: Duration of typing session
+- **Real-time Calculation**: Implementing accurate WPM calculations
+- **Performance**: Handling rapid keystroke events efficiently
+- **Data Persistence**: Managing LocalStorage for score tracking
+- **Responsive Design**: Ensuring optimal typing experience on mobile devices
 - **Best Scores**: Personal records for each difficulty
 
 ## Educational Value
