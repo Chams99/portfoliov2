@@ -26,7 +26,7 @@ export default async function Work() {
 
   return (
     <div className={responsiveStyles.workPage}>
-      <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center">
+      <Column maxWidth="m" paddingTop="24" paddingBottom="40" horizontal="center" align="center">
         <Schema
           as="webPage"
           baseURL={baseURL}
@@ -51,7 +51,6 @@ export default async function Work() {
               onBackground="neutral-weak"
               align="center"
               wrap="balance"
-              style={{ textAlign: "center" }}
               className={responsiveStyles.heroDescription}
             >
               A comprehensive showcase of 15+ web and mobile applications, from AI-powered fitness

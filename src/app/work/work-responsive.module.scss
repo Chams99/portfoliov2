@@ -9,17 +9,23 @@
   .heroSection {
     padding: 20px 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
     h1 {
       font-size: 2rem;
       line-height: 1.2;
       margin-bottom: 16px;
+      text-align: center;
     }
     
     .heroDescription {
       font-size: 1.1rem;
       line-height: 1.5;
       max-width: 100%;
+      text-align: center;
     }
   }
   
