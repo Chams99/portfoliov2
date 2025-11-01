@@ -1108,8 +1108,11 @@
     </footer>
 
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Lucide icons
+            lucide.createIcons();
+        });
         
         // Mobile menu functionality
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -1202,8 +1205,15 @@
             });
         }
         
-        // Set correct images on initial load (without animation)
-        updateImages(false);
+        // Wait for DOM to be ready before initializing theme images
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                updateImages(false);
+            });
+        } else {
+            // DOM is already ready
+            updateImages(false);
+        }
         
         themeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
