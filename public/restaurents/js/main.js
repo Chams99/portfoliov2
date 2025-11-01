@@ -423,7 +423,7 @@ window.addEventListener('error', (e) => {
 // ===== SERVICE WORKER REGISTRATION (FOR PWA FEATURES) =====
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('./sw.js')
             .then((registration) => {
                 // Service Worker registered successfully
             })
