@@ -10,20 +10,16 @@
     <meta property="og:title" content="Chamsado Messenger - Messaging. Anywhere.">
     <meta property="og:description" content="Secure, real-time messaging built with Flutter and Firebase">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./images/logo.png">
+    <meta property="og:image" content="images/logo.png">
     <title>Chamsado Messenger - Messaging. Anywhere.</title>
     
-    <!-- Base URL for proper path resolution when hosted in subdirectory -->
-    <base href="./">
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="./manifest.json">
-    <link rel="icon" type="image/png" href="./images/logo.png">
-    <link rel="apple-touch-icon" href="./images/logo.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="apple-touch-icon" href="images/logo.png">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
-    <link rel="preload" href="./images/logo.png" as="image">
+    <link rel="preload" href="images/logo.png" as="image">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -1407,7 +1403,7 @@
                 </div>
                 <div class="hero-visual">
                     <div class="device-mockup">
-                        <img src="./images/loginpage.png" 
+                        <img src="images/loginpage.png" 
                              alt="Chamsado Messenger App Interface" 
                              loading="eager" 
                              fetchpriority="high"
@@ -1505,7 +1501,7 @@
                 <div class="screenshots-grid">
                     <div class="screenshot-card">
                         <div class="screenshot-image">
-                            <img src="./images/loginpage.png" 
+                            <img src="images/loginpage.png" 
                                  alt="Chamsado Login Screen" 
                                  loading="lazy"
                                  decoding="async"
@@ -1519,7 +1515,7 @@
                     </div>
                     <div class="screenshot-card">
                         <div class="screenshot-image">
-                            <img src="./images/lightmode.png" 
+                            <img src="images/lightmode.png" 
                                  alt="Chamsado Light Mode Interface" 
                                  loading="lazy"
                                  decoding="async"
@@ -1533,7 +1529,7 @@
                     </div>
                     <div class="screenshot-card">
                         <div class="screenshot-image">
-                            <img src="./images/darkmode.png" 
+                            <img src="images/darkmode.png" 
                                  alt="Chamsado Dark Mode Interface" 
                                  loading="lazy"
                                  decoding="async"
@@ -1950,19 +1946,6 @@
                 }
             `;
             document.head.appendChild(style);
-
-            // Service Worker registration for PWA capabilities (2025 best practice)
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('./sw.js', { scope: './' })
-                        .then(registration => {
-                            console.log('SW registered: ', registration);
-                        })
-                        .catch(registrationError => {
-                            console.log('SW registration failed: ', registrationError);
-                        });
-                });
-            }
 
             // Performance monitoring
             if ('PerformanceObserver' in window) {
