@@ -1404,7 +1404,7 @@
                 </div>
                 <div class="hero-visual">
                     <div class="device-mockup">
-                        <img src="images/loginpage.png" alt="Chamsado Messenger App Interface" loading="lazy">
+                        <img src="./images/loginpage.png" alt="Chamsado Messenger App Interface" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1496,7 +1496,7 @@
                 <div class="screenshots-grid">
                     <div class="screenshot-card">
                         <div class="screenshot-image">
-                            <img src="images/loginpage.png" alt="Chamsado Login Screen" loading="lazy">
+                            <img src="./images/loginpage.png" alt="Chamsado Login Screen" loading="lazy">
                         </div>
                         <div class="screenshot-content">
                             <h3 class="screenshot-title">Secure Login</h3>
@@ -1505,7 +1505,7 @@
                     </div>
                     <div class="screenshot-card">
                         <div class="screenshot-image">
-                            <img src="images/lightmode.png" alt="Chamsado Light Mode Interface" loading="lazy">
+                            <img src="./images/lightmode.png" alt="Chamsado Light Mode Interface" loading="lazy">
                         </div>
                         <div class="screenshot-content">
                             <h3 class="screenshot-title">Light Mode Interface</h3>
@@ -1514,7 +1514,7 @@
                     </div>
                     <div class="screenshot-card">
                         <div class="screenshot-image">
-                            <img src="images/darkmode.png" alt="Chamsado Dark Mode Interface" loading="lazy">
+                            <img src="./images/darkmode.png" alt="Chamsado Dark Mode Interface" loading="lazy">
                         </div>
                         <div class="screenshot-content">
                             <h3 class="screenshot-title">Dark Mode Experience</h3>
@@ -1916,7 +1916,7 @@
             // Service Worker registration for PWA capabilities
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/sw.js')
+                    navigator.serviceWorker.register('./sw.js')
                         .then(registration => {
                             console.log('SW registered: ', registration);
                         })
