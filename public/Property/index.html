@@ -83,7 +83,7 @@
             <!-- Main Landing Page -->
         <div id="mainContent" class="main-content" style="display: none;">
             <!-- Open Investment Guide Button -->
-            <button onclick="openInvestmentGuide()" class="open-guide-btn" title="Open Investment Guide">
+            <button type="button" onclick="openInvestmentGuide()" class="open-guide-btn" title="Open Investment Guide">
                 <i class="fas fa-book"></i>
                 <span>Open Investment Guide</span>
             </button>
@@ -104,7 +104,7 @@
                     <a href="#contact" class="nav-link">Contact</a>
                 </div>
                 <div class="nav-cta">
-                    <button class="btn btn-outline" onclick="openBookCallForm()">Book a Call</button>
+                    <button type="button" class="btn btn-outline" onclick="openBookCallForm()">Book a Call</button>
                 </div>
                 <div class="nav-toggle">
                     <span></span>
@@ -144,11 +144,11 @@
                             </div>
                         </div>
                         <div class="hero-cta">
-                            <button class="btn btn-primary btn-large" onclick="openDownloadForm()">
+                            <button type="button" class="btn btn-primary btn-large" onclick="openDownloadForm()">
                                 <i class="fas fa-download"></i>
                                 Download Investment Guide
                             </button>
-                            <button class="btn btn-secondary btn-large" onclick="openBookCallForm()">
+                            <button type="button" class="btn btn-secondary btn-large" onclick="openBookCallForm()">
                                 <i class="fas fa-phone"></i>
                                 Book Free Consultation
                             </button>
@@ -191,7 +191,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>Download Your Investment Guide</h3>
-                    <button class="modal-close" onclick="closeDownloadForm()">&times;</button>
+                    <button type="button" class="modal-close" onclick="closeDownloadForm()" aria-label="Close">&times;</button>
                 </div>
                 <form id="downloadForm" class="download-form">
                     <div class="form-row">
@@ -240,7 +240,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3>Book Your Free Consultation</h3>
-                    <button class="modal-close" onclick="closeBookCallForm()">&times;</button>
+                    <button type="button" class="modal-close" onclick="closeBookCallForm()" aria-label="Close">&times;</button>
                 </div>
                 <form id="bookCallForm" class="download-form">
                     <div class="form-row">
@@ -303,7 +303,7 @@
             <div class="modal-content portfolio-modal">
                 <div class="modal-header">
                     <h3>Complete Investment Portfolio</h3>
-                    <button class="modal-close" onclick="closePortfolioModal()">&times;</button>
+                    <button type="button" class="modal-close" onclick="closePortfolioModal()" aria-label="Close">&times;</button>
                 </div>
                 <div class="portfolio-content">
                     <div class="portfolio-stats">
@@ -346,11 +346,11 @@
                     </div>
                     
                     <div class="portfolio-filters">
-                        <button class="filter-btn active" data-filter="all">All Properties</button>
-                        <button class="filter-btn" data-filter="manchester">Manchester</button>
-                        <button class="filter-btn" data-filter="birmingham">Birmingham</button>
-                        <button class="filter-btn" data-filter="leeds">Leeds</button>
-                        <button class="filter-btn" data-filter="london">London</button>
+                        <button type="button" class="filter-btn active" data-filter="all">All Properties</button>
+                        <button type="button" class="filter-btn" data-filter="manchester">Manchester</button>
+                        <button type="button" class="filter-btn" data-filter="birmingham">Birmingham</button>
+                        <button type="button" class="filter-btn" data-filter="leeds">Leeds</button>
+                        <button type="button" class="filter-btn" data-filter="london">London</button>
                     </div>
                     
                     <div class="portfolio-grid">
@@ -380,8 +380,8 @@
                                     <p>Luxury 2-bedroom apartments in the heart of Manchester's business district. Excellent transport links and amenities.</p>
                                 </div>
                                 <div class="portfolio-actions">
-                                    <button class="btn btn-outline btn-small">View Details</button>
-                                    <button class="btn btn-primary btn-small">Invest Now</button>
+                                    <button type="button" class="btn btn-outline btn-small">View Details</button>
+                                    <button type="button" class="btn btn-primary btn-small">Invest Now</button>
                                 </div>
                             </div>
                         </div>
@@ -412,8 +412,8 @@
                                     <p>Purpose-built student accommodation near major universities. High demand and consistent occupancy rates.</p>
                                 </div>
                                 <div class="portfolio-actions">
-                                    <button class="btn btn-outline btn-small">View Details</button>
-                                    <button class="btn btn-primary btn-small">Invest Now</button>
+                                    <button type="button" class="btn btn-outline btn-small">View Details</button>
+                                    <button type="button" class="btn btn-primary btn-small">Invest Now</button>
                                 </div>
                             </div>
                         </div>
@@ -444,8 +444,8 @@
                                     <p>Family homes in a growing residential area with excellent transport links and local amenities.</p>
                                 </div>
                                 <div class="portfolio-actions">
-                                    <button class="btn btn-outline btn-small">View Details</button>
-                                    <button class="btn btn-primary btn-small">Invest Now</button>
+                                    <button type="button" class="btn btn-outline btn-small">View Details</button>
+                                    <button type="button" class="btn btn-primary btn-small">Invest Now</button>
                                 </div>
                             </div>
                         </div>
@@ -476,8 +476,8 @@
                                     <p>Premium apartments in London's thriving Docklands area. Excellent capital growth potential.</p>
                                 </div>
                                 <div class="portfolio-actions">
-                                    <button class="btn btn-outline btn-small">View Details</button>
-                                    <button class="btn btn-primary btn-small">Invest Now</button>
+                                    <button type="button" class="btn btn-outline btn-small">View Details</button>
+                                    <button type="button" class="btn btn-primary btn-small">Invest Now</button>
                                 </div>
                             </div>
                         </div>
@@ -508,8 +508,8 @@
                                     <p>Modern apartments in Manchester's Media City. Close to BBC and major tech companies.</p>
                                 </div>
                                 <div class="portfolio-actions">
-                                    <button class="btn btn-outline btn-small">View Details</button>
-                                    <button class="btn btn-primary btn-small">Invest Now</button>
+                                    <button type="button" class="btn btn-outline btn-small">View Details</button>
+                                    <button type="button" class="btn btn-primary btn-small">Invest Now</button>
                                 </div>
                             </div>
                         </div>
@@ -540,8 +540,8 @@
                                     <p>Executive apartments in Birmingham's business district. Perfect for professionals and investors.</p>
                                 </div>
                                 <div class="portfolio-actions">
-                                    <button class="btn btn-outline btn-small">View Details</button>
-                                    <button class="btn btn-primary btn-small">Invest Now</button>
+                                    <button type="button" class="btn btn-outline btn-small">View Details</button>
+                                    <button type="button" class="btn btn-primary btn-small">Invest Now</button>
                                 </div>
                             </div>
                         </div>
@@ -550,11 +550,11 @@
                     <div class="portfolio-cta">
                         <p>Ready to start your investment journey? Our team is here to help you choose the perfect property.</p>
                         <div class="cta-buttons">
-                            <button class="btn btn-primary" onclick="openBookCallForm()">
+                            <button type="button" class="btn btn-primary" onclick="openBookCallForm()">
                                 <i class="fas fa-phone"></i>
                                 Book Free Consultation
                             </button>
-                            <button class="btn btn-secondary" onclick="openDownloadForm()">
+                            <button type="button" class="btn btn-secondary" onclick="openDownloadForm()">
                                 <i class="fas fa-download"></i>
                                 Download Portfolio Guide
                             </button>
@@ -598,7 +598,7 @@
                             </div>
                         </div>
                         <div class="case-study-cta">
-                            <button class="btn btn-primary" onclick="openPortfolioModal()">
+                            <button type="button" class="btn btn-primary" onclick="openPortfolioModal()">
                                 <i class="fas fa-download"></i>
                                 View Full Portfolio
                             </button>
@@ -647,7 +647,7 @@
                                     <span>Ready Q2 2025</span>
                                 </div>
                             </div>
-                            <button class="btn btn-outline btn-full">View Details</button>
+                            <button type="button" class="btn btn-outline btn-full">View Details</button>
                         </div>
                     </div>
                     <div class="property-card">
@@ -672,7 +672,7 @@
                                     <span>Ready Q1 2025</span>
                                 </div>
                             </div>
-                            <button class="btn btn-outline btn-full">View Details</button>
+                            <button type="button" class="btn btn-outline btn-full">View Details</button>
                         </div>
                     </div>
                     <div class="property-card">
@@ -697,7 +697,7 @@
                                     <span>Ready Q3 2025</span>
                                 </div>
                             </div>
-                            <button class="btn btn-outline btn-full">View Details</button>
+                            <button type="button" class="btn btn-outline btn-full">View Details</button>
                         </div>
                     </div>
                 </div>
@@ -836,11 +836,11 @@
                             </div>
                         </div>
                         <div class="contact-cta">
-                            <button class="btn btn-primary btn-large" onclick="openDownloadForm()">
+                            <button type="button" class="btn btn-primary btn-large" onclick="openDownloadForm()">
                                 <i class="fas fa-download"></i>
                                 Download Investment Guide
                             </button>
-                            <button class="btn btn-secondary btn-large" onclick="openBookCallForm()">
+                            <button type="button" class="btn btn-secondary btn-large" onclick="openBookCallForm()">
                                 <i class="fas fa-phone"></i>
                                 Book Free Consultation
                             </button>
@@ -908,7 +908,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2><i class="fas fa-book"></i> Property Investment Guide</h2>
-                <button onclick="closeInvestmentGuide()" class="close-btn">
+                <button type="button" onclick="closeInvestmentGuide()" class="close-btn" aria-label="Close">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -982,11 +982,11 @@
                     <h3><i class="fas fa-handshake"></i> Next Steps</h3>
                     <p>Ready to start your investment journey? Our team of experts is here to help you every step of the way.</p>
                     <div class="guide-cta">
-                        <button class="btn btn-primary" onclick="closeInvestmentGuide(); openDownloadForm();">
+                        <button type="button" class="btn btn-primary" onclick="closeInvestmentGuide(); openDownloadForm();">
                             <i class="fas fa-download"></i>
                             Download Full Guide
                         </button>
-                        <button class="btn btn-outline" onclick="closeInvestmentGuide(); openBookCallForm();">
+                        <button type="button" class="btn btn-outline" onclick="closeInvestmentGuide(); openBookCallForm();">
                             <i class="fas fa-calendar"></i>
                             Book Free Consultation
                         </button>

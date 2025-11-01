@@ -400,31 +400,37 @@
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Size</h3>
             <div class="grid grid-cols-4 gap-2">
               <button
+                type="button"
                 class="border border-gray-200 rounded py-2 text-sm text-gray-700 hover:border-primary hover:text-primary"
               >
                 XS
               </button>
               <button
+                type="button"
                 class="border border-gray-200 rounded py-2 text-sm text-gray-700 hover:border-primary hover:text-primary"
               >
                 S
               </button>
               <button
+                type="button"
                 class="border border-primary bg-primary/5 rounded py-2 text-sm text-primary font-medium"
               >
                 M
               </button>
               <button
+                type="button"
                 class="border border-gray-200 rounded py-2 text-sm text-gray-700 hover:border-primary hover:text-primary"
               >
                 L
               </button>
               <button
+                type="button"
                 class="border border-gray-200 rounded py-2 text-sm text-gray-700 hover:border-primary hover:text-primary"
               >
                 XL
               </button>
               <button
+                type="button"
                 class="border border-gray-200 rounded py-2 text-sm text-gray-700 hover:border-primary hover:text-primary"
               >
                 XXL
@@ -441,6 +447,7 @@
                   name="color"
                   id="color-red"
                   class="hidden color-radio"
+                  aria-label="Red"
                 />
                 <label for="color-red" class="block cursor-pointer">
                   <div
@@ -455,6 +462,7 @@
                   id="color-black"
                   class="hidden color-radio"
                   checked
+                  aria-label="Black"
                 />
                 <label for="color-black" class="block cursor-pointer">
                   <div
@@ -468,6 +476,7 @@
                   name="color"
                   id="color-green"
                   class="hidden color-radio"
+                  aria-label="Green"
                 />
                 <label for="color-green" class="block cursor-pointer">
                   <div
@@ -481,6 +490,7 @@
                   name="color"
                   id="color-yellow"
                   class="hidden color-radio"
+                  aria-label="Yellow"
                 />
                 <label for="color-yellow" class="block cursor-pointer">
                   <div
@@ -494,6 +504,7 @@
                   name="color"
                   id="color-brown"
                   class="hidden color-radio"
+                  aria-label="Brown"
                 />
                 <label for="color-brown" class="block cursor-pointer">
                   <div
@@ -507,6 +518,7 @@
                   name="color"
                   id="color-gray"
                   class="hidden color-radio"
+                  aria-label="Gray"
                 />
                 <label for="color-gray" class="block cursor-pointer">
                   <div
@@ -518,10 +530,11 @@
                 <input
                   type="radio"
                   name="color"
-                  id="color-black"
+                  id="color-dark-gray"
                   class="hidden color-radio"
+                  aria-label="Dark gray"
                 />
-                <label for="color-black" class="block cursor-pointer">
+                <label for="color-dark-gray" class="block cursor-pointer">
                   <div
                     class="color-circle w-8 h-8 rounded-full bg-gray-900 border-2 border-white shadow-sm"
                   ></div>
@@ -533,6 +546,7 @@
                   name="color"
                   id="color-white"
                   class="hidden color-radio"
+                  aria-label="White"
                 />
                 <label for="color-white" class="block cursor-pointer">
                   <div
@@ -554,6 +568,7 @@
                 max="500"
                 value="200"
                 class="price-slider w-full h-2 bg-gray-200 rounded-full appearance-none"
+                aria-label="Price range filter"
               />
             </div>
             <div class="flex justify-between">
@@ -570,6 +585,7 @@
                   type="number"
                   value="0"
                   class="w-full pl-8 pr-3 py-2 border border-gray-200 rounded text-sm"
+                  aria-label="Minimum price"
                 />
               </div>
               <span class="text-gray-400">-</span>
@@ -582,6 +598,7 @@
                   type="number"
                   value="200"
                   class="w-full pl-8 pr-3 py-2 border border-gray-200 rounded text-sm"
+                  aria-label="Maximum price"
                 />
               </div>
             </div>
@@ -707,12 +724,15 @@
 
           <div class="flex space-x-3">
             <button
+              type="button"
               class="bg-primary text-white px-5 py-2 !rounded-button whitespace-nowrap font-medium hover:bg-primary/90 transition flex-1"
             >
               Apply Filters
             </button>
             <button
+              type="button"
               class="bg-white text-gray-700 px-4 py-2 !rounded-button whitespace-nowrap border border-gray-200 hover:bg-gray-50 transition"
+              aria-label="Reset filters"
             >
               <i class="ri-refresh-line"></i>
             </button>
@@ -731,6 +751,7 @@
               <div class="flex items-center space-x-4">
                 <div class="relative">
                   <button
+                    type="button"
                     class="flex items-center text-gray-700 text-sm border border-gray-200 rounded px-3 py-2 bg-white"
                   >
                     <span>Sort by: Featured</span>
@@ -768,12 +789,16 @@
                 </div>
                 <div class="flex items-center space-x-2">
                   <button
+                    type="button"
                     class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded"
+                    aria-label="Grid view"
                   >
                     <i class="ri-layout-grid-line"></i>
                   </button>
                   <button
+                    type="button"
                     class="w-8 h-8 flex items-center justify-center bg-white text-gray-500 border border-gray-200 rounded hover:bg-gray-50"
+                    aria-label="List view"
                   >
                     <i class="ri-list-check"></i>
                   </button>
@@ -788,7 +813,7 @@
                   class="bg-gray-100 px-3 py-1 rounded-full flex items-center"
                 >
                   Size: M
-                  <button class="ml-2 text-gray-500 hover:text-gray-700">
+                  <button type="button" class="ml-2 text-gray-500 hover:text-gray-700" aria-label="Remove Size: M filter">
                     <i class="ri-close-line"></i>
                   </button>
                 </span>
@@ -796,12 +821,12 @@
                   class="bg-gray-100 px-3 py-1 rounded-full flex items-center"
                 >
                   Color: Black
-                  <button class="ml-2 text-gray-500 hover:text-gray-700">
+                  <button type="button" class="ml-2 text-gray-500 hover:text-gray-700" aria-label="Remove Color: Black filter">
                     <i class="ri-close-line"></i>
                   </button>
                 </span>
               </div>
-              <button class="ml-auto text-primary hover:underline">
+              <button type="button" class="ml-auto text-primary hover:underline">
                 Clear All
               </button>
             </div>
@@ -823,7 +848,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -853,7 +880,9 @@
                     <span class="text-gray-900 font-bold">$69.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -872,7 +901,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -902,7 +933,9 @@
                     <span class="text-gray-900 font-bold">$179.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -921,7 +954,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -946,7 +981,9 @@
                     <span class="text-gray-900 font-bold">$89.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -965,7 +1002,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -998,7 +1037,9 @@
                     >
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1017,7 +1058,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1050,7 +1093,9 @@
                     >
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1069,7 +1114,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1094,7 +1141,9 @@
                     <span class="text-gray-900 font-bold">$79.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1113,7 +1162,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1138,7 +1189,9 @@
                     <span class="text-gray-900 font-bold">$59.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1157,7 +1210,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1187,7 +1242,9 @@
                     <span class="text-gray-900 font-bold">$64.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1206,7 +1263,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1231,7 +1290,9 @@
                     <span class="text-gray-900 font-bold">$49.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1250,7 +1311,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1283,7 +1346,9 @@
                     >
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1302,7 +1367,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1327,7 +1394,9 @@
                     <span class="text-gray-900 font-bold">$129.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1346,7 +1415,9 @@
                   class="w-full h-full object-cover object-top"
                 />
                 <button
+                  type="button"
                   class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-sm"
+                  aria-label="Add to wishlist"
                 >
                   <i class="ri-heart-line text-gray-500"></i>
                 </button>
@@ -1376,7 +1447,9 @@
                     <span class="text-gray-900 font-bold">$349.99</span>
                   </div>
                   <button
+                    type="button"
                     class="w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full !rounded-button"
+                    aria-label="Add to cart"
                   >
                     <i class="ri-shopping-bag-line"></i>
                   </button>
@@ -1394,38 +1467,47 @@
             </div>
             <div class="flex items-center space-x-1">
               <button
+                type="button"
                 class="w-9 h-9 flex items-center justify-center rounded border border-gray-200 text-gray-500 hover:border-primary hover:text-primary"
+                aria-label="Previous page"
               >
                 <i class="ri-arrow-left-s-line"></i>
               </button>
               <button
+                type="button"
                 class="w-9 h-9 flex items-center justify-center rounded bg-primary text-white"
               >
                 1
               </button>
               <button
+                type="button"
                 class="w-9 h-9 flex items-center justify-center rounded border border-gray-200 text-gray-700 hover:border-primary hover:text-primary"
               >
                 2
               </button>
               <button
+                type="button"
                 class="w-9 h-9 flex items-center justify-center rounded border border-gray-200 text-gray-700 hover:border-primary hover:text-primary"
               >
                 3
               </button>
               <button
+                type="button"
                 class="w-9 h-9 flex items-center justify-center rounded border border-gray-200 text-gray-700 hover:border-primary hover:text-primary"
               >
                 4
               </button>
               <button
+                type="button"
                 class="w-9 h-9 flex items-center justify-center rounded border border-gray-200 text-gray-500 hover:border-primary hover:text-primary"
+                aria-label="Next page"
               >
                 <i class="ri-arrow-right-s-line"></i>
               </button>
             </div>
             <div class="relative">
               <button
+                type="button"
                 class="flex items-center text-gray-700 text-sm border border-gray-200 rounded px-3 py-2 bg-white"
               >
                 <span>12 per page</span>
@@ -1477,8 +1559,10 @@
               type="email"
               placeholder="Enter your email address"
               class="flex-1 px-4 py-3 border border-gray-200 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary"
+              aria-label="Email address"
             />
             <button
+              type="button"
               class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap font-medium hover:bg-primary/90 transition"
             >
               Subscribe

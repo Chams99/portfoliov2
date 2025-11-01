@@ -377,6 +377,7 @@
                   name="color"
                   id="color-red"
                   class="hidden color-radio"
+                  aria-label="Red"
                 />
                 <label for="color-red" class="block cursor-pointer">
                   <div
@@ -391,6 +392,7 @@
                   id="color-black"
                   class="hidden color-radio"
                   checked
+                  aria-label="Black"
                 />
                 <label for="color-black" class="block cursor-pointer">
                   <div
@@ -489,6 +491,7 @@
                 max="500"
                 value="200"
                 class="price-slider w-full h-2 bg-gray-200 rounded-full appearance-none"
+                aria-label="Price range filter"
               />
             </div>
             <div class="flex justify-between">
@@ -578,12 +581,16 @@
                 </div>
                 <div class="flex items-center space-x-2">
                   <button
+                    type="button"
                     class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded"
+                    aria-label="Grid view"
                   >
                     <i class="ri-layout-grid-line"></i>
                   </button>
                   <button
+                    type="button"
                     class="w-8 h-8 flex items-center justify-center bg-white text-gray-500 border border-gray-200 rounded hover:bg-gray-50"
+                    aria-label="List view"
                   >
                     <i class="ri-list-check"></i>
                   </button>
@@ -597,7 +604,7 @@
                   class="bg-gray-100 px-3 py-1 rounded-full flex items-center"
                 >
                   Category: Tops
-                  <button class="ml-2 text-gray-500 hover:text-gray-700">
+                  <button type="button" class="ml-2 text-gray-500 hover:text-gray-700" aria-label="Remove Category: Tops filter">
                     <i class="ri-close-line"></i>
                   </button>
                 </span>
@@ -605,7 +612,7 @@
                   class="bg-gray-100 px-3 py-1 rounded-full flex items-center"
                 >
                   Size: M
-                  <button class="ml-2 text-gray-500 hover:text-gray-700">
+                  <button type="button" class="ml-2 text-gray-500 hover:text-gray-700" aria-label="Remove Size: M filter">
                     <i class="ri-close-line"></i>
                   </button>
                 </span>

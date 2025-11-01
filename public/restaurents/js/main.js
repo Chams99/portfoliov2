@@ -52,13 +52,13 @@ const initNavigation = () => {
         });
 
         // Close mobile menu when clicking on a link
-        navLinks.forEach(link => {
+        for (const link of navLinks) {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
             });
-        });
+        }
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
@@ -76,13 +76,17 @@ const initMenuTabs = () => {
     const menuTabs = document.querySelectorAll('.menu-tab');
     const menuCategories = document.querySelectorAll('.menu-category');
 
-    menuTabs.forEach(tab => {
+    for (const tab of menuTabs) {
         tab.addEventListener('click', () => {
             const targetCategory = tab.getAttribute('data-category');
 
             // Remove active class from all tabs and categories
-            menuTabs.forEach(t => t.classList.remove('active'));
-            menuCategories.forEach(c => c.classList.remove('active'));
+            for (const t of menuTabs) {
+                t.classList.remove('active');
+            }
+            for (const c of menuCategories) {
+                c.classList.remove('active');
+            }
 
             // Add active class to clicked tab and corresponding category
             tab.classList.add('active');
@@ -91,14 +95,14 @@ const initMenuTabs = () => {
                 targetElement.classList.add('active');
             }
         });
-    });
+    }
 };
 
 // ===== SMOOTH SCROLLING =====
 const initSmoothScrolling = () => {
     const links = document.querySelectorAll('a[href^="#"]');
 
-    links.forEach(link => {
+    for (const link of links) {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.getAttribute('href');
@@ -114,7 +118,7 @@ const initSmoothScrolling = () => {
                 });
             }
         });
-    });
+    }
 };
 
 // ===== BACK TO TOP BUTTON =====
@@ -297,17 +301,19 @@ const initAnimations = () => {
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        for (const entry of entries) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
                 observer.unobserve(entry.target);
             }
-        });
+        }
     }, observerOptions);
 
     // Observe elements for animation
     const animateElements = document.querySelectorAll('.about-content, .menu-item, .contact-item, .feature');
-    animateElements.forEach(el => observer.observe(el));
+    for (const el of animateElements) {
+        observer.observe(el);
+    }
 };
 
 // ===== HEADER SCROLL EFFECT =====
@@ -354,13 +360,13 @@ const debounce = (func, wait) => {
 // Throttle function for scroll events
 const throttle = (func, limit) => {
     let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
+    return function(...args) {
         if (!inThrottle) {
-            func.apply(context, args);
+            func.apply(this, args);
             inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
+            setTimeout(() => {
+                inThrottle = false;
+            }, limit);
         }
     };
 };
@@ -468,17 +474,19 @@ const initLazyLoading = () => {
     
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
+            for (const entry of entries) {
                 if (entry.isIntersecting) {
                     const img = entry.target;
                     img.src = img.dataset.src || img.src;
                     img.classList.remove('lazy');
                     imageObserver.unobserve(img);
                 }
-            });
+            }
         });
 
-        images.forEach(img => imageObserver.observe(img));
+        for (const img of images) {
+            imageObserver.observe(img);
+        }
     }
 };
 
@@ -499,14 +507,14 @@ const initThemeToggle = () => {
                 
                 if (darkModeQuery.matches) {
                     return 'dark';
-                } else if (lightModeQuery.matches) {
+                }
+                if (lightModeQuery.matches) {
                     return 'light';
-                } else {
-                    // Check for no-preference
-                    const noPreferenceQuery = window.matchMedia('(prefers-color-scheme: no-preference)');
-                    if (noPreferenceQuery.matches) {
-                        return 'light'; // Default to light when no preference
-                    }
+                }
+                // Check for no-preference
+                const noPreferenceQuery = window.matchMedia('(prefers-color-scheme: no-preference)');
+                if (noPreferenceQuery.matches) {
+                    return 'light'; // Default to light when no preference
                 }
             }
         } catch (e) {
@@ -623,27 +631,30 @@ const initAdvancedAnimations = () => {
     };
     
     const menuObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        let index = 0;
+        for (const entry of entries) {
             if (entry.isIntersecting) {
+                const currentIndex = index;
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                }, index * 100);
+                }, currentIndex * 100);
                 menuObserver.unobserve(entry.target);
             }
-        });
+            index++;
+        }
     }, observerOptions);
     
-    menuItems.forEach(item => {
+    for (const item of menuItems) {
         item.style.opacity = '0';
         item.style.transform = 'translateY(30px)';
         item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         menuObserver.observe(item);
-    });
+    }
     
     // Floating animation for buttons
     const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => {
+    for (const button of buttons) {
         button.addEventListener('mouseenter', () => {
             button.style.animation = 'float 0.6s ease-in-out';
         });
@@ -651,7 +662,7 @@ const initAdvancedAnimations = () => {
         button.addEventListener('animationend', () => {
             button.style.animation = '';
         });
-    });
+    }
 };
 
 // Add floating animation keyframes
@@ -841,7 +852,7 @@ const initChatbot = () => {
 
     // Handle option button clicks
     const optionButtons = document.querySelectorAll('.option-btn');
-    optionButtons.forEach(button => {
+    for (const button of optionButtons) {
         button.addEventListener('click', () => {
             const option = button.getAttribute('data-option');
             const buttonText = button.textContent;
@@ -863,7 +874,7 @@ const initChatbot = () => {
                 }, 1000);
             }, 800);
         });
-    });
+    }
 
     // Add message to chat
     const addMessage = (text, sender) => {

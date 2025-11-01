@@ -33,7 +33,7 @@
                 <p>Browse thousands of high-quality wallpapers for your desktop and mobile</p>
                 <div class="search-container">
                     <input type="text" id="searchInput" placeholder="Search wallpapers...">
-                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    <button type="button" id="searchBtn" aria-label="Search"><i class="fas fa-search"></i></button>
                 </div>
             </div>
         </section>
@@ -75,16 +75,16 @@
                 <div class="section-header">
                     <h3>Featured Wallpapers</h3>
                     <div class="filters">
-                        <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="4k">4K</button>
-                        <button class="filter-btn" data-filter="mobile">Mobile</button>
-                        <button class="filter-btn" data-filter="desktop">Desktop</button>
+                        <button type="button" class="filter-btn active" data-filter="all">All</button>
+                        <button type="button" class="filter-btn" data-filter="4k">4K</button>
+                        <button type="button" class="filter-btn" data-filter="mobile">Mobile</button>
+                        <button type="button" class="filter-btn" data-filter="desktop">Desktop</button>
                     </div>
                 </div>
                 <div class="wallpaper-grid" id="wallpaperGrid">
                     <!-- Wallpapers will be loaded here -->
                 </div>
-                <button class="load-more" id="loadMore">Load More</button>
+                <button type="button" class="load-more" id="loadMore">Load More</button>
             </div>
         </section>
     </main>
@@ -128,10 +128,10 @@
                 <h4 id="modalTitle"></h4>
                 <p id="modalResolution"></p>
                 <div class="modal-actions">
-                    <button class="download-btn" id="downloadBtn">
+                    <button type="button" class="download-btn" id="downloadBtn">
                         <i class="fas fa-download"></i> Download
                     </button>
-                    <button class="favorite-btn" id="favoriteBtn">
+                    <button type="button" class="favorite-btn" id="favoriteBtn">
                         <i class="far fa-heart"></i> Favorite
                     </button>
                 </div>
