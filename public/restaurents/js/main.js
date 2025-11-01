@@ -421,17 +421,18 @@ window.addEventListener('error', (e) => {
 });
 
 // ===== SERVICE WORKER REGISTRATION (FOR PWA FEATURES) =====
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
-            .then((registration) => {
-                // Service Worker registered successfully
-            })
-            .catch((registrationError) => {
-                // Service Worker registration failed
-            });
-    });
-}
+// Service worker disabled - not needed for showcase project
+// if ('serviceWorker' in navigator) {
+//     window.addEventListener('load', () => {
+//         navigator.serviceWorker.register('./sw.js')
+//             .then((registration) => {
+//                 // Service Worker registered successfully
+//             })
+//             .catch((registrationError) => {
+//                 // Service Worker registration failed
+//             });
+//     });
+// }
 
 // ===== ANALYTICS (OPTIONAL) =====
 const trackEvent = (eventName, eventData = {}) => {
