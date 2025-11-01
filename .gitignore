@@ -36,5 +36,5 @@ yarn-error.log*
 next-env.d.ts
 
 # documentation files (except README.md)
-[A-Z_]*.md
+*.md
 !README.md

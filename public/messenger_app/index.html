@@ -10,10 +10,11 @@
     <meta property="og:title" content="Chamsado Messenger - Messaging. Anywhere.">
     <meta property="og:description" content="Secure, real-time messaging built with Flutter and Firebase">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="./images/logo.png">
+    <meta property="og:image" content="images/logo.png">
     <title>Chamsado Messenger - Messaging. Anywhere.</title>
     
-    <!-- Favicon -->
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
     <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="apple-touch-icon" href="./images/logo.png">
     
@@ -1912,18 +1913,18 @@
             `;
             document.head.appendChild(style);
 
-            // Service Worker registration disabled - no sw.js file present
-            // if ('serviceWorker' in navigator) {
-            //     window.addEventListener('load', () => {
-            //         navigator.serviceWorker.register('./sw.js')
-            //             .then(registration => {
-            //                 console.log('SW registered: ', registration);
-            //             })
-            //             .catch(registrationError => {
-            //                 console.log('SW registration failed: ', registrationError);
-            //             });
-            //     });
-            // }
+            // Service Worker registration for PWA capabilities
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(registration => {
+                            console.log('SW registered: ', registration);
+                        })
+                        .catch(registrationError => {
+                            console.log('SW registration failed: ', registrationError);
+                        });
+                });
+            }
 
             // Performance monitoring
             if ('PerformanceObserver' in window) {
