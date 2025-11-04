@@ -4,7 +4,7 @@ import "@/resources/custom.css";
 
 import classNames from "classnames";
 
-import { Footer, Header, Providers, RouteGuard } from "@/components";
+import { Footer, Header, Providers, RouteGuard, GoogleAnalytics } from "@/components";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import { baseURL, dataStyle, effects, fonts, home, style } from "@/resources";
 import {
@@ -48,6 +48,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <GoogleAnalytics />
         <meta name="theme-color" content="#151515" />
         <meta name="color-scheme" content="light dark" />
       </head>
