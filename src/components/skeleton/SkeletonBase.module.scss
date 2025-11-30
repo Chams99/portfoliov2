@@ -1,0 +1,113 @@
+@use "@/components/breakpoints.scss" as breakpoints;
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--static-color-neutral-weak) 25%,
+    var(--static-color-neutral-medium) 50%,
+    var(--static-color-neutral-weak) 75%
+  );
+  background-size: 200% 100%;
+  border-radius: 0.25rem;
+  position: relative;
+  overflow: hidden;
+  
+  // Dynamic properties will be handled via CSS custom properties
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease-in-out;
+  }
+}
+
+.animate {
+  animation: shimmer 1.5s infinite;
+  
+  &::before {
+    animation: shimmer-overlay 1.5s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shimmer-overlay {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.line {
+  height: 1rem;
+  border-radius: 0.25rem;
+}
+
+.box {
+  border-radius: 0.5rem;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.card {
+  min-height: 300px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Dark mode support
+[data-theme="dark"] {
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--static-color-neutral-medium) 25%,
+      var(--static-color-neutral-strong) 50%,
+      var(--static-color-neutral-medium) 75%
+    );
+  }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .animate {
+    animation: none;
+    
+    &::before {
+      animation: none;
+    }
+  }
+  
+  .card {
+    transition: none;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+.resultsCount {
+  text-align: center;
+  color: var(--text-weak);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  background: var(--background-surface-hover);
+  border-radius: 20px;
+  border: 1px solid var(--border-default);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.noResultsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--static-space-16);
+  padding: var(--static-space-24) 0;
+}
+
+.noResultsText {
+  text-align: center;
+  color: var(--text-weak);
+  font-size: var(--font-size-body-default-m);
+  margin: 0;
+}
+
+.clearFiltersButton {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  border: none;
+  padding: var(--static-space-12) var(--static-space-20);
+  border-radius: var(--border-radius-s);
+  cursor: pointer;
+  font-size: var(--font-size-body-default-s);
+  font-weight: var(--font-weight-medium);
+  transition: var(--transition-micro-medium);
+
+  &:hover {
+    background: var(--accent-primary-hover);
+  }
+
+  &:focus {
+    outline: 2px solid var(--border-strong);
+    outline-offset: 2px;
+  }
+}

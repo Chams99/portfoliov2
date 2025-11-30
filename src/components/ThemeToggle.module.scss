@@ -1,0 +1,216 @@
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, 
+    rgba(var(--neutral-alpha-weak-rgb), 0.1) 0%, 
+    rgba(var(--neutral-alpha-medium-rgb), 0.2) 100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+  
+  &:hover {
+    background: linear-gradient(135deg, 
+      rgba(var(--neutral-alpha-weak-rgb), 0.2) 0%, 
+      rgba(var(--neutral-alpha-medium-rgb), 0.3) 100%);
+    border-color: rgba(var(--neutral-alpha-medium-rgb), 0.4);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 4px 12px rgba(var(--neutral-alpha-strong-rgb), 0.15);
+  }
+  
+  &:active {
+    transform: scale(0.95) rotate(-2deg);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--brand-background-strong);
+    outline-offset: 2px;
+  }
+  
+  &.animating {
+    transform: scale(1.2) rotate(180deg);
+    background: linear-gradient(135deg, 
+      rgba(var(--brand-background-strong-rgb), 0.1) 0%, 
+      rgba(var(--brand-background-strong-rgb), 0.2) 100%);
+  }
+}
+
+.iconContainer {
+  position: relative;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sunIcon {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1) rotate(0deg);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.125rem;
+    height: 0.5rem;
+    background: #ffd700;
+    border-radius: 0.0625rem;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -0.25rem;
+    transform: translateY(-50%);
+    width: 0.5rem;
+    height: 0.125rem;
+    background: #ffd700;
+    border-radius: 0.0625rem;
+  }
+  
+  &:not(.hidden) {
+    animation: sunRotate 0.6s ease-in-out;
+  }
+  
+  &.hidden {
+    opacity: 0;
+    transform: scale(0.3) rotate(180deg);
+  }
+}
+
+.moonIcon {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: linear-gradient(45deg, #e6e6fa, #c0c0c0);
+  border-radius: 50%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1) rotate(0deg);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0.125rem;
+    right: 0.125rem;
+    width: 0.875rem;
+    height: 0.875rem;
+    background: var(--neutral-background-strong);
+    border-radius: 50%;
+  }
+  
+  &:not(.hidden) {
+    animation: moonGlow 0.6s ease-in-out;
+  }
+  
+  &.hidden {
+    opacity: 0;
+    transform: scale(0.3) rotate(-180deg);
+  }
+}
+
+.ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(var(--brand-background-strong-rgb), 0.3) 0%, 
+    transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  
+  .button.animating & {
+    animation: rippleEffect 0.6s ease-out;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes sunRotate {
+  0% {
+    transform: scale(0.8) rotate(-90deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes moonGlow {
+  0% {
+    transform: scale(0.8) rotate(90deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rippleEffect {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 4rem;
+    height: 4rem;
+    opacity: 0;
+  }
+}
+
+// Dark mode specific styles
+[data-theme="dark"] {
+  .button {
+    background: linear-gradient(135deg, 
+      rgba(var(--neutral-alpha-weak-rgb), 0.2) 0%, 
+      rgba(var(--neutral-alpha-medium-rgb), 0.3) 100%);
+    
+    &:hover {
+      background: linear-gradient(135deg, 
+        rgba(var(--neutral-alpha-weak-rgb), 0.3) 0%, 
+        rgba(var(--neutral-alpha-medium-rgb), 0.4) 100%);
+      box-shadow: 0 4px 12px rgba(var(--neutral-alpha-strong-rgb), 0.2);
+    }
+  }
+  
+  .sunIcon {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+  }
+  
+  .moonIcon {
+    background: linear-gradient(45deg, #e6e6fa, #c0c0c0);
+    box-shadow: 0 0 8px rgba(230, 230, 250, 0.3);
+  }
+}
