@@ -1,0 +1,148 @@
+@use "../components/breakpoints.scss" as breakpoints;
+
+.skillsSection {
+  width: 100%;
+  margin-bottom: var(--static-space-24);
+}
+
+.descriptionWrapper {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--static-space-24);
+  width: 100%;
+
+  @include breakpoints.m {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include breakpoints.s {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skillCard {
+  background: var(--neutral-alpha-weak);
+  border: 1px solid var(--neutral-border-medium);
+  border-radius: var(--radius-l);
+  padding: var(--static-space-24);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand-background-strong), var(--accent-background-strong));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    border-color: var(--brand-border-medium);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--static-space-12);
+  margin-bottom: var(--static-space-16);
+}
+
+.categoryIcon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-alpha-weak);
+  border-radius: var(--radius-m);
+  color: var(--brand-on-background-medium);
+}
+
+.skillsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--static-space-8);
+}
+
+.skillTag {
+  background: var(--neutral-alpha-medium);
+  border: 1px solid var(--neutral-border-weak);
+  border-radius: var(--radius-m);
+  padding: var(--static-space-8) var(--static-space-12);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--static-space-6);
+  transition: all 0.2s ease;
+  font-size: var(--label-default-m-font-size);
+  font-weight: 500;
+
+  &:hover {
+    background: var(--brand-alpha-weak);
+    border-color: var(--brand-border-medium);
+    transform: translateY(-2px);
+  }
+}
+
+.skillIcon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--static-space-16);
+  margin-top: var(--static-space-32);
+  padding-top: var(--static-space-24);
+  border-top: 1px solid var(--neutral-border-weak);
+
+  @include breakpoints.s {
+    grid-template-columns: 1fr;
+  }
+}
+
+.statCard {
+  text-align: center;
+  padding: var(--static-space-16);
+  background: var(--neutral-alpha-weak);
+  border-radius: var(--radius-m);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: var(--brand-alpha-weak);
+  }
+}
+
+.statNumber {
+  font-size: var(--display-strong-xs-font-size);
+  font-weight: 700;
+  color: var(--brand-on-background-strong);
+  margin-bottom: var(--static-space-4);
+}
+
+.statLabel {
+  font-size: var(--label-default-s-font-size);
+  color: var(--neutral-on-background-weak);
+}
+

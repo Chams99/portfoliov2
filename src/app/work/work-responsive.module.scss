@@ -1,0 +1,307 @@
+// Enhanced Responsive Design for Work Pages
+// Optimized for all device sizes with modern breakpoints
+
+// Mobile First Approach - Base styles for mobile
+.workPage {
+  padding: 16px;
+  
+  // Hero section mobile optimization
+  .heroSection {
+    padding: 8px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    h1 {
+      font-size: 2.5rem;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 700;
+    }
+    
+    .heroDescription {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      max-width: 100%;
+      text-align: center;
+    }
+  }
+  
+  // Project cards mobile layout
+  .projectCard {
+    margin: 0 -8px;
+    border-radius: var(--radius-m);
+    
+    .imageSection {
+      border-radius: var(--radius-m) var(--radius-m) 0 0;
+    }
+    
+    .contentSection {
+      padding: 16px;
+    }
+  }
+  
+  // Metadata mobile optimization
+  .metadataContainer {
+    padding: 16px;
+    margin: 16px 0;
+    
+    .techStack {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .teamInfo {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+}
+
+// Small Mobile (320px - 480px)
+@media (max-width: 480px) {
+  .workPage {
+    padding: 12px;
+    
+    .heroSection {
+      padding: 4px 0;
+      
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      
+      .heroDescription {
+        font-size: 0.9rem;
+      }
+    }
+    
+    .projectCard {
+      .contentSection {
+        padding: 12px;
+      }
+    }
+    
+    .metadataContainer {
+      padding: 12px;
+    }
+  }
+}
+
+// Large Mobile (481px - 768px)
+@media (min-width: 481px) and (max-width: 768px) {
+  .workPage {
+    padding: 20px;
+    
+    .heroSection {
+      padding: 8px 0;
+      
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+      }
+      
+      .heroDescription {
+        font-size: 1rem;
+      }
+    }
+    
+    .projectCard {
+      margin: 0;
+      border-radius: var(--radius-l);
+      
+      .imageSection {
+        border-radius: var(--radius-l) var(--radius-l) 0 0;
+      }
+    }
+  }
+}
+
+// Tablet Portrait (769px - 1024px)
+@media (min-width: 769px) and (max-width: 1024px) {
+  .workPage {
+    padding: 24px;
+    max-width: 100%;
+    
+    .heroSection {
+      padding: 12px 0;
+      
+      h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+      }
+      
+      .heroDescription {
+        font-size: 1.1rem;
+        max-width: 85%;
+      }
+    }
+    
+    .projectCard {
+      .contentSection {
+        padding: 20px;
+      }
+    }
+    
+    .metadataContainer {
+      padding: 20px;
+      
+      .techStack {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+
+// Tablet Landscape (1025px - 1200px)
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .workPage {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .heroSection {
+      padding: 16px 0;
+      
+      h1 {
+        font-size: 4rem;
+        font-weight: 700;
+      }
+      
+      .heroDescription {
+        font-size: 1.2rem;
+        max-width: 80%;
+      }
+    }
+    
+    .projectCard {
+      .contentSection {
+        padding: 24px;
+      }
+    }
+    
+    .metadataContainer {
+      padding: 24px;
+    }
+  }
+}
+
+// Desktop (1201px - 1440px)
+@media (min-width: 1201px) and (max-width: 1440px) {
+  .workPage {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .heroSection {
+      padding: 20px 0;
+      
+      h1 {
+        font-size: 4.5rem;
+        font-weight: 700;
+      }
+      
+      .heroDescription {
+        font-size: 1.3rem;
+        max-width: 70%;
+      }
+    }
+    
+    .projectCard {
+      .contentSection {
+        padding: 28px;
+      }
+    }
+    
+    .metadataContainer {
+      padding: 28px;
+    }
+  }
+}
+
+// Large Desktop (1441px+)
+@media (min-width: 1441px) {
+  .workPage {
+    padding: 48px;
+    max-width: 1400px;
+    margin: 0 auto;
+    
+    .heroSection {
+      padding: 24px 0;
+      
+      h1 {
+        font-size: 5rem;
+        font-weight: 700;
+      }
+      
+      .heroDescription {
+        font-size: 1.4rem;
+        max-width: 60%;
+      }
+    }
+    
+    .projectCard {
+      .contentSection {
+        padding: 32px;
+      }
+    }
+    
+    .metadataContainer {
+      padding: 32px;
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .workPage {
+    padding: 0;
+    
+    .projectCard {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      box-shadow: none;
+      border: 1px solid #ccc;
+    }
+    
+    .metadataContainer {
+      break-inside: avoid;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+  .workPage {
+    .projectCard {
+      border: 2px solid;
+    }
+    
+    .metadataContainer {
+      border: 2px solid;
+    }
+  }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  .workPage {
+    .projectCard {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+    }
+    
+    .metadataContainer {
+      transition: none;
+    }
+  }
+}

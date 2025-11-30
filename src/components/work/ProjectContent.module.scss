@@ -1,0 +1,44 @@
+.projectContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.section {
+  background: var(--background-surface);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--text-strong);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.section ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.section li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .projectContent {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .section {
+    padding: 1rem;
+  }
+}

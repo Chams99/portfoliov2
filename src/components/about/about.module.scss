@@ -1,0 +1,301 @@
+@use "../breakpoints.scss" as breakpoints;
+
+// Local class to make :global() pure
+.aboutModule {
+    // Smooth scrolling for the entire page
+    :global(html) {
+        scroll-behavior: smooth;
+    }
+}
+
+// Container for proper sticky behavior
+.aboutContainer {
+    display: flex;
+    gap: var(--static-space-32);
+    align-items: flex-start;
+    
+    // Add left padding on tablets and small desktops to avoid sidebar collision
+    @media (min-width: 769px) and (max-width: 1248px) {
+        padding-left: 170px; // Match reduced sidebar width
+    }
+    
+    // Add left padding for large screens
+    @media (min-width: 1249px) {
+        padding-left: 220px; // Space for sidebar
+    }
+    
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--static-space-16);
+        padding-left: 0;
+    }
+}
+
+// Enhanced sidebar navigation
+.sidebarNavigation {
+    background: transparent;
+    padding: var(--static-space-20);
+    z-index: 20;
+    min-width: 200px;
+    max-width: 250px;
+    
+    // Hide on small screens (mobile)
+    @media (max-width: 768px) {
+        display: none !important;
+    }
+    
+    // Smaller, fixed sidebar for medium screens (tablets)
+    @media (min-width: 769px) and (max-width: 1248px) {
+        position: fixed !important;
+        left: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        padding-left: var(--static-space-12) !important;
+        min-width: 140px;
+        max-width: 160px;
+        padding: var(--static-space-8);
+    }
+    
+    // Full fixed position for large screens
+    @media (min-width: 1249px) {
+        position: fixed !important;
+        left: 0 !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        padding-left: var(--static-space-24) !important;
+    }
+}
+
+// Active section styling
+.activeSection {
+    background: var(--brand-alpha-weak) !important;
+    border: 1px solid var(--brand-border-medium);
+    transform: translateX(4px);
+    
+    &::after {
+        width: 100% !important;
+    }
+}
+
+// Modern 2025 Design Enhancements
+.avatar {
+    align-self: flex-start;
+    z-index: 10;
+    
+    // Enhanced sticky behavior for large screens only
+    @media (min-width: 1025px) {
+        position: sticky !important;
+        top: 80px; // Adjust based on your header height
+        will-change: transform;
+        transform: translateZ(0); // Force hardware acceleration
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    // Remove sticky on smaller screens
+    @media (max-width: 1024px) {
+        position: relative !important;
+        top: auto !important;
+        margin-bottom: var(--static-space-24);
+    }
+    
+    // Add a subtle shadow when sticky
+    &.sticky {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        background: var(--neutral-alpha-weak);
+        border-radius: var(--radius-l);
+        padding: var(--static-space-16);
+    }
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        background: linear-gradient(135deg, var(--brand-alpha-weak), var(--accent-alpha-weak));
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+    }
+    
+    &:hover::before {
+        opacity: 1;
+    }
+}
+
+.hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--brand-background-strong), var(--accent-background-strong));
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &:hover {
+        transform: translateX(var(--static-space-4));
+        
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+// Modern card design for experience items
+.experienceCard {
+    background: var(--neutral-alpha-weak);
+    border: 1px solid var(--neutral-border-weak);
+    border-radius: var(--radius-l);
+    padding: var(--static-space-24);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--brand-background-strong), var(--accent-background-strong));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    &:hover {
+        border-color: var(--brand-border-medium);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        
+        &::before {
+            transform: scaleX(1);
+        }
+    }
+}
+
+// Modern skill tags with enhanced styling
+.skillTag {
+    background: var(--neutral-alpha-medium);
+    border: 1px solid var(--neutral-border-weak);
+    border-radius: var(--radius-m);
+    padding: var(--static-space-8) var(--static-space-12);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    &:hover {
+        background: var(--brand-alpha-weak);
+        border-color: var(--brand-border-medium);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        
+        &::before {
+            left: 100%;
+        }
+    }
+}
+
+// Enhanced section headers
+.sectionHeader {
+    position: relative;
+    margin-bottom: var(--static-space-32);
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--brand-background-strong), var(--accent-background-strong));
+        border-radius: var(--radius-s);
+    }
+}
+
+// Modern glassmorphism effect for calendar section
+.calendarSection {
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-l);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--brand-border-medium);
+        transform: translateY(-2px);
+    }
+}
+
+// Enhanced social buttons
+.socialButton {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: var(--brand-alpha-weak);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease;
+    }
+    
+    &:hover::before {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Modern responsive design
+@media (max-width: 768px) {
+    .textAlign {
+        text-align: center;
+    }
+
+    .blockAlign {
+        align-self: center;
+    }
+    
+    .experienceCard {
+        padding: var(--static-space-16);
+    }
+    
+    .avatar {
+        align-self: center;
+    }
+}
+
+// Enhanced tablet experience
+@media (min-width: 769px) and (max-width: 1024px) {
+    .experienceCard {
+        margin-bottom: var(--static-space-16);
+    }
+}

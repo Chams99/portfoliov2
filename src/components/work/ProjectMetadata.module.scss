@@ -1,0 +1,82 @@
+// Enhanced Project Metadata Component Styles
+// Modern design with clear information hierarchy
+
+.metadataContainer {
+  background: var(--background-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-l);
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  
+  // Subtle animation on hover
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: var(--border-strong);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.avatarContainer {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid var(--border-default);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.linkIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+// Mobile responsive adjustments
+@media (max-width: 768px) {
+  .metadataContainer {
+    padding: 16px;
+    margin: 16px 0;
+  }
+  
+  .avatarContainer {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .linkIcon {
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+  }
+}
+
+// Tablet adjustments
+@media (min-width: 769px) and (max-width: 1024px) {
+  .metadataContainer {
+    padding: 20px;
+  }
+}
+
+// Large screen enhancements
+@media (min-width: 1200px) {
+  .metadataContainer {
+    padding: 28px;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
