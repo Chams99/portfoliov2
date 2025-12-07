@@ -22,40 +22,52 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   useEffect(() => {
     const performChecks = async () => {
       setLoading(true);
-      setIsRouteEnabled(false);
-      setIsPasswordRequired(false);
-      setIsAuthenticated(false);
+      try {
+        setIsRouteEnabled(false);
+        setIsPasswordRequired(false);
+        setIsAuthenticated(false);
 
-      const checkRouteEnabled = () => {
-        if (!pathname) return false;
+        const checkRouteEnabled = () => {
+          if (!pathname) return false;
 
-        if (pathname in routes) {
-          return routes[pathname as keyof typeof routes];
-        }
+          if (pathname in routes) {
+            return routes[pathname as keyof typeof routes];
+          }
 
-        const dynamicRoutes = ["/blog", "/work"] as const;
-        for (const route of dynamicRoutes) {
-          if (pathname?.startsWith(route) && routes[route]) {
-            return true;
+          const dynamicRoutes = ["/blog", "/work"] as const;
+          for (const route of dynamicRoutes) {
+            if (pathname?.startsWith(route) && routes[route]) {
+              return true;
+            }
+          }
+
+          return false;
+        };
+
+        const routeEnabled = checkRouteEnabled();
+        setIsRouteEnabled(routeEnabled);
+
+        if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
+          setIsPasswordRequired(true);
+
+          try {
+            const response = await fetch("/api/check-auth");
+            if (response.ok) {
+              setIsAuthenticated(true);
+            }
+          } catch (error) {
+            console.error("Auth check failed:", error);
+            // Default to not authenticated on error
           }
         }
-
-        return false;
-      };
-
-      const routeEnabled = checkRouteEnabled();
-      setIsRouteEnabled(routeEnabled);
-
-      if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
-        setIsPasswordRequired(true);
-
-        const response = await fetch("/api/check-auth");
-        if (response.ok) {
-          setIsAuthenticated(true);
-        }
+      } catch (error) {
+        console.error("Route guard checks failed:", error);
+        // Ensure we don't block the UI violently, but maybe show error state if needed
+        // For now, allowing flow to continue or showing not found might be safer depending on preference
+        // but ensuring loading stops is critical.
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
     performChecks();

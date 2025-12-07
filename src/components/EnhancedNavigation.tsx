@@ -155,12 +155,7 @@ export function EnhancedPageTransition({ children }: { children: React.ReactNode
     if (previousPathname !== pathname) {
       setIsTransitioning(true);
 
-      // Add transition class to body
-      document.body.style.transition = "opacity 0.2s ease-in-out";
-      document.body.style.opacity = "0.8";
-
       const timer = setTimeout(() => {
-        document.body.style.opacity = "1";
         setIsTransitioning(false);
       }, 200);
 
@@ -168,8 +163,6 @@ export function EnhancedPageTransition({ children }: { children: React.ReactNode
 
       return () => {
         clearTimeout(timer);
-        document.body.style.transition = "";
-        document.body.style.opacity = "";
       };
     }
   }, [pathname, previousPathname]);

@@ -49,22 +49,36 @@
                 <p>Join over 500 successful investors and access our premium property portfolio with proven returns of 8-12% annually.</p>
             </div>
             <form id="gateForm" class="gate-form">
+            <div class="form-row">
                 <div class="form-group">
                     <label for="gateFirstName">First Name *</label>
-                    <input type="text" id="gateFirstName" name="firstName" required>
+                    <div class="input-with-icon">
+                        <input type="text" id="gateFirstName" name="firstName" required>
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="gateLastName">Last Name *</label>
-                    <input type="text" id="gateLastName" name="lastName" required>
+                    <div class="input-with-icon">
+                        <input type="text" id="gateLastName" name="lastName" required>
+                        <i class="fas fa-user input-icon"></i>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="gateEmail">Email Address *</label>
+            </div>
+            <div class="form-group">
+                <label for="gateEmail">Email Address *</label>
+                <div class="input-with-icon">
                     <input type="email" id="gateEmail" name="email" required>
+                    <i class="fas fa-envelope input-icon"></i>
                 </div>
-                <div class="form-group">
-                    <label for="gatePhone">Phone Number *</label>
+            </div>
+            <div class="form-group">
+                <label for="gatePhone">Phone Number *</label>
+                <div class="input-with-icon">
                     <input type="tel" id="gatePhone" name="phone" required>
+                    <i class="fas fa-phone input-icon"></i>
                 </div>
+            </div>
                 <div class="form-group checkbox-group">
                     <input type="checkbox" id="gatePrivacy" name="privacy" required>
                     <label for="gatePrivacy">I agree to the <a href="#" class="privacy-link">Privacy Policy</a> and <a href="#" class="privacy-link">Terms of Service</a> *</label>

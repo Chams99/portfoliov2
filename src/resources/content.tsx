@@ -8,7 +8,8 @@ const person: Person = {
   role: "Full-Stack Developer",
   avatar: "/images/avatar.webp",
   email: "dhibichams@gmail.com",
-  location: "Africa/Tunisia", // Gafsa, Tunisia
+  timeZone: "Africa/Tunisia",
+  locationName: "Gafsa, Tunisia",
   languages: ["English", "French", "Arabic"], // TOEFL iBT: 84/120
 };
 
@@ -77,7 +78,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} from ${person.locationName}`,
   tableOfContent: {
     display: true,
     subItems: false,
