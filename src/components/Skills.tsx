@@ -7,8 +7,11 @@ import styles from "./Skills.module.scss";
 
 interface SkillCategory {
   title: string;
-  IconComponent: () => React.JSX.Element;
-  skills: Array<{ name: string; IconComponent?: () => React.JSX.Element }>;
+  IconComponent: (props: React.SVGProps<SVGSVGElement>) => React.JSX.Element;
+  skills: Array<{
+    name: string;
+    IconComponent?: (props: React.SVGProps<SVGSVGElement>) => React.JSX.Element;
+  }>;
 }
 
 const skillCategories: SkillCategory[] = [
