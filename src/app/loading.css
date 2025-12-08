@@ -4,6 +4,9 @@
   justify-content: center;
   align-items: center;
   min-height: 200px;
+  opacity: 0;
+  /* Use a unique keyframe name to avoid conflicts with other global fade animations */
+  animation: fadeInLoader 140ms ease-out forwards;
 }
 
 .spinner {
@@ -13,6 +16,8 @@
   border-top: 4px solid #3498db;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 @keyframes spin {
@@ -21,5 +26,25 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInLoader {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingContainer {
+    animation: none;
+    opacity: 1;
+  }
+
+  .spinner {
+    animation: none;
   }
 }
