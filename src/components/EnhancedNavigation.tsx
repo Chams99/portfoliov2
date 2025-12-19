@@ -25,8 +25,7 @@ export function EnhancedLink({
   className?: string;
   prefetch?: boolean;
   enablePerformanceMonitoring?: boolean;
-  [key: string]: any;
-}) {
+} & Omit<React.ComponentPropsWithoutRef<'a'>, 'href' | 'children' | 'className'>) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPrefetched, setIsPrefetched] = useState(false);
   const router = useRouter();
@@ -193,12 +192,12 @@ export function useRoutePrefetching() {
 
   const prefetchCriticalRoutes = useCallback(
     (routes: string[]) => {
-      routes.forEach((route) => {
+      for (const route of routes) {
         if (!prefetchedRoutes.has(route)) {
           router.prefetch(route);
           setPrefetchedRoutes((prev) => new Set([...prev, route]));
         }
-      });
+      }
     },
     [router, prefetchedRoutes],
   );

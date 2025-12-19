@@ -45,10 +45,18 @@ export function Projects({
       selectedTechnologies,
     );
 
-    // Sort by published date
+    // Sort by quality first (priority), then by published date (newest first)
     return filtered.sort((a, b) => {
+      const aPriority = a.metadata.priority ?? 0;
+      const bPriority = b.metadata.priority ?? 0;
+
+      if (aPriority !== bPriority) {
+        return bPriority - aPriority;
+      }
+
       return (
-        new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
+        new Date(b.metadata.publishedAt).getTime() -
+        new Date(a.metadata.publishedAt).getTime()
       );
     });
   }, [allProjects, exclude, searchQuery, selectedCategories, selectedTechnologies]);

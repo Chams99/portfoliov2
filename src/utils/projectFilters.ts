@@ -10,6 +10,9 @@ export interface ProjectWithMetadata {
     summary: string;
     category?: string;
     tags?: string[];
+    // Higher priority means the project appears earlier in listings.
+    // Defaults to 0 when not set in frontmatter.
+    priority?: number;
     publishedAt: string;
     images: string[];
     team?: Array<{
