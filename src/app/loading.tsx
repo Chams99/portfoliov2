@@ -1,9 +1,16 @@
-import "./loading.css";
+import { Flex, Spinner } from "@once-ui-system/core";
 
 export default function Loading() {
   return (
-    <div className="loadingContainer">
-      <div className="spinner" />
-    </div>
+    <Flex
+      fillWidth
+      fillHeight
+      style={{ minHeight: "100vh" }}
+      className="glass-panel"
+      horizontal="center"
+      align="center"
+    >
+      <div className="elegant-loader" />
+    </Flex>
   );
 }

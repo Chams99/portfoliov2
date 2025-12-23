@@ -31,7 +31,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   publishedAt,
 }) => {
   return (
-    <div className={styles.projectCard}>
+    <div className={`${styles.projectCard} glass-card`}>
       <Column fillWidth gap="m">
         {/* Enhanced Image Section */}
         <div className={styles.imageSection}>

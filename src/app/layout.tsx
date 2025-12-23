@@ -78,8 +78,8 @@ export default async function RootLayout({
                   cursor: effects.mask.cursor,
                 }}
                 gradient={{
-                  display: effects.gradient.display,
-                  opacity: effects.gradient.opacity as opacity,
+                  display: true,
+                  opacity: 80, /* Increased opacity for more color */
                   x: effects.gradient.x,
                   y: effects.gradient.y,
                   width: effects.gradient.width,
@@ -89,20 +89,20 @@ export default async function RootLayout({
                   colorEnd: effects.gradient.colorEnd,
                 }}
                 dots={{
-                  display: effects.dots.display,
-                  opacity: effects.dots.opacity as opacity,
-                  size: effects.dots.size as SpacingToken,
+                  display: true,
+                  opacity: 40,
+                  size: "2",
                   color: effects.dots.color,
                 }}
                 grid={{
-                  display: effects.grid.display,
+                  display: false, /* Disable grid to reduce noise with glass */
                   opacity: effects.grid.opacity as opacity,
                   color: effects.grid.color,
                   width: effects.grid.width,
                   height: effects.grid.height,
                 }}
                 lines={{
-                  display: effects.lines.display,
+                  display: false,
                   opacity: effects.lines.opacity as opacity,
                   size: effects.lines.size as SpacingToken,
                   thickness: effects.lines.thickness,
