@@ -90,8 +90,23 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
 
   if (loading) {
     return (
-      <Flex fillWidth paddingY="128" horizontal="center">
-        <Spinner />
+      <Flex
+        fillWidth
+        fillHeight
+        style={{
+          minHeight: "100vh",
+          position: "fixed",
+          top: 0,
+          left: 0,
+          zIndex: 9999,
+        }}
+        horizontal="center"
+        align="center"
+        className="glass-panel"
+      >
+        <Column align="center" gap="16">
+          <div className="elegant-loader" />
+        </Column>
       </Flex>
     );
   }

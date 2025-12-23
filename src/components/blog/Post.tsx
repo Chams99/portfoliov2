@@ -4,8 +4,10 @@ import { person } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { Avatar, Card, Column, Media, Row, Text } from "@once-ui-system/core";
 
+import type { BlogPostWithMetadata } from "@/utils/serverBlogFilters";
+
 interface PostProps {
-  post: any;
+  post: BlogPostWithMetadata;
   thumbnail: boolean;
   direction?: "row" | "column";
 }
@@ -24,6 +26,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
       radius="l-4"
       gap={direction === "column" ? undefined : "24"}
       s={{ direction: "column" }}
+      className="glass-card"
     >
       {post.metadata.image && thumbnail && (
         <Media
@@ -51,9 +54,9 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
           <Text variant="heading-strong-l" wrap="balance">
             {post.metadata.title}
           </Text>
-          {post.metadata.tag && (
+          {post.metadata.tags && post.metadata.tags.length > 0 && (
             <Text variant="label-strong-s" onBackground="neutral-weak">
-              {post.metadata.tag}
+              {post.metadata.tags[0]}
             </Text>
           )}
         </Column>
