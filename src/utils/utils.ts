@@ -21,6 +21,7 @@ type Metadata = {
   category?: string;
   tags?: string[];
   github?: string;
+  priority?: number;
 };
 
 import { notFound } from "next/navigation";
@@ -53,6 +54,7 @@ function readMDXFile(filePath: string) {
     category: data.category || "",
     tags: data.tags || [],
     github: data.github || "",
+    priority: data.priority || 0,
   };
 
   return { metadata, content };
