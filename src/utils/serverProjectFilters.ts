@@ -30,7 +30,10 @@ export interface ProjectWithMetadata {
 }
 
 export function getAllProjects(): ProjectWithMetadata[] {
-  return getPosts(["src", "app", "work", "projects"]);
+  const projects = getPosts(["src", "app", "work", "projects"]);
+  return projects.sort((a, b) => {
+    return (b.metadata.priority || 0) - (a.metadata.priority || 0);
+  });
 }
 
 export function getCategoriesFromProjects(projects: ProjectWithMetadata[]): FilterOption[] {
