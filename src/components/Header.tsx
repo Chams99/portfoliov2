@@ -8,6 +8,7 @@ import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
 import { about, blog, display, gallery, person, routes, work } from "@/resources";
 import styles from "./Header.module.scss";
 import { ThemeToggle } from "./ThemeToggle";
+import { EnhancedLink } from "./EnhancedNavigation";
 
 type TimeDisplayProps = {
   timeZone: string;
@@ -72,13 +73,18 @@ export const Header = () => {
         as="header"
         zIndex={9}
         fillWidth
-        padding="8"
+        paddingLeft="8"
+        paddingRight="8"
+        paddingTop="2"
+        paddingBottom="2"
         horizontal="center"
         data-border="rounded"
         role="banner"
         aria-label="Main navigation"
         s={{
           position: "fixed",
+          top: "0",
+          left: "0",
         }}
       >
         <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
@@ -91,132 +97,143 @@ export const Header = () => {
             padding="4"
             horizontal="center"
             zIndex={1}
-            role="navigation"
+            as="nav"
             aria-label="Main navigation menu"
           >
             <Row gap="2" vertical="center" textVariant="body-default-s" suppressHydrationWarning>
               {routes["/"] && (
-                <ToggleButton
-                  className={styles.navItem}
-                  prefixIcon="home"
-                  href="/"
-                  selected={pathname === "/"}
-                  aria-label="Home"
-                />
+                <EnhancedLink href="/">
+                  <ToggleButton
+                    className={styles.navItem}
+                    prefixIcon="home"
+                    selected={pathname === "/"}
+                    aria-label="Home"
+                  />
+                </EnhancedLink>
               )}
               <Line background="neutral-alpha-medium" vert maxHeight="24" />
               {routes["/about"] && (
                 <>
                   <Row s={{ hide: true }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname === "/about" ? styles.navItemSelected : ""}`}
-                      prefixIcon="person"
-                      href="/about"
-                      label={about.label}
-                      selected={pathname === "/about"}
-                      aria-label={`Navigate to ${about.label}`}
-                    />
+                    <EnhancedLink href="/about">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname === "/about" ? styles.navItemSelected : ""}`}
+                        prefixIcon="person"
+                        label={about.label}
+                        selected={pathname === "/about"}
+                        aria-label={`Navigate to ${about.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                   <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname === "/about" ? styles.navItemSelected : ""}`}
-                      prefixIcon="person"
-                      href="/about"
-                      selected={pathname === "/about"}
-                      aria-label={`Navigate to ${about.label}`}
-                    />
+                    <EnhancedLink href="/about">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname === "/about" ? styles.navItemSelected : ""}`}
+                        prefixIcon="person"
+                        selected={pathname === "/about"}
+                        aria-label={`Navigate to ${about.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                 </>
               )}
               {routes["/work"] && (
                 <>
                   <Row s={{ hide: true }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname.startsWith("/work") ? styles.navItemSelected : ""}`}
-                      prefixIcon="grid"
-                      href="/work"
-                      label={work.label}
-                      selected={pathname.startsWith("/work")}
-                      aria-label={`Navigate to ${work.label}`}
-                    />
+                    <EnhancedLink href="/work">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname.startsWith("/work") ? styles.navItemSelected : ""}`}
+                        prefixIcon="grid"
+                        label={work.label}
+                        selected={pathname.startsWith("/work")}
+                        aria-label={`Navigate to ${work.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                   <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname.startsWith("/work") ? styles.navItemSelected : ""}`}
-                      prefixIcon="grid"
-                      href="/work"
-                      selected={pathname.startsWith("/work")}
-                      aria-label={`Navigate to ${work.label}`}
-                    />
+                    <EnhancedLink href="/work">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname.startsWith("/work") ? styles.navItemSelected : ""}`}
+                        prefixIcon="grid"
+                        selected={pathname.startsWith("/work")}
+                        aria-label={`Navigate to ${work.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                 </>
               )}
               {routes["/blog"] && (
                 <>
                   <Row s={{ hide: true }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname.startsWith("/blog") ? styles.navItemSelected : ""}`}
-                      prefixIcon="book"
-                      href="/blog"
-                      label={blog.label}
-                      selected={pathname.startsWith("/blog")}
-                      aria-label={`Navigate to ${blog.label}`}
-                    />
+                    <EnhancedLink href="/blog">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname.startsWith("/blog") ? styles.navItemSelected : ""}`}
+                        prefixIcon="book"
+                        label={blog.label}
+                        selected={pathname.startsWith("/blog")}
+                        aria-label={`Navigate to ${blog.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                   <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname.startsWith("/blog") ? styles.navItemSelected : ""}`}
-                      prefixIcon="book"
-                      href="/blog"
-                      selected={pathname.startsWith("/blog")}
-                      aria-label={`Navigate to ${blog.label}`}
-                    />
+                    <EnhancedLink href="/blog">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname.startsWith("/blog") ? styles.navItemSelected : ""}`}
+                        prefixIcon="book"
+                        selected={pathname.startsWith("/blog")}
+                        aria-label={`Navigate to ${blog.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                 </>
               )}
               {routes["/gallery"] && (
                 <>
                   <Row s={{ hide: true }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname.startsWith("/gallery") ? styles.navItemSelected : ""}`}
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      label={gallery.label}
-                      selected={pathname.startsWith("/gallery")}
-                      aria-label={`Navigate to ${gallery.label}`}
-                    />
+                    <EnhancedLink href="/gallery">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname.startsWith("/gallery") ? styles.navItemSelected : ""}`}
+                        prefixIcon="gallery"
+                        label={gallery.label}
+                        selected={pathname.startsWith("/gallery")}
+                        aria-label={`Navigate to ${gallery.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                   <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname.startsWith("/gallery") ? styles.navItemSelected : ""}`}
-                      prefixIcon="gallery"
-                      href="/gallery"
-                      selected={pathname.startsWith("/gallery")}
-                      aria-label={`Navigate to ${gallery.label}`}
-                    />
+                    <EnhancedLink href="/gallery">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname.startsWith("/gallery") ? styles.navItemSelected : ""}`}
+                        prefixIcon="gallery"
+                        selected={pathname.startsWith("/gallery")}
+                        aria-label={`Navigate to ${gallery.label}`}
+                      />
+                    </EnhancedLink>
                   </Row>
                 </>
               )}
               {routes["/contact"] && (
                 <>
                   <Row s={{ hide: true }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname === "/contact" ? styles.navItemSelected : ""}`}
-                      prefixIcon="email"
-                      href="/contact"
-                      label="Contact"
-                      selected={pathname === "/contact"}
-                      aria-label="Navigate to Contact"
-                    />
+                    <EnhancedLink href="/contact">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname === "/contact" ? styles.navItemSelected : ""}`}
+                        prefixIcon="email"
+                        label="Contact"
+                        selected={pathname === "/contact"}
+                        aria-label="Navigate to Contact"
+                      />
+                    </EnhancedLink>
                   </Row>
                   <Row hide s={{ hide: false }}>
-                    <ToggleButton
-                      className={`${styles.navItem} ${pathname === "/contact" ? styles.navItemSelected : ""}`}
-                      prefixIcon="email"
-                      href="/contact"
-                      selected={pathname === "/contact"}
-                      aria-label="Navigate to Contact"
-                    />
+                    <EnhancedLink href="/contact">
+                      <ToggleButton
+                        className={`${styles.navItem} ${pathname === "/contact" ? styles.navItemSelected : ""}`}
+                        prefixIcon="email"
+                        selected={pathname === "/contact"}
+                        aria-label="Navigate to Contact"
+                      />
+                    </EnhancedLink>
                   </Row>
                 </>
               )}
@@ -254,7 +271,7 @@ export const Header = () => {
       {isMounted && (
         <div className={styles.mobileNav}>
           {routes["/"] && (
-            <a
+            <EnhancedLink
               href="/"
               className={`${styles.mobileNavItem} ${pathname === "/" ? styles.mobileNavItemSelected : ""}`}
               aria-label="Home"
@@ -267,15 +284,16 @@ export const Header = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
                 <polyline points="9,22 9,12 15,12 15,22" />
               </svg>
               <div className={styles.mobileNavLabel}>Home</div>
-            </a>
+            </EnhancedLink>
           )}
           {routes["/about"] && (
-            <a
+            <EnhancedLink
               href="/about"
               className={`${styles.mobileNavItem} ${pathname === "/about" ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${about.label}`}
@@ -288,15 +306,16 @@ export const Header = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
               <div className={styles.mobileNavLabel}>{about.label}</div>
-            </a>
+            </EnhancedLink>
           )}
           {routes["/work"] && (
-            <a
+            <EnhancedLink
               href="/work"
               className={`${styles.mobileNavItem} ${pathname.startsWith("/work") ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${work.label}`}
@@ -309,6 +328,7 @@ export const Header = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <rect width="7" height="7" x="3" y="3" rx="1" />
                 <rect width="7" height="7" x="14" y="3" rx="1" />
@@ -316,10 +336,10 @@ export const Header = () => {
                 <rect width="7" height="7" x="3" y="14" rx="1" />
               </svg>
               <div className={styles.mobileNavLabel}>{work.label}</div>
-            </a>
+            </EnhancedLink>
           )}
           {routes["/blog"] && (
-            <a
+            <EnhancedLink
               href="/blog"
               className={`${styles.mobileNavItem} ${pathname.startsWith("/blog") ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${blog.label}`}
@@ -332,15 +352,16 @@ export const Header = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                 <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
               </svg>
               <div className={styles.mobileNavLabel}>{blog.label}</div>
-            </a>
+            </EnhancedLink>
           )}
           {routes["/gallery"] && (
-            <a
+            <EnhancedLink
               href="/gallery"
               className={`${styles.mobileNavItem} ${pathname.startsWith("/gallery") ? styles.mobileNavItemSelected : ""}`}
               aria-label={`Navigate to ${gallery.label}`}
@@ -353,16 +374,17 @@ export const Header = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
                 <circle cx="9" cy="9" r="2" />
                 <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
               </svg>
               <div className={styles.mobileNavLabel}>{gallery.label}</div>
-            </a>
+            </EnhancedLink>
           )}
           {routes["/contact"] && (
-            <a
+            <EnhancedLink
               href="/contact"
               className={`${styles.mobileNavItem} ${pathname === "/contact" ? styles.mobileNavItemSelected : ""}`}
               aria-label="Navigate to Contact"
@@ -375,12 +397,13 @@ export const Header = () => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                aria-hidden="true"
               >
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                 <polyline points="22,6 12,13 2,6" />
               </svg>
               <div className={styles.mobileNavLabel}>Contact</div>
-            </a>
+            </EnhancedLink>
           )}
           {display.themeSwitcher && (
             <div className={styles.mobileNavItem}>

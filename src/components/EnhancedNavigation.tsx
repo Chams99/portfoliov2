@@ -3,7 +3,7 @@
 import { useLoadingPerformance } from "@/utils/loadingPerformance";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./EnhancedNavigation.module.scss";
 
 interface EnhancedNavigationProps {
@@ -13,27 +13,23 @@ interface EnhancedNavigationProps {
 
 // Enhanced Link component with prefetching and performance monitoring
 export function EnhancedLink({
-  href,
   children,
-  className,
   prefetch = true,
   enablePerformanceMonitoring = true,
   ...props
-}: {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-  prefetch?: boolean;
-  enablePerformanceMonitoring?: boolean;
-} & Omit<React.ComponentPropsWithoutRef<'a'>, 'href' | 'children' | 'className'>) {
+}: React.ComponentProps<typeof Link> & { enablePerformanceMonitoring?: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isPrefetched, setIsPrefetched] = useState(false);
   const router = useRouter();
   const { startMonitoring, endMonitoring, logMetrics } = useLoadingPerformance();
+  
+  const { href } = props; // Extract href for usage
 
   // Prefetch on hover with performance monitoring
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true);
+
+    const hrefString = props.href.toString();
 
     if (prefetch && !isPrefetched) {
       // Start performance monitoring for prefetch
@@ -42,19 +38,19 @@ export function EnhancedLink({
       }
 
       // Prefetch the route
-      router.prefetch(href);
+      router.prefetch(hrefString);
       setIsPrefetched(true);
 
       // End monitoring after a short delay
       setTimeout(() => {
         if (enablePerformanceMonitoring) {
           endMonitoring();
-          logMetrics(`prefetch-${href}`);
+          logMetrics(`prefetch-${hrefString}`);
         }
       }, 100);
     }
   }, [
-    href,
+    props.href,
     prefetch,
     isPrefetched,
     router,
@@ -70,8 +66,6 @@ export function EnhancedLink({
 
   return (
     <Link
-      href={href}
-      className={className}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       prefetch={prefetch}
@@ -86,32 +80,46 @@ export function EnhancedLink({
 export function EnhancedNavigation({ children, className }: EnhancedNavigationProps) {
   const pathname = usePathname();
   const [isNavigating, setIsNavigating] = useState(false);
-  const [navigationStart, setNavigationStart] = useState<number | null>(null);
+  const navigationStartRef = useRef<number | null>(null);
   const { startMonitoring, endMonitoring, logMetrics } = useLoadingPerformance();
 
-  // Monitor navigation performance
+  // Refs for stable access in event listeners
+  const startMonitoringRef = useRef(startMonitoring);
+  const endMonitoringRef = useRef(endMonitoring);
+  const logMetricsRef = useRef(logMetrics);
+
+  useEffect(() => {
+    startMonitoringRef.current = startMonitoring;
+    endMonitoringRef.current = endMonitoring;
+    logMetricsRef.current = logMetrics;
+  }, [startMonitoring, endMonitoring, logMetrics]);
+
+  // Handle navigation completion (when pathname changes)
+  useEffect(() => {
+    // Always reset navigation state when path changes
+    // React bails out of updates if the state value is strictly equal
+    setIsNavigating(false);
+    
+    if (navigationStartRef.current) {
+      // const navigationTime = performance.now() - navigationStartRef.current; // Unused variable
+      logMetricsRef.current(`navigation-${pathname}`);
+      endMonitoringRef.current();
+    }
+    navigationStartRef.current = null;
+  }, [pathname]);
+
+  // Monitor navigation start (monkey patch history)
   useEffect(() => {
     const handleRouteChangeStart = () => {
-      setIsNavigating(true);
-      setNavigationStart(performance.now());
-      startMonitoring();
+      // Defer state updates to avoid "useInsertionEffect must not schedule updates" error
+      // caused by Next.js internals interacting with synchronous history updates
+      setTimeout(() => {
+        setIsNavigating(true);
+        navigationStartRef.current = performance.now();
+        startMonitoringRef.current();
+      }, 0);
     };
 
-    const handleRouteChangeComplete = () => {
-      setIsNavigating(false);
-      if (navigationStart) {
-        const navigationTime = performance.now() - navigationStart;
-        logMetrics(`navigation-${pathname}`);
-
-        // Log navigation performance
-        if (process.env.NODE_ENV === "development") {
-          // Navigation performance logged
-        }
-      }
-      endMonitoring();
-    };
-
-    // Listen for route changes
     const originalPush = window.history.pushState;
     const originalReplace = window.history.replaceState;
 
@@ -125,16 +133,18 @@ export function EnhancedNavigation({ children, className }: EnhancedNavigationPr
       return originalReplace.apply(this, args);
     };
 
-    // Listen for popstate events
+    /* 
+       Note: Next.js App Router performs soft navigation so 'popstate' might not be enough 
+       or might behave differently, but capturing pushState/replaceState covers most link clicks.
+    */
     window.addEventListener("popstate", handleRouteChangeStart);
 
-    // Cleanup
     return () => {
       window.history.pushState = originalPush;
       window.history.replaceState = originalReplace;
       window.removeEventListener("popstate", handleRouteChangeStart);
     };
-  }, [pathname, navigationStart, startMonitoring, endMonitoring, logMetrics]);
+  }, []);
 
   return (
     <div className={className}>
