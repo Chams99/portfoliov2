@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import type React from "react";
 import type { ReactNode } from "react";
@@ -21,29 +22,24 @@ import {
   List,
   ListItem,
   Media,
-  type MediaProps,
   Row,
   SmartLink,
   Table,
   Text,
-  type TextProps,
 } from "@once-ui-system/core";
 
-type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-  href: string;
-  children: ReactNode;
-};
 
-function CustomLink({ href, children, ...props }: CustomLinkProps) {
-  if (href.startsWith("/")) {
+
+function CustomLink({ href, children, ...props }: React.ComponentProps<"a">) {
+  if (href?.startsWith("/")) {
     return (
-      <SmartLink href={href} {...props}>
+      <Link href={href} {...props}>
         {children}
-      </SmartLink>
+      </Link>
     );
   }
 
-  if (href.startsWith("#")) {
+  if (href?.startsWith("#")) {
     return (
       <a href={href} {...props}>
         {children}
@@ -58,8 +54,12 @@ function CustomLink({ href, children, ...props }: CustomLinkProps) {
   );
 }
 
-function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
-  if (!src) {
+function createImage({ alt, src, width, height, loading, ...props }: React.ComponentProps<"img">) {
+  const imageSrc = typeof src === "string" ? src : undefined;
+  const parsedWidth = width ? Number(width) : undefined;
+  const parsedHeight = height ? Number(height) : undefined;
+
+  if (!imageSrc) {
     console.error("Media requires a valid 'src' property.");
     return null;
   }
@@ -73,7 +73,9 @@ function createImage({ alt, src, ...props }: MediaProps & { src: string }) {
       border="neutral-alpha-medium"
       sizes="(max-width: 960px) 100vw, 960px"
       alt={alt}
-      src={src}
+      src={imageSrc}
+      width={parsedWidth}
+      height={parsedHeight}
       {...props}
     />
   );
@@ -91,7 +93,7 @@ function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
   const CustomHeading = ({
     children,
     ...props
-  }: Omit<React.ComponentProps<typeof HeadingLink>, "as" | "id">) => {
+  }: React.ComponentProps<"h1">) => {
     const slug = slugify(children as string);
     const isH2 = as === "h2";
     return (
@@ -112,7 +114,7 @@ function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
   return CustomHeading;
 }
 
-function createParagraph({ children }: TextProps) {
+function createParagraph({ children }: React.ComponentProps<"p">) {
   return (
     <Text
       style={{ lineHeight: "175%" }}
@@ -126,14 +128,16 @@ function createParagraph({ children }: TextProps) {
   );
 }
 
-function createInlineCode({ children }: { children: ReactNode }) {
+function createInlineCode({ children }: React.ComponentProps<"code">) {
   return <InlineCode>{children}</InlineCode>;
 }
 
-function createCodeBlock(props: any) {
+function createCodeBlock(props: React.ComponentProps<"pre">) {
   // For pre tags that contain code blocks
-  if (props.children?.props?.className) {
-    const { className, children } = props.children.props;
+  const child = props.children as React.ReactElement<React.ComponentProps<"code">>;
+
+  if (child?.props?.className) {
+    const { className, children } = child.props;
 
     // Extract language from className (format: language-xxx)
     const language = className.replace("language-", "");
@@ -145,7 +149,7 @@ function createCodeBlock(props: any) {
         marginBottom="16"
         codes={[
           {
-            code: children,
+            code: (children as string) || "",
             language,
             label,
           },
@@ -159,11 +163,11 @@ function createCodeBlock(props: any) {
   return <pre {...props} />;
 }
 
-function createList({ children }: { children: ReactNode }) {
+function createList({ children }: React.ComponentProps<"ul">) {
   return <List>{children}</List>;
 }
 
-function createListItem({ children }: { children: ReactNode }) {
+function createListItem({ children }: React.ComponentProps<"li">) {
   return (
     <ListItem marginTop="4" marginBottom="8" style={{ lineHeight: "175%", fontSize: "0.875rem" }}>
       {children}
@@ -171,7 +175,7 @@ function createListItem({ children }: { children: ReactNode }) {
   );
 }
 
-function createHR() {
+function createHR(props: React.ComponentProps<"hr">) {
   return (
     <Row fillWidth horizontal="center">
       <Line maxWidth="40" />
@@ -180,21 +184,21 @@ function createHR() {
 }
 
 const components = {
-  p: createParagraph as any,
-  h1: createHeading("h1") as any,
-  h2: createHeading("h2") as any,
-  h3: createHeading("h3") as any,
-  h4: createHeading("h4") as any,
-  h5: createHeading("h5") as any,
-  h6: createHeading("h6") as any,
-  img: createImage as any,
-  a: CustomLink as any,
-  code: createInlineCode as any,
-  pre: createCodeBlock as any,
-  ol: createList as any,
-  ul: createList as any,
-  li: createListItem as any,
-  hr: createHR as any,
+  p: createParagraph,
+  h1: createHeading("h1"),
+  h2: createHeading("h2"),
+  h3: createHeading("h3"),
+  h4: createHeading("h4"),
+  h5: createHeading("h5"),
+  h6: createHeading("h6"),
+  img: createImage,
+  a: CustomLink,
+  code: createInlineCode,
+  pre: createCodeBlock,
+  ol: createList,
+  ul: createList,
+  li: createListItem,
+  hr: createHR,
   Heading,
   Text,
   CodeBlock,

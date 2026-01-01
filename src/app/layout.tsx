@@ -4,7 +4,7 @@ import "@/resources/custom.css";
 
 import classNames from "classnames";
 
-import { Footer, Header, Providers, RouteGuard, GoogleAnalytics } from "@/components";
+import { EnhancedNavigation, Footer, Header, Providers, RouteGuard, GoogleAnalytics } from "@/components";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import { baseURL, dataStyle, effects, fonts, home, style } from "@/resources";
 import {
@@ -55,73 +55,75 @@ export default async function RootLayout({
       <body>
         <Providers>
           <ThemeInitializer />
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
-          <div id="aria-live-region" aria-live="polite" aria-atomic="true" className="sr-only">
-            {/* Screen reader announcements */}
-          </div>
-          <Column
-            background="page"
-            fillWidth
-            style={{ minHeight: "100vh" }}
-            margin="0"
-            padding="0"
-            horizontal="center"
-          >
-            <RevealFx fill position="absolute">
-              <Background
-                mask={{
-                  x: effects.mask.x,
-                  y: effects.mask.y,
-                  radius: effects.mask.radius,
-                  cursor: effects.mask.cursor,
-                }}
-                gradient={{
-                  display: true,
-                  opacity: 80, /* Increased opacity for more color */
-                  x: effects.gradient.x,
-                  y: effects.gradient.y,
-                  width: effects.gradient.width,
-                  height: effects.gradient.height,
-                  tilt: effects.gradient.tilt,
-                  colorStart: effects.gradient.colorStart,
-                  colorEnd: effects.gradient.colorEnd,
-                }}
-                dots={{
-                  display: true,
-                  opacity: 40,
-                  size: "2",
-                  color: effects.dots.color,
-                }}
-                grid={{
-                  display: false, /* Disable grid to reduce noise with glass */
-                  opacity: effects.grid.opacity as opacity,
-                  color: effects.grid.color,
-                  width: effects.grid.width,
-                  height: effects.grid.height,
-                }}
-                lines={{
-                  display: false,
-                  opacity: effects.lines.opacity as opacity,
-                  size: effects.lines.size as SpacingToken,
-                  thickness: effects.lines.thickness,
-                  angle: effects.lines.angle,
-                  color: effects.lines.color,
-                }}
-              />
-            </RevealFx>
-            <Flex fillWidth minHeight="16" s={{ hide: true }} />
-            <Header />
-            <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
-              <Flex horizontal="center" fillWidth minHeight="0">
-                <main id="main-content">
-                  <RouteGuard>{children}</RouteGuard>
-                </main>
+          <EnhancedNavigation>
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <div id="aria-live-region" aria-live="polite" aria-atomic="true" className="sr-only">
+              {/* Screen reader announcements */}
+            </div>
+            <Column
+              background="page"
+              fillWidth
+              style={{ minHeight: "100vh" }}
+              margin="0"
+              padding="0"
+              horizontal="center"
+            >
+              <RevealFx fill position="absolute">
+                <Background
+                  mask={{
+                    x: effects.mask.x,
+                    y: effects.mask.y,
+                    radius: effects.mask.radius,
+                    cursor: effects.mask.cursor,
+                  }}
+                  gradient={{
+                    display: true,
+                    opacity: 80, /* Increased opacity for more color */
+                    x: effects.gradient.x,
+                    y: effects.gradient.y,
+                    width: effects.gradient.width,
+                    height: effects.gradient.height,
+                    tilt: effects.gradient.tilt,
+                    colorStart: effects.gradient.colorStart,
+                    colorEnd: effects.gradient.colorEnd,
+                  }}
+                  dots={{
+                    display: true,
+                    opacity: 40,
+                    size: "2",
+                    color: effects.dots.color,
+                  }}
+                  grid={{
+                    display: false, /* Disable grid to reduce noise with glass */
+                    opacity: effects.grid.opacity as opacity,
+                    color: effects.grid.color,
+                    width: effects.grid.width,
+                    height: effects.grid.height,
+                  }}
+                  lines={{
+                    display: false,
+                    opacity: effects.lines.opacity as opacity,
+                    size: effects.lines.size as SpacingToken,
+                    thickness: effects.lines.thickness,
+                    angle: effects.lines.angle,
+                    color: effects.lines.color,
+                  }}
+                />
+              </RevealFx>
+
+              <Header />
+              <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
+                <Flex horizontal="center" fillWidth minHeight="0">
+                  <main id="main-content">
+                    <RouteGuard>{children}</RouteGuard>
+                  </main>
+                </Flex>
               </Flex>
-            </Flex>
-            <Footer />
-          </Column>
+              <Footer />
+            </Column>
+          </EnhancedNavigation>
         </Providers>
       </body>
     </html>
