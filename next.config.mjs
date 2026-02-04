@@ -54,22 +54,8 @@ const nextConfig = {
   },
 
   // Optimize for faster development with Turbopack
-  turbopack: {
-    rules: {
-      "*.scss": {
-        loaders: ["sass-loader"],
-        as: "*.css",
-      },
-      "*.module.scss": {
-        loaders: ["sass-loader"],
-        as: "*.module.css",
-      },
-      "*.svg": {
-        loaders: ["@svgr/webpack"],
-        as: "*.js",
-      },
-    },
-  },
+  // Note: SASS/SCSS files are handled natively by Next.js, no loader needed
+  // SVG handling is also native in Next.js 15, no custom loader needed
 
   // Add security headers
   async headers() {
@@ -111,38 +97,6 @@ const nextConfig = {
     optimizePackageImports: ["@once-ui-system/core", "react-icons", "lucide-react"],
   },
 
-  // Optimize webpack for faster builds
-  webpack: (config, { dev, isServer }) => {
-    // Enable filesystem caching for faster rebuilds
-    if (dev) {
-      config.cache = {
-        type: "filesystem",
-      };
-
-      // Skip type checking in webpack for faster builds
-      config.infrastructureLogging = {
-        level: "error",
-      };
-    }
-
-    // Reduce module resolution time
-    config.resolve.modules = ["node_modules"];
-
-    // Fallbacks for client-side
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        fs: false,
-        net: false,
-        tls: false,
-        dns: false,
-      };
-    }
-
-    // Handle font loading errors gracefully - use built-in Next.js font handling
-
-    return config;
-  },
 };
 
 export default withMDX(nextConfig);

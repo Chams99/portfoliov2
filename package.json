@@ -1,17 +1,18 @@
 {
   "name": "chames-dhibi-portfolio",
   "version": "2.3.0",
+  "pnpm": {
+    "onlyBuiltDependencies": ["sharp"]
+  },
   "scripts": {
     "dev": "next dev",
     "dev:turbo": "next dev --turbo",
-    "dev:fast": "NEXT_TELEMETRY_DISABLED=1 next dev --turbo",
-    "dev:webpack": "next dev",
-    "export": "next export",
     "build": "next build",
     "build:analyze": "ANALYZE=true next build",
-    "biome-write": "npx @biomejs/biome format --write .",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "npx @biomejs/biome format --write .",
+    "postinstall": "pnpm rebuild sharp"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
@@ -27,6 +28,7 @@
     "react-dom": "^19.2.3",
     "react-icons": "^5.5.0",
     "sass": "^1.93.2",
+    "sharp": "^0.33.4",
     "transliteration": "^2.3.5"
   },
   "devDependencies": {
@@ -36,7 +38,6 @@
     "@types/node": "^20.17.30",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "critters": "^0.0.23",
     "eslint": "^9.25.0",
     "eslint-config-next": "^16.0.0",
     "typescript": "^5.8.3"
