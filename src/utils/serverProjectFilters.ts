@@ -1,34 +1,12 @@
+import { CATEGORY_FILTER_LIMIT, TECHNOLOGY_FILTER_LIMIT } from "@/constants";
+import type { FilterOption, ProjectWithMetadata } from "@/types";
 import { getPosts } from "./utils";
 
-export interface FilterOption {
-  value: string;
-  label: string;
-  count: number;
-}
-
-export interface ProjectWithMetadata {
-  metadata: {
-    title: string;
-    summary: string;
-    category?: string;
-    tags?: string[];
-    // Higher priority means the project appears earlier in listings.
-    // Defaults to 0 when not set in frontmatter.
-    priority?: number;
-    publishedAt: string;
-    images: string[];
-    team?: Array<{
-      name: string;
-      role: string;
-      avatar: string;
-      linkedIn: string;
-    }>;
-    link?: string;
-  };
-  slug: string;
-  content: string;
-}
-
+/**
+ * Retrieves all projects from the projects directory, sorted by priority.
+ * Projects with higher priority values appear first.
+ * @returns Array of projects sorted by priority (descending)
+ */
 export function getAllProjects(): ProjectWithMetadata[] {
   const projects = getPosts(["src", "app", "work", "projects"]);
   return projects.sort((a, b) => {
@@ -36,6 +14,12 @@ export function getAllProjects(): ProjectWithMetadata[] {
   });
 }
 
+/**
+ * Extracts unique categories from projects and returns filter options.
+ * Categories are sorted by frequency (most common first) and limited to top N.
+ * @param projects - Array of projects to extract categories from
+ * @returns Array of filter options with category labels and counts
+ */
 export function getCategoriesFromProjects(projects: ProjectWithMetadata[]): FilterOption[] {
   const categoryCounts = projects.reduce(
     (acc, project) => {
@@ -65,9 +49,15 @@ export function getCategoriesFromProjects(projects: ProjectWithMetadata[]): Filt
       count,
     }))
     .sort((a, b) => b.count - a.count)
-    .slice(0, 8); // Limit to top 8 categories to reduce overwhelming UI
+    .slice(0, CATEGORY_FILTER_LIMIT);
 }
 
+/**
+ * Extracts unique technologies/tags from projects and returns filter options.
+ * Technologies are sorted by frequency (most common first) and limited to top N.
+ * @param projects - Array of projects to extract technologies from
+ * @returns Array of filter options with technology names and counts
+ */
 export function getTechnologiesFromProjects(projects: ProjectWithMetadata[]): FilterOption[] {
   const technologyCounts = projects.reduce(
     (acc, project) => {
@@ -87,5 +77,5 @@ export function getTechnologiesFromProjects(projects: ProjectWithMetadata[]): Fi
       count,
     }))
     .sort((a, b) => b.count - a.count)
-    .slice(0, 12); // Limit to top 12 technologies to reduce overwhelming UI
+    .slice(0, TECHNOLOGY_FILTER_LIMIT);
 }

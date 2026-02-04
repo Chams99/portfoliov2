@@ -1,26 +1,29 @@
 "use client";
 
+import type { ReactNode } from "react";
 import {
-  type BorderStyle,
-  type ChartMode,
-  type ChartVariant,
   DataThemeProvider,
   IconProvider,
   LayoutProvider,
-  type NeutralColor,
-  type ScalingSize,
-  type Schemes,
-  type SolidStyle,
-  type SolidType,
-  type SurfaceStyle,
   ThemeProvider,
   ToastProvider,
-  type TransitionStyle,
+} from "@once-ui-system/core/contexts";
+import type {
+  BorderStyle,
+  ChartMode,
+  ChartVariant,
+  NeutralColor,
+  ScalingSize,
+  Schemes,
+  SolidStyle,
+  SolidType,
+  SurfaceStyle,
+  TransitionStyle,
 } from "@once-ui-system/core";
 import { dataStyle, style } from "../resources";
 import { iconLibrary } from "../resources/icons";
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({ children }: { children: ReactNode }) {
   return (
     <LayoutProvider>
       <ThemeProvider

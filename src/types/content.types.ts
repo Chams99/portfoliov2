@@ -237,3 +237,82 @@ export interface Gallery extends BasePageConfig {
     orientation: string;
   }>;
 }
+
+/**
+ * Team member information for projects and blog posts.
+ */
+export type Team = {
+  /** Team member's name */
+  name: string;
+  /** Team member's role */
+  role: string;
+  /** Path to team member's avatar image */
+  avatar: string;
+  /** LinkedIn profile URL */
+  linkedIn: string;
+};
+
+/**
+ * Metadata for MDX content (blog posts and projects).
+ */
+export type Metadata = {
+  /** Title of the content */
+  title: string;
+  /** Publication date (ISO format) */
+  publishedAt: string;
+  /** Summary/description of the content */
+  summary: string;
+  /** Main image path */
+  image?: string;
+  /** Array of image paths */
+  images: string[];
+  /** Legacy tag field (deprecated, use tags instead) */
+  tag?: string;
+  /** Team members who worked on the project */
+  team: Team[];
+  /** External link to the project */
+  link?: string;
+  /** Category classification */
+  category?: string;
+  /** Technology tags */
+  tags?: string[];
+  /** GitHub repository URL */
+  github?: string;
+  /** Priority for sorting (higher = appears first) */
+  priority?: number;
+};
+
+/**
+ * Filter option for category and technology filters.
+ */
+export interface FilterOption {
+  /** Filter value */
+  value: string;
+  /** Display label */
+  label: string;
+  /** Number of items matching this filter */
+  count: number;
+}
+
+/**
+ * Project with metadata from MDX files.
+ */
+export interface ProjectWithMetadata {
+  /** Project metadata from frontmatter */
+  metadata: {
+    title: string;
+    summary: string;
+    category?: string;
+    tags?: string[];
+    /** Higher priority means the project appears earlier in listings. Defaults to 0 when not set. */
+    priority?: number;
+    publishedAt: string;
+    images: string[];
+    team?: Team[];
+    link?: string;
+  };
+  /** URL slug for the project */
+  slug: string;
+  /** MDX content */
+  content: string;
+}

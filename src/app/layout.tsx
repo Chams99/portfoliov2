@@ -7,15 +7,9 @@ import classNames from "classnames";
 import { EnhancedNavigation, Footer, Header, Providers, RouteGuard, GoogleAnalytics } from "@/components";
 import { ThemeInitializer } from "@/components/ThemeInitializer";
 import { baseURL, dataStyle, effects, fonts, home, style } from "@/resources";
-import {
-  Background,
-  Column,
-  Flex,
-  Meta,
-  RevealFx,
-  type SpacingToken,
-  type opacity,
-} from "@once-ui-system/core";
+import { Background, Column, Flex, RevealFx } from "@once-ui-system/core/components";
+import { Meta } from "@once-ui-system/core/modules";
+import type { SpacingToken, opacity } from "@once-ui-system/core";
 
 export async function generateMetadata() {
   return Meta.generate({

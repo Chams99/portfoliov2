@@ -1,5 +1,6 @@
 "use client";
 
+import { PROJECT_TAG_DISPLAY_LIMIT } from "@/constants";
 import { AvatarGroup, Badge, Column, Flex, Heading, Row, SmartLink, Text } from "@once-ui-system/core";
 import { HighQualityCarousel } from "./HighQualityCarousel";
 import styles from "./ProjectCard.module.scss";
@@ -101,7 +102,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {/* Tech Stack Tags */}
               {tags && tags.length > 0 && (
                 <Row gap="s" wrap marginTop="8">
-                  {tags.slice(0, 4).map((tag) => (
+                  {tags.slice(0, PROJECT_TAG_DISPLAY_LIMIT).map((tag) => (
                     <Badge 
                       key={`tag-${tag}`}
                       background="neutral-alpha-weak"
@@ -113,7 +114,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                       {tag}
                     </Badge>
                   ))}
-                  {tags.length > 4 && (
+                  {tags.length > PROJECT_TAG_DISPLAY_LIMIT && (
                     <Badge 
                       background="neutral-alpha-weak"
                       onBackground="neutral-weak"
@@ -121,7 +122,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                       paddingX="s"
                       paddingY="2"
                     >
-                      +{tags.length - 4} more
+                      +{tags.length - PROJECT_TAG_DISPLAY_LIMIT} more
                     </Badge>
                   )}
                 </Row>
