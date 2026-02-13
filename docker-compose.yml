@@ -1,0 +1,63 @@
+version: '3.8'
+
+x-service-template: &service-template
+  build: .
+  # Use node to perform a quick health check
+  healthcheck:
+    test: [ "CMD-SHELL", "node -e \"fetch('http://localhost:3000/').then(r => process.exit(r.status === 200 ? 0 : 1)).catch(() => process.exit(1))\"" ]
+    interval: 5s
+    timeout: 5s
+    retries: 5
+    start_period: 10s
+  restart: unless-stopped
+  env_file:
+    - .env
+  environment:
+    - NODE_ENV=production
+    - PORT=3000
+    # Identifying the instance for logs
+    - INSTANCE_ID={{.Name}}
+  networks:
+    - traefik
+  deploy:
+    resources:
+      limits:
+        cpus: '0.25'
+        memory: 256M
+
+services:
+  # ============================================
+  # Blue Instance
+  # ============================================
+  blue:
+    <<: *service-template
+    container_name: portfolio-blue
+    labels:
+      - "traefik.enable=true"
+      # Router - Distinct name but SAME Host rule
+      - "traefik.http.routers.portfolio-blue.rule=Host(`chames.dhibi.tn`)"
+      - "traefik.http.routers.portfolio-blue.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-blue.tls.certresolver=myresolver"
+      - "traefik.http.routers.portfolio-blue.middlewares=default-chain@file"
+      # Service
+      - "traefik.http.services.portfolio-blue.loadbalancer.server.port=3000"
+
+  # ============================================
+  # Green Instance
+  # ============================================
+  green:
+    <<: *service-template
+    container_name: portfolio-green
+    labels:
+      - "traefik.enable=true"
+      # Router - Distinct name but SAME Host rule
+      - "traefik.http.routers.portfolio-green.rule=Host(`chames.dhibi.tn`)"
+      - "traefik.http.routers.portfolio-green.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-green.tls.certresolver=myresolver"
+      - "traefik.http.routers.portfolio-green.middlewares=default-chain@file"
+      # Service
+      - "traefik.http.services.portfolio-green.loadbalancer.server.port=3000"
+
+networks:
+  traefik:
+    external: true
